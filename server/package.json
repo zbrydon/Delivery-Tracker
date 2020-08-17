@@ -1,0 +1,19 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Backend of Delivery-Tracker",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zbrydon/Delivery-Tracker.git"
+  },
+  "author": "Zac Brydon, Anthony Papoutsis, John Nguyen, Tan Khai Huynh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zbrydon/Delivery-Tracker/issues"
+  },
+  "homepage": "https://github.com/zbrydon/Delivery-Tracker#readme"
+}
