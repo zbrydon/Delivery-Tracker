@@ -9,6 +9,8 @@ mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopol
 const app = express(); 
 
 const bodyParser = require('body-parser');
+const loginWarehouse = require('./routes/loginWarehouse');
+const registerWarehouse = require('./routes/registerWarehouse');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -22,6 +24,8 @@ app.use(function (req, res, next) {
 app.use(test);
 app.use(loginStore);
 app.use(registerStore);
+app.use(loginWarehouse);
+app.use(registerWarehouse);
 
 const port = process.env.PORT || 3000; 
 app.listen(port, () => console.log(`Server runing on port ${port}`));
