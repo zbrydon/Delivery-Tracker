@@ -1,19 +1,18 @@
 const validator = require('validator');
 
 function validate(req, res, next) {
-    const { warehouseId, productType, quantity } = req.body
-    let deliveryDateTime = req.body.deliveryDateTime;
-    const storeId = res.obj.id;
-    if (!validator.isInt(warehouseId, { min: 4 })) {
+    const { storeId ,  quantity , orderId , deliveryDateTime , deliveryStatus } = req.body
+    const warehouseId = res.obj.id;
+    if (!validator.isInt(storeId, { min: 4 })) {
         return res.status(400).send({
             success: false,
             message: 'Warehouse ID in incorrect format'
         });
     }
-    if (!validator.equals(productType , 'frozen') && !validator.equals(productType ,'refrigerated') && !validator.equals(productType , 'ambient')) {
+    if (!validator.isInt(orderId, { min: 4 })) {
         return res.status(400).send({
             success: false,
-            message: 'Product Type in incorrect format'
+            message: 'Order ID in incorrect format'
         });
     }
     if (!validator.isInt(quantity, { min: 1 }, { max: 20 })) {
@@ -23,19 +22,25 @@ function validate(req, res, next) {
         });
     }
     const currentDate = new Date();
-    deliveryDateTime = Date.parse(deliveryDateTime);
-    if (!validator.isInt(deliveryDateTime.toString()) || deliveryDateTime - Date.parse(currentDate) < 0) {
+    if (!validator.isInt((Date.parse(deliveryDateTime)).toString()) || Date.parse(deliveryDateTime) - Date.parse(currentDate) < 0) {
         return res.status(400).send({
             success: false,
             message: 'Date in incorrect format'
         });
     }
+    if (!validator.equals(deliveryStatus, 'Not Dispatched') && !validator.equals(status, 'In Transit') && !validator.equals(status, 'Delivered')) {
+        return res.status(400).send({
+            success: false,
+            message: 'Status in incorrect format'
+        });
+    }
     else {
         res.storeId = storeId;
         res.warehouseId = warehouseId;
-        res.productType = productType;
+        res.orderId = orderId;
         res.quantity = quantity;
-        res.deliveryDateTime = Number(deliveryDateTime);
+        res.deliveryDateTime = deliveryDateTime;
+        res.deliveryStatus = deliveryStatus;
         next();
     }
 };

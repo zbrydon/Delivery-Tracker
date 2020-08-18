@@ -6,6 +6,7 @@ const registerStore = require('./routes/registerStore');
 const loginWarehouse = require('./routes/loginWarehouse');
 const registerWarehouse = require('./routes/registerWarehouse');
 const submitOrder = require('./routes/submitOrder');
+const fulfillOrder = require('./routes/fulfillOrder');
 
 mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -29,6 +30,7 @@ app.use(registerStore);
 app.use(loginWarehouse);
 app.use(registerWarehouse);
 app.use(submitOrder);
+app.use(fulfillOrder);
 
 const port = process.env.PORT || 3000; 
 app.listen(port, () => console.log(`Server runing on port ${port}`));
