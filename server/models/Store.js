@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-module.exports = mongoose.model('User', new mongoose.Schema({
-    id: Integer,
+module.exports = mongoose.model('Store', new mongoose.Schema({
+    id: Number,
     password: String
 }));
