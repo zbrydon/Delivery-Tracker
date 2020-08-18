@@ -24,7 +24,6 @@ function createStore(req, res, next) {
                         message: 'ID or Password in incorrect format'
                     });
                 } else {
-                    console.log('success');
                     next();
                 }
 
