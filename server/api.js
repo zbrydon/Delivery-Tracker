@@ -11,6 +11,7 @@ const viewStoreOrders = require('./routes/viewStoreOrders');
 const viewStoreDeliveries = require('./routes/viewStoreDeliveries');
 const viewWarehouseOrders = require('./routes/viewWarehouseOrders');
 const viewWarehouseDeliveries = require('./routes/viewWarehouseDeliveries');
+const updateDelivery = require('./routes/updateDeliveryStatus');
 
 mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -38,6 +39,7 @@ app.use(viewStoreOrders);
 app.use(viewStoreDeliveries);
 app.use(viewWarehouseOrders);
 app.use(viewWarehouseDeliveries);
+app.use(updateDelivery);
 
 const port = process.env.PORT || 3000; 
 app.listen(port, () => console.log(`Server runing on port ${port}`));

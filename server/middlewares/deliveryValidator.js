@@ -28,7 +28,7 @@ function validate(req, res, next) {
             message: 'Date in incorrect format'
         });
     }
-    if (!validator.equals(deliveryStatus, 'Not Dispatched') && !validator.equals(status, 'In Transit') && !validator.equals(status, 'Delivered')) {
+    if (!validator.equals(deliveryStatus, 'Not Dispatched') && !validator.equals(deliveryStatus, 'In Transit') && !validator.equals(deliveryStatus, 'Delivered')) {
         return res.status(400).send({
             success: false,
             message: 'Status in incorrect format'
