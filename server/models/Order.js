@@ -5,5 +5,10 @@ module.exports = mongoose.model('Order', new mongoose.Schema({
     warehouseId : Number,
     productType: String,
     quantity: Number,
-    deliveryDateTime: Number
+    deliveryDateTime: Number,
+    orderDateTime: Number,
+    temperature: Array,
+    orderStatus: String
+    //temp data type is array for now might change to json object depending on difficulty of future queries 
+    
 }));

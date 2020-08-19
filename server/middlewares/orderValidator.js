@@ -27,7 +27,7 @@ function validate(req, res, next) {
     if (!validator.isInt(deliveryDateTime.toString()) || deliveryDateTime - Date.parse(currentDate) < 0) {
         return res.status(400).send({
             success: false,
-            message: 'Date in incorrect format'
+            message: 'Date in incorrect format (2020-08-20 10:10:10)'
         });
     }
     else {
@@ -36,6 +36,7 @@ function validate(req, res, next) {
         res.productType = productType;
         res.quantity = quantity;
         res.deliveryDateTime = Number(deliveryDateTime);
+        res.orderDateTime = Date.parse(currentDate);
         next();
     }
 };

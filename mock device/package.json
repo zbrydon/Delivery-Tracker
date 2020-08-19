@@ -1,36 +1,25 @@
 {
-  "name": "server",
+  "name": "mock-device",
   "version": "1.0.0",
-  "description": "Backend of Delivery-Tracker",
+  "description": "Acts as a mock device sending temp and location data to the backend of Delivery-Tracker",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon -r dotenv/config api.js"
+    "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/zbrydon/Delivery-Tracker.git"
   },
-  "author": "Zac Brydon, Anthony Papoutsis, John Nguyen, Tan Khai Huynh",
+  "author": "Zac Brydon",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/zbrydon/Delivery-Tracker/issues"
   },
   "homepage": "https://github.com/zbrydon/Delivery-Tracker#readme",
   "dependencies": {
-    "@googlemaps/google-maps-services-js": "^3.1.6",
-    "bcrypt": "^5.0.0",
-    "body-parser": "^1.19.0",
-    "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.10.0",
-    "morgan": "^1.10.0",
     "mqtt": "^4.2.0",
-    "validator": "^13.1.1"
-  },
-  "devDependencies": {
     "nodemon": "^2.0.4"
   }
 }
