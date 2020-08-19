@@ -1,6 +1,6 @@
 const express = require('express');
 const validate = require('../middlewares/deliveryValidator');
-const authenticate = require('../middlewares/authenticateToken');
+const authenticate = require('../middlewares/authenticateTokenWarehouse');
 const createDelivery = require('../services/createDelivery');
 const deleteOrder = require('../services/deleteOrder');
 const fulfillOrder = express.Router();

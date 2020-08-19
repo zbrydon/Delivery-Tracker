@@ -1,5 +1,3 @@
-const mongoose = require('mongoose');
-const Delivery = require('../models/Delivery');
 const Order = require('../models/Order');
 
 function deleteOrder(req, res, next) {

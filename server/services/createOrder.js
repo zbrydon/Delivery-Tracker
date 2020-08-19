@@ -9,7 +9,6 @@ function createOrder(req, res, next) {
     const productType = res.productType;
     const quantity = res.quantity;
     const deliveryDateTime = res.deliveryDateTime;
-    //console.log(productType);
     Order
         .find({})
         .select( "orderId" )

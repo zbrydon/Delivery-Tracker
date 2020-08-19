@@ -1,6 +1,6 @@
 const express = require('express');
 const validate = require('../middlewares/orderValidator');
-const authenticate = require('../middlewares/authenticateToken');
+const authenticate = require('../middlewares/authenticateTokenStore');
 const createOrder = require('../services/createOrder');
 const submitOrder = express.Router();
 

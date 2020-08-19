@@ -7,11 +7,14 @@ const loginWarehouse = require('./routes/loginWarehouse');
 const registerWarehouse = require('./routes/registerWarehouse');
 const submitOrder = require('./routes/submitOrder');
 const fulfillOrder = require('./routes/fulfillOrder');
+const viewStoreOrders = require('./routes/viewStoreOrders');
+const viewStoreDeliveries = require('./routes/viewStoreDeliveries');
+const viewWarehouseOrders = require('./routes/viewWarehouseOrders');
+const viewWarehouseDeliveries = require('./routes/viewWarehouseDeliveries');
 
 mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const app = express(); 
-app.use(express.static(`${__dirname}`));
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -31,6 +34,10 @@ app.use(loginWarehouse);
 app.use(registerWarehouse);
 app.use(submitOrder);
 app.use(fulfillOrder);
+app.use(viewStoreOrders);
+app.use(viewStoreDeliveries);
+app.use(viewWarehouseOrders);
+app.use(viewWarehouseDeliveries);
 
 const port = process.env.PORT || 3000; 
 app.listen(port, () => console.log(`Server runing on port ${port}`));
