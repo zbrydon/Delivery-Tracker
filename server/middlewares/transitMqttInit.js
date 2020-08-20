@@ -8,9 +8,9 @@ client.on('connect', () => {
 });
 
 function mqttInit(req, res, next) {
-    const deliveryStatus = res.deliveryStatus;
-    const deliveryId = res.deliveryId;
-    const storeId = res.delivery.storeId;
+    const orderStatus = res.orderStatus;
+    const orderId = res.orderId;
+    const storeId = res.storeId;
     Store.findOne({ id: storeId }, (err, store) => {
         if (err) {
             return res.json({
@@ -25,9 +25,10 @@ function mqttInit(req, res, next) {
             });
         }
         const location = store.location;
-        if (deliveryStatus == "In Transit") {
+        if (orderStatus == "In Transit") {
             const topic = '/219203655/init/';
-            const message = JSON.stringify({ deliveryId, deliveryStatus, location });
+            const message = JSON.stringify({ orderId, orderStatus, location });
+            console.log(topic + " " + message);
             client.publish(topic, message, (err) => {
                 if (err) {
                     return res.status(400).send({

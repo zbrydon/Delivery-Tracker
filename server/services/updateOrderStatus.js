@@ -45,7 +45,7 @@ function updateOrder(req, res, next) {
                             message: err
                         });
                     } else {
-                        res.Order = Order;
+                        //res.Order = Order;
                         next();
                     }
                 });
