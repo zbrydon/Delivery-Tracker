@@ -34,7 +34,6 @@ function createOrder(req, res, next) {
                                 message: err
                             });
                         } else {
-                            console.log(orderDateTime);
                             const newOrder = new Order({
                                 orderId: orderId,
                                 storeId: storeId,
