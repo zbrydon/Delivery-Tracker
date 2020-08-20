@@ -1,7 +1,7 @@
 const validator = require('validator');
 
 function validate(req, res, next) {
-    const { id, password , confirm_password } = req.body
+    const { id, password , confirm_password , location} = req.body
     if (!validator.isInt(id, { min: 4 }) || !validator.isLength(password, { min: 8 }) || !validator.isLength(confirm_password, { min: 8 })) {
         return res.status(400).send({
             success: false,
@@ -12,8 +12,19 @@ function validate(req, res, next) {
             success: false,
             message: 'Passwords do not match'
         });
-    } else {
+    } if (location) {
+        if (!validator.isJSON(JSON.stringify(location))) {
+            return res.status(400).send({
+                success: false,
+                message: 'Location in Incorrect format'
+            });
+        } else {
+            next();
+        }
+    }
+    else {
         next();
     }
 };
-module.exports = validate;
+
+module.exports = validate; 

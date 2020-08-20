@@ -1,14 +1,14 @@
 const express = require('express');
-const validate = require('../middlewares/deliveryValidator');
+const validate = require('../middlewares/orderUpdateValidator');
 const authenticate = require('../middlewares/authenticateTokenWarehouse');
-const createDelivery = require('../services/createDelivery');
-const deleteOrder = require('../services/deleteOrder');
+const updateOrderStatus = require('../services/updateOrderStatus');
+const transmit = require('../middlewares/transitMqttInit');
 const fulfillOrder = express.Router();
 
 
 
-fulfillOrder.post('/fulfillOrder', authenticate, validate, createDelivery, deleteOrder , (req, res) => {
-    res.send('This is working!');
+fulfillOrder.post('/fulfillOrder', authenticate, validate, updateOrderStatus, transmit , (req, res) => {
+    console.log('working');
 });
 
-module.exports = fulfillOrder; 
+module.exports = fulfillOrder;  
