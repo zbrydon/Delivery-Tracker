@@ -1,0 +1,129 @@
+* {
+  box-sizing: border-box;
+}
+html {
+  margin: 0;
+}
+body {
+  margin: 0 0 0 0;
+}
+
+.user-container {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+img {
+  max-width: 100%;
+  height: 100vh;
+  margin-bottom: 0;
+  flex: 60%;
+}
+
+.login-container {
+  display: flex;
+  background-color: white;
+  flex: 40%;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  width: 80%;
+}
+
+h1 {
+  margin-left: 20px;
+  font-size: 3.5em;
+  margin-top: 10px;
+}
+
+p {
+  margin-top: 40px;
+  text-align: center;
+  font-weight: bold;
+}
+
+a {
+  color: #58c6ea;
+  text-decoration: none;
+}
+input[type="text"],
+input[type="password"] {
+  margin-bottom: 40px;
+  width: 100%;
+  height: 40px;
+  outline: 0;
+  border: 0.1px black;
+  border-radius: 5px;
+  padding: 0 0 0 10px;
+  background-color: #dcf3fb;
+  box-shadow: 2px 2px #aeb1b5;
+  outline-style: none;
+}
+
+button {
+  background-color: #58c6ea;
+  padding: 10px 10px;
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  margin: 0 auto;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  box-shadow: 2px 2px #aeb1b5;
+}
+
+@media only screen and (max-width: 500px) {
+  img {
+    width: 60px;
+    height: 60px;
+  }
+
+  form {
+    margin-top: 100px;
+  }
+
+  input[type="text"],
+  input[type="password"] {
+    height: 35px;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  img {
+    width: 60px;
+    height: 60px;
+  }
+
+  form {
+    margin-top: 100px;
+  }
+
+  input[type="text"],
+  input[type="password"] {
+    height: 35px;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  input[type="text"],
+  input[type="password"] {
+    height: 35px;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .login-container {
+    flex: 45%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .user-container {
+    width: 100%;
+  }
+}
