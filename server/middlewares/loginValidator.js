@@ -2,12 +2,24 @@ const validator = require('validator');
 
 function validate(req, res, next) {
     const { id, password } = req.body
-    if (!validator.isInt(id, { min: 4}) || !validator.isLength(password, { min: 8 })) {
-        return res.status(400).send({
+    if (!validator.isInt(id)) {
+        
+        return res.status(406).send({
             success: false,
-            message: 'ID or Password in incorrect format'
+            message: 'ID is not a number'
         });
-    } else {
+    }if (!validator.isLength(id, { min: 4 ,  max: 5 })) {
+        
+        return res.status(406).send({
+            success: false,
+            message: 'ID is the incorrect length'
+        });
+    } if (!validator.isLength(password, { min: 8 })) {
+        return res.status(406).send({
+            success: false,
+            message: 'Password must be longer than 8 characters'
+        });
+	}else {
         next();
     }
 };

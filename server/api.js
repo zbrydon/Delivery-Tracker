@@ -2,15 +2,14 @@ const express = require('express');
 const mongoose = require('mongoose');
 const mqtt = require('mqtt');
 const test = require("./routes/test");
-const loginStore = require('./routes/loginStore');
 const registerStore = require('./routes/registerStore');
-const loginWarehouse = require('./routes/loginWarehouse');
 const registerWarehouse = require('./routes/registerWarehouse');
 const submitOrder = require('./routes/submitOrder');
 const fulfillOrder = require('./routes/fulfillOrder');
 const viewStoreOrders = require('./routes/viewStoreOrders');
 const viewWarehouseOrders = require('./routes/viewWarehouseOrders');
 const distanceCalc = require('./services/distanceCalc');
+const login = require('./routes/login');
 
 mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -28,14 +27,13 @@ app.use(function (req, res, next) {
 });
 
 app.use(test);
-app.use(loginStore);
 app.use(registerStore);
-app.use(loginWarehouse);
 app.use(registerWarehouse);
 app.use(submitOrder);
 app.use(fulfillOrder);
 app.use(viewStoreOrders);
 app.use(viewWarehouseOrders);
+app.use(login);
 
 
 const client = mqtt.connect("mqtt://broker.hivemq.com:1883");
