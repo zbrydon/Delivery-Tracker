@@ -7,7 +7,11 @@ const submitOrder = express.Router();
 
 
 submitOrder.post('/submitOrder', authenticate, validate,  createOrder , (req, res) => {
-    res.send('This is working!');
+    return res.status(200).send({
+        success: true,
+        message: 'Order Created',
+        order: res.locals.order
+    })
 });
 
 module.exports = submitOrder; 

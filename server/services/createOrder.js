@@ -52,10 +52,7 @@ function createOrder(req, res, next) {
                                         message: err
                                     });
                                 } else {
-                                    return res.status(200).send({
-                                        success: true,
-                                        message: 'Order Created'
-                                    });
+                                    res.locals.order = newOrder;
                                     next();
                                 }
 
@@ -98,10 +95,7 @@ function createOrder(req, res, next) {
                                         message: err
                                     });
                                 } else {
-                                    return res.status(200).send({
-                                        success: true,
-                                        message: 'Order Created'
-                                    });
+                                    res.locals.order = newOrder;
                                     next();
                                 }
 

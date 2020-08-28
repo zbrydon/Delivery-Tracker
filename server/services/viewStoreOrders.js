@@ -8,8 +8,13 @@ function viewOrder(req, res, next) {
                 success: false,
                 message: err
             });
-        } else {
-            return res.send(orders);
+        } if (!orders) {
+            return res.status(400).send({
+                success: false,
+                message: 'This store has no orders'
+            });
+        }else {
+            res.locals.orders = orders;
             next();
         }
     });

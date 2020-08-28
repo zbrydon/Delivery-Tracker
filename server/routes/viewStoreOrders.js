@@ -6,7 +6,11 @@ const viewStoreOrders = express.Router();
 
 
 viewStoreOrders.get('/viewStoreOrders', authenticate, viewOrder , (req, res) => {
-    res.send('working');
+    return res.status(200).send({
+        success: true,
+        message: 'Orders Displayed',
+        orders: res.locals.orders
+    })
 });
 
 module.exports = viewStoreOrders; 

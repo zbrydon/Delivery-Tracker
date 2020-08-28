@@ -2,7 +2,7 @@ const Order = require('../models/Order');
 
 function updateOrder(req, res, next) {
     const updated = res.orderId;
-    const newOrderStatus = res.orderStatus;
+    const newOrderStatus = /*res.orderStatus*/'Unfulfilled';
     Order.findOne({ orderId: updated }, (err, order) => {
         if (err) {
             return res.json({
@@ -57,14 +57,16 @@ function updateOrder(req, res, next) {
                 returnNewDocument: true,
                 useFindAndModify: false
             },
-            (err, Order) => {
+            (err, order) => {
                 if (err) {
                     return res.status(400).send({
                         success: false,
                         message: err
                     });
                 } else {
-                    res.Order = Order;
+                    //console.log(order);
+                    //res.send({ order: order });
+                    res.locals.order = order;
                     next();
                 }
             });

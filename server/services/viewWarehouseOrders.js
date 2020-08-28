@@ -9,7 +9,7 @@ function viewOrder(req, res, next) {
                 message: err
             });
         } else {
-            return res.send(orders);
+            res.locals.orders = orders;
             next();
         }
     });

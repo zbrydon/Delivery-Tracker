@@ -35,12 +35,12 @@ function authenticate(req, res, next) {
                     //Add the following to the response
 
                     //, refreshToken, refreshToken
-
-                    return res.status(200).send({
-                        success: true,
-                        message: 'Token Generated',
-                        token: token
-                    });
+                    const tokens = {
+                        token: token,
+                        refreshToken: 'refreshToken'
+                    }
+                    res.locals.tokens = tokens;
+                    next();
                 } else { return res.status(406).send({ success: false, message: 'Authentication failed. Wrong password.' }); }
 
             })

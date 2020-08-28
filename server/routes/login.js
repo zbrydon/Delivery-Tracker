@@ -7,7 +7,11 @@ const loginStore = express.Router();
 
 
 loginStore.post('/login', validate, authenticateStore, authenticateWarehouse, (req, res) => {
-    res.send('This is working!');
+    return res.status(200).send({
+        success: true,
+        message: 'Logged In',
+        tokens: res.locals.tokens
+    })
 });
 
 module.exports = loginStore; 

@@ -1,5 +1,5 @@
 const mqtt = require('mqtt');
-const Store = require('../models/Store')
+const Order = require('../models/Order')
 
 const client = mqtt.connect("mqtt://broker.hivemq.com:1883");
 
@@ -10,18 +10,17 @@ client.on('connect', () => {
 function mqttInit(req, res, next) {
     const orderStatus = res.orderStatus;
     const orderId = res.orderId;
-    const storeId = res.storeId;
-    Store.findOne({ id: storeId }, (err, store) => {
+    Order.findOne({ id: orderId }, (err, order) => {
         if (err) {
             return res.json({
                 success: false,
                 message: err
             });
         }
-        if (!store) {
+        if (!order) {
             return res.json({
                 success: false,
-                message: 'Invalid Store ID'
+                message: 'Invalid Order ID'
             });
         }
         const location = store.location;
