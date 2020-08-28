@@ -1,5 +1,5 @@
 {
-  "name": "warehouse-react",
+  "name": "client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -33,7 +33,16 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "dotenv": "^8.2.0"
-  }
+  "description": "Front end of Delivery-Tracker",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zbrydon/Delivery-Tracker.git"
+  },
+  "author": "Zac Brydon, Anthony Papoutsis, John Nguyen, Tan Khai Huynh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zbrydon/Delivery-Tracker/issues"
+  },
+  "homepage": "https://github.com/zbrydon/Delivery-Tracker#readme"
 }
