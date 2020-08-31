@@ -5,7 +5,7 @@ const Store = require('../models/Store');
 
 
 function createOrder(req, res, next) {
-    const storeId = res.storeId;
+    const storeId = res.obj.id;
     const warehouseId = res.warehouseId;
     const productType = res.productType;
     const quantity = res.quantity;

@@ -2,6 +2,7 @@ const validator = require('validator');
 
 function validate(req, res, next) {
     const { orderId, orderStatus } = req.body
+    const obj = res.obj;
     if (!validator.isInt(orderId, { min: 4 }, { max: 5 })) {
         return res.status(400).send({
             success: false,
@@ -17,6 +18,7 @@ function validate(req, res, next) {
     else {
         res.orderId = orderId;
         res.orderStatus = orderStatus;
+        res.obj = obj;
         next();
     }
 };

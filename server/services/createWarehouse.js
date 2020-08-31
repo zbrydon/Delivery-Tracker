@@ -16,7 +16,15 @@ function createWarehouse(req, res, next) {
             if (err) {
                 return res.status(400).send({ success: false, message: err });
             }
-            const newWarehouse = new Warehouse({ id : id, password : password_hash });
+            const newWarehouse = new Warehouse({
+                id: id, password: password_hash, SOH: {
+                    frozen: 0,
+                    dairy: 0,
+                    meat: 0,
+                    produce: 0,
+                    ambient:0
+                }
+            });
             newWarehouse.save((err) => {
                 if (err) {
                     return res.status(406).send({

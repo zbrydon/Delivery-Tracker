@@ -2,6 +2,7 @@ const Order = require('../models/Order');
 
 function updateOrder(req, res, next) {
     const updated = res.orderId;
+    const warehouseId = res.obj.id;
     const newOrderStatus = /*res.orderStatus*/'Unfulfilled';
     Order.findOne({ orderId: updated }, (err, order) => {
         if (err) {
@@ -28,6 +29,12 @@ function updateOrder(req, res, next) {
                 message: 'Order cannot be fulfilled'
             });
         }
+        if (order.warehouseId != warehouseId) {
+            return res.status(406).send({
+                success: false,
+                message: 'This order does not belong to this warehouse'
+            });
+        }
         if (newOrderStatus == "In Transit") {
             let currentDate = new Date();
             currentDate = Date.parse(currentDate);
@@ -45,7 +52,7 @@ function updateOrder(req, res, next) {
                             message: err
                         });
                     } else {
-                        //res.Order = Order;
+                        res.locals.order = order;
                         next();
                     }
                 });
@@ -64,8 +71,6 @@ function updateOrder(req, res, next) {
                         message: err
                     });
                 } else {
-                    //console.log(order);
-                    //res.send({ order: order });
                     res.locals.order = order;
                     next();
                 }

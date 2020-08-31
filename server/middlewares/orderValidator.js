@@ -2,15 +2,15 @@ const validator = require('validator');
 
 function validate(req, res, next) {
     const { warehouseId, productType, quantity } = req.body
+    const obj = res.obj;
     let deliveryDateTime = req.body.deliveryDateTime;
-    const storeId = res.obj.id;
     if (!validator.isInt(warehouseId, { min: 4 })) {
         return res.status(400).send({
             success: false,
             message: 'Warehouse ID in incorrect format'
         });
     }
-    if (!validator.equals(productType , 'frozen') && !validator.equals(productType ,'refrigerated') && !validator.equals(productType , 'ambient')) {
+    if (!validator.equals(productType, 'frozen') && !validator.equals(productType, 'dairy') && !validator.equals(productType, 'meat') && !validator.equals(productType, 'produce') && !validator.equals(productType , 'ambient')) {
         return res.status(400).send({
             success: false,
             message: 'Product Type in incorrect format'
@@ -31,7 +31,7 @@ function validate(req, res, next) {
         });
     }
     else {
-        res.storeId = storeId;
+        res.obj = obj;
         res.warehouseId = warehouseId;
         res.productType = productType;
         res.quantity = quantity;
