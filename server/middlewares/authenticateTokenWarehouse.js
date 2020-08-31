@@ -10,6 +10,7 @@ function authenticateToken(req, res, next) {
                     message: 'Failed to authenticate token.'
                 })
             } else {
+                
                 res.token = token;
                 res.obj = obj;
                 next();

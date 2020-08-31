@@ -1,23 +1,23 @@
-const Order = require('../models/Order');
+const Store = require('../models/Store');
 
-function viewOrder(req, res, next) {
+function viewSOH(req, res, next) {
     const storeId = res.obj.id;
-    Order.find({ order: storeId }, (err, orders) => {
+    Store.find({ id: storeId }, (err, store) => {
         if (err) {
             return res.status(400).send({
                 success: false,
                 message: err
             });
-        } if (!orders) {
+        } if (!store) {
             return res.status(400).send({
                 success: false,
-                message: 'This store has no orders'
+                message: 'This store has no SOH'
             });
-        }else {
-            res.locals.orders = orders;
+        } else {
+            res.locals.SOH = store[0].SOH;
             next();
         }
     });
 };
 
-module.exports = viewOrder;  
+module.exports = viewSOH;  
