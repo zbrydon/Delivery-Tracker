@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import Image from "../Images/Img.jpg";
 import "../Login/Login.Modules.css";
 import axios from "axios";
-import UserContext from "../context/userContext";
 import { useHistory } from "react-router-dom";
 
 const Login = () => {
