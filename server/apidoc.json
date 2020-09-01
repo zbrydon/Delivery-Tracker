@@ -1,0 +1,7 @@
+{
+  "name": "Delivery Tracker API",
+  "version": "1.0.0",
+  "description": "List of endpoints for the Delivery Tracker API",
+  "title": "Delivery Tracker API",
+  "url": "http://localhost:5000"
+}

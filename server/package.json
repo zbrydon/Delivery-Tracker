@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon -r dotenv/config api.js"
+    "start": "nodemon -r dotenv/config api.js",
+    "doc": "apidoc -o public/generated-docs/ -e node_modules/"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,7 @@
     "validator": "^13.1.1"
   },
   "devDependencies": {
+    "apidoc": "^0.25.0",
     "nodemon": "^2.0.4"
   }
 }
