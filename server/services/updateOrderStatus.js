@@ -2,12 +2,17 @@ const Order = require('../models/Order');
 
 function updateOrder(req, res, next) {
     const updated = res.orderId;
-    const newOrderStatus = /*res.orderStatus*/'Unfulfilled';
+    const newOrderStatus = res.orderStatus;
     Order.findOne({ orderId: updated }, (err, order) => {
         if (err) {
-            return res.json({
+            return res.status(400).send({
                 success: false,
                 message: err
+            });
+        } if (!order) {
+            return res.status(404).send({
+                success: false,
+                message: 'Order not found'
             });
         }
         if (newOrderStatus == "In Transit" && order.orderStatus != "Fulfilled") {
@@ -45,7 +50,7 @@ function updateOrder(req, res, next) {
                             message: err
                         });
                     } else {
-                        //res.Order = Order;
+                        res.locals.order = order;
                         next();
                     }
                 });

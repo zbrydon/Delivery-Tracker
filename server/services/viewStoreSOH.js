@@ -11,7 +11,7 @@ function viewSOH(req, res, next) {
         } if (!store) {
             return res.status(400).send({
                 success: false,
-                message: 'This store has no SOH'
+                message: 'This store does not esist'
             });
         } else {
             res.locals.SOH = store[0].SOH;

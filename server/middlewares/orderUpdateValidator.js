@@ -2,7 +2,7 @@ const validator = require('validator');
 
 function validate(req, res, next) {
     const { orderId, orderStatus } = req.body
-    if (!validator.isInt(orderId, { min: 4 }, { max: 5 })) {
+    if (!validator.isInt(orderId.toString(), { min: 1000 })) {
         return res.status(400).send({
             success: false,
             message: 'Delivery ID in incorrect format'

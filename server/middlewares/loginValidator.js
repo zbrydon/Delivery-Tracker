@@ -2,13 +2,13 @@ const validator = require('validator');
 
 function validate(req, res, next) {
     const { id, password } = req.body
-    if (!validator.isInt(id)) {
+    if (!validator.isInt(id.toString())) {
         
         return res.status(406).send({
             success: false,
             message: 'ID is not a number'
         });
-    }if (!validator.isLength(id, { min: 4 ,  max: 5 })) {
+    } if (!validator.isLength(id.toString(), { min: 4 ,  max: 5 })) {
         
         return res.status(406).send({
             success: false,

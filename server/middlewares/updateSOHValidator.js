@@ -9,7 +9,7 @@ function validate(req, res, next) {
             message: 'Product Type in incorrect format'
         });
     }
-    if (!validator.isInt(quantity, { min: 1 }, { max: 20 })) {
+    if (!validator.isInt(quantity.toString(), { min: 1 ,  max: 20 })) {
         return res.status(400).send({
             success: false,
             message: 'Quantity inncorrect'

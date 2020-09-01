@@ -1,6 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const mqtt = require('mqtt');
+
+/*
+ * Imports all the routes to be used in the API 
+ */
+
 const test = require("./routes/test");
 const registerStore = require('./routes/registerStore');
 const registerWarehouse = require('./routes/registerWarehouse');
@@ -13,6 +18,10 @@ const login = require('./routes/login');
 const updateWarehouseSOH = require('./routes/updateWarehouseSOH');
 const updateStoreSOH = require('./routes/updateStoreSOH');
 const viewStoreSOH = require('./routes/viewStoreSOH');
+
+/*
+ * General setup | Database connection | body-parse setup | Allowing cross origin requests
+ */ 
 
 mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -29,6 +38,10 @@ app.use(function (req, res, next) {
     next();
 });
 
+/*
+ * Including the routes in the API
+ */ 
+
 app.use(test);
 app.use(registerStore);
 app.use(registerWarehouse);
@@ -41,12 +54,20 @@ app.use(updateWarehouseSOH);
 app.use(updateStoreSOH);
 app.use(viewStoreSOH);
 
+/*
+ * Connecting to the HIVEMC MQTT broker and subscribing to the topic '/219203655/location/'
+ */ 
+
 const client = mqtt.connect("mqtt://broker.hivemq.com:1883");
 
 client.on('connect', () => {
     console.log('mqtt connected');
     client.subscribe('/219203655/location/');
 });
+
+/*
+ * Calls the distanceCalc function if there is a message sent with that topic
+ */ 
 
 client.on('message', (topic, message) => {
     if (topic == '/219203655/location/') {
@@ -69,6 +90,11 @@ client.on('message', (topic, message) => {
         });
     }
 });
+
+
+/*
+ * Starts the Server
+ */ 
 
 const port = process.env.PORT || 3000; 
 app.listen(port, () => console.log(`Server runing on port ${port}`));
