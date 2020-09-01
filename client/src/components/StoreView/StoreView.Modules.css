@@ -1,0 +1,143 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+
+.status {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+.glyphicon-user {
+  color: red;
+}
+.glyphicon-ok {
+  color: green;
+}
+
+.card-container a:hover {
+  text-decoration: none;
+  color: orange;
+  cursor: pointer;
+}
+
+.card-container {
+  margin-left: 120px;
+  max-width: 1100px;
+  margin-top: 40px;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
+}
+.card {
+  width: 60%;
+  height: 150px;
+  text-align: center;
+  margin-bottom: 40px;
+  background: #c9deff;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  border-radius: 10px 10px;
+  box-shadow: 5px 5px rgb(206, 202, 202);
+}
+
+@media only screen and (min-width: 1000px) {
+  .card-container {
+    margin-left: 180px;
+    max-width: 1100px;
+    margin-top: 100px;
+  }
+
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    flex-direction: row;
+  }
+
+  .card {
+    width: 25%;
+    height: 250px;
+    text-align: center;
+    margin-bottom: 40px;
+    background: #c9deff;
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    border-radius: 10px 10px;
+    box-shadow: 5px 5px rgb(206, 202, 202);
+  }
+}
+
+@media only screen and (min-width: 875px) and (max-width: 1300px) {
+  .card-container {
+    margin-left: 100px;
+  }
+}
+
+@media only screen and (min-width: 1600px) {
+  .card-container {
+    margin-left: 250px;
+    max-width: 1100px;
+    margin-top: 100px;
+  }
+
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    flex-direction: row;
+  }
+
+  .card {
+    width: 25%;
+    height: 250px;
+    text-align: center;
+    margin-bottom: 40px;
+    background: #c9deff;
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    border-radius: 10px 10px;
+    box-shadow: 5px 5px rgb(206, 202, 202);
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .card-container {
+    margin-left: 50px;
+  }
+  nav {
+    width: 60px;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .card-container {
+    margin-left: 50px;
+  }
+  nav {
+    width: 60px;
+  }
+}
+
+@media only screen and (min-width: 760px) and (max-width: 834px) {
+  .card-container {
+    margin-left: 250px;
+    max-width: 1100px;
+    margin-top: 100px;
+  }
+  nav {
+    width: 60px;
+  }
+}
