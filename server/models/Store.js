@@ -3,6 +3,7 @@ module.exports = mongoose.model('Store', new mongoose.Schema({
     id: Number,
     password: String,
     location: Object,
-    hasOrdered: Boolean
+    hasOrdered: Boolean,
+    SOH: Object
 
 }));

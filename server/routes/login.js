@@ -10,7 +10,8 @@ loginStore.post('/login', validate, authenticateStore, authenticateWarehouse, (r
     return res.status(200).send({
         success: true,
         message: 'Logged In',
-        tokens: res.locals.tokens
+        tokens: res.locals.tokens,
+        type: res.locals.type
     })
 });
 

@@ -10,6 +10,9 @@ const viewStoreOrders = require('./routes/viewStoreOrders');
 const viewWarehouseOrders = require('./routes/viewWarehouseOrders');
 const distanceCalc = require('./services/distanceCalc');
 const login = require('./routes/login');
+const updateWarehouseSOH = require('./routes/updateWarehouseSOH');
+const updateStoreSOH = require('./routes/updateStoreSOH');
+const viewStoreSOH = require('./routes/viewStoreSOH');
 
 mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -34,7 +37,9 @@ app.use(fulfillOrder);
 app.use(viewStoreOrders);
 app.use(viewWarehouseOrders);
 app.use(login);
-
+app.use(updateWarehouseSOH);
+app.use(updateStoreSOH);
+app.use(viewStoreSOH);
 
 const client = mqtt.connect("mqtt://broker.hivemq.com:1883");
 
