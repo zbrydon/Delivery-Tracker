@@ -41,6 +41,7 @@ function authenticate(req, res, next) {
                         refreshToken: 'refreshToken'
                     }
                     res.locals.tokens = tokens;
+                    res.locals.type = 'warehouse';
                     next();
                 } else { return res.status(406).send({ success: false, message: 'Authentication failed. Wrong password.' }); }
 

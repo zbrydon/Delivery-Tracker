@@ -40,6 +40,7 @@ function authenticate(req, res, next) {
                         refreshToken: 'refreshToken'
                     }
                     res.locals.tokens = tokens;
+                    res.locals.type = 'store';
                     next();
                 } else { return res.status(406).send({ success: false, message: 'Authentication failed. Wrong password.' }); }
 

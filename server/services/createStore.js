@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const Store = require('../models/Store');
 const bcrypt = require('bcrypt');
 
-
 function createStore(req, res, next) {
     const { id, password, location } = req.body
 
@@ -13,7 +12,6 @@ function createStore(req, res, next) {
                 message: 'ID already exists'
             });
         }
-        console.log('1');
         bcrypt.hash(password, 10, function (err, password_hash) {
             if (err) {
                 return res.status(400).send({ success: false, message: err });
@@ -37,15 +35,11 @@ function createStore(req, res, next) {
                 } else {
                     next();
                 }
-
             });
         })
-
     }
 
     )
 };
-
-
 
 module.exports = createStore;  
