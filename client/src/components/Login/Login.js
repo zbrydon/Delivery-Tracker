@@ -6,7 +6,6 @@ import { useHistory } from "react-router-dom";
 
 const Login = () => {
     const API_URL = process.env.REACT_APP_API_URL;
-    localStorage.setItem("url" , API_URL);
     const [id, setId] = useState();
     const [password, setPassword] = useState();
 

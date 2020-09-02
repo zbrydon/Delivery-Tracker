@@ -2,39 +2,16 @@ import React, {Component} from "react";
 import {Bar, Line, Pie} from "react-chartjs-2";
 import "./styling.css";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
-// const StockStore = () => {
-//     const API_URL = process.env.REACT_APP_API_URL;
-//     const token = localStorage.getItem('auth-token');
-//     const history = useHistory();
-//     const headers = {
-//         'Authorization': token
-//     };
-//     axios.get(
-//         `${API_URL}/viewStoreSOH`, { headers }
-//     ).then(response => {
-        
-//         if (response.data.success) {
-//             const frozen = response.data.SOH.frozen
-//             const dairy = response.data.SOH.dairy
-//             const meat = response.data.SOH.meat
-//             const produce = response.data.SOH.produce
-//             const ambient = response.data.SOH.ambient
-//         }
-//     }).catch(error => {
-//         if (error.response.status === 406) {
-//             //Display "Please refresh your session" here
-//             //return history.push("/refresh");
-//         } if (error.response.status === 403) {
-//             //Display "Please login" here
-//             history.push("/");
-//         }
-//     });
-// }
 
 class StockStore extends Component
 {
+    redirectToLogin = () => {
+        const { history } = this.props;
+        if (history) history.push('/');
+    }
+
     constructor(props)
     {
         super(props);
@@ -44,7 +21,7 @@ class StockStore extends Component
                 datasets:[
                     {
                         label: 'Pallets',
-                        data: [12, 19, 5, 3, 8, 5],
+                        data: [0, 0, 0, 0,0],
                         backgroundColor:[
                             'rgba(225, 99, 132, 0.6)',
                             'rgba(225, 99, 132, 0.6)',
@@ -55,7 +32,50 @@ class StockStore extends Component
                     }
                 ]
             }
+            
         }
+    }
+
+    componentDidMount() {
+
+        const API_URL = process.env.REACT_APP_API_URL;
+        const token = localStorage.getItem('auth-token');
+        const headers = {
+            'authorization': token
+        };
+        axios.get(
+            `${API_URL}/viewStoreSOH`, { headers }
+        ).then(response => {            
+            if (response.data.success) {
+                this.setState({
+                    chartData: {
+                        labels: ['Frozen', 'Meat', 'Dairy', 'Produce', 'Ambient'],
+                        datasets: [
+                            {
+                                label: 'Pallets',
+                                data: [response.data.SOH.frozen, response.data.SOH.dairy, response.data.SOH.meat, response.data.SOH.produce, response.data.SOH.ambient],
+                                backgroundColor: [
+                                    'rgba(225, 99, 132, 0.6)',
+                                    'rgba(225, 99, 132, 0.6)',
+                                    'rgba(225, 99, 132, 0.6)',
+                                    'rgba(225, 99, 132, 0.6)',
+                                    'rgba(225, 99, 132, 0.6)',
+                                ],
+                            }
+                        ]
+                    }
+                    
+                });
+            }
+        }).catch(error => {
+            if (error.response.status === 406) {
+                //display "please refresh your session" here
+                //return history.push("/refresh");
+            } if (error.response.status === 403) {
+                //display "please login" here
+                this.redirectToLogin();
+            }
+        });
     }
 
     static defaultProps = {
@@ -73,7 +93,7 @@ class StockStore extends Component
                     options={{
                         title:{
                             display: this.props.displayTitle,
-                            text: "The Amount of Pallots per Food Group",
+                            text: "The Amount of Pallets per Food Group",
                             fontSize: 24
                         },
                         legend:{
@@ -88,4 +108,4 @@ class StockStore extends Component
     }
 }
 
-export default StockStore
+export default withRouter(StockStore);
