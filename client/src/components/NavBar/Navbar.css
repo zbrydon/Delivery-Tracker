@@ -1,4 +1,6 @@
-* {
+/* Im commenting this one out, because it messes with my sidebar, im happy to use my sidebar for the dashboard aswell, beacuse it is prepped */
+
+/* * {
   box-sizing: border-box;
 }
 body {
@@ -42,4 +44,4 @@ nav ul li a {
 
 nav ul li a:hover {
   color: red;
-}
+} */
