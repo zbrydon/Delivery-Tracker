@@ -7,6 +7,7 @@ import StockStore from "./components/ViewStock/StockStore";
 import StockWarehouse from "./components/ViewStock/StockWarehouse";
 import StoreView from "./components/StoreView/StoreView";
 
+
 function App() {
   return (
     <div className="App">
