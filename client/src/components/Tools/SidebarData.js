@@ -1,7 +1,6 @@
 import React from 'react'
-import * as AiIcons from "react-icons/ai"
 import * as IoIcons from "react-icons/io"
-import * as IconName from "react-icons/md";
+import * as IconName from "react-icons/md"
 import * as BookName from "react-icons/bi"
 import * as AboutMe from "react-icons/bs"
 import * as Truck from "react-icons/fa"

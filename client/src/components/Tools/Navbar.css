@@ -5,6 +5,8 @@
   display: flex;
   justify-content: initial;
   align-items: center;
+  position: absolute;
+  margin: 0px;
 }
 .menu-bars {
   margin-left: 12px;
@@ -18,10 +20,11 @@
   height: 100vh;
   display: flex;
   justify-content: initial;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: -80%;
   transition: 700ms;
+  margin: 0px;
 }
 
 .nav-menu.active {

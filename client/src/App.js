@@ -15,8 +15,10 @@ function App() {
         <Switch>
           <Route path="/" exact component={Login} />
           <Route path="/register" component={Register} />
-          
-          <Navbar />
+        </Switch>
+        <Navbar />
+        <Switch>
+        
           {/* Place all thee stores that should have the navbar under here */}
           <Route path="/stockStore" component={StockStore} />
           <Route path="/stockWarehouse" component={StockWarehouse} />
