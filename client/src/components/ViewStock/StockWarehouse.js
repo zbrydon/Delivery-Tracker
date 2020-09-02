@@ -4,7 +4,7 @@ import "./styling.css";
 function StockWarehouse() {
     return (
         <div>
-            <h1>Hi!</h1>
+            <h1>Hisss!</h1>
         </div>
     )
 }

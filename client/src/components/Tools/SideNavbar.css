@@ -6,6 +6,7 @@
   position: absolute;
   justify-content: initial;
   align-items: center;
+  
 }
 .menu-bars {
   margin-left: 12px;
@@ -17,7 +18,7 @@
   background-color: #3ea1d9;
   width: 220px;
   height: 100vh;
-  display: flex-start;
+  display: flex;
   justify-content: initial;
   position: absolute;
   top: 0;
@@ -51,7 +52,7 @@
 }
 
 .nav-text a:hover {
-  background-color: #f8b6f8;
+  background-color: #55bbda;
 }
 
 .nav-menu-items {
@@ -64,7 +65,7 @@
   height: 60px;
   display: flex;
   justify-content: initial;
-  align-items: intial;
+  align-items: initial;
 }
 
 span {
