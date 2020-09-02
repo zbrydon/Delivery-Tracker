@@ -5,7 +5,7 @@ function authenticateToken(req, res, next) {
     if (token) {
         jwt.verify(token, process.env.ACCESS_TOKEN_SECRET_STORE, (err, obj) => {
             if (err) {
-                return res.status(400).send({
+                return res.status(406).send({
                     success: false,
                     message: 'Failed to authenticate token.'
                 })

@@ -5,6 +5,8 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 
 const Login = () => {
+    const API_URL = process.env.REACT_APP_API_URL;
+    localStorage.setItem("url" , API_URL);
     const [id, setId] = useState();
     const [password, setPassword] = useState();
 
@@ -14,16 +16,16 @@ const Login = () => {
         e.preventDefault();
         const loginUser = { id, password };
         const loginRes = await axios.post(
-            "http://localhost:5000/login",
+            `${API_URL}/login`,
             loginUser
         );
        
         if (loginRes.data.type === "warehouse") {
             history.push("/home");
-            localStorage.setItem("auth-token", loginRes.data.tokens.token);
+            localStorage.setItem("auth-token", 'Bearer ' + loginRes.data.tokens.token);
         } else {
             history.push("/home2");
-            localStorage.setItem("auth-token", loginRes.data.tokens.token);
+            localStorage.setItem("auth-token", 'Bearer ' +  loginRes.data.tokens.token);
         }
     };
 
