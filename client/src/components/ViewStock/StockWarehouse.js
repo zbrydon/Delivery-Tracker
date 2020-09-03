@@ -1,12 +1,23 @@
-import React from "react"
+import React, {Component} from "react"
 import "./styling.css";
+import BarChart from "./WarehouseCharts/WarehouseStockChart";
+import LineChart from "./WarehouseCharts/WarehouseTempChart";
+import { withRouter } from "react-router-dom";
 
-function StockWarehouse() {
-    return (
-        <div>
-            <h1>Hisss!</h1>
-        </div>
-    )
+class StockWarehouse extends Component 
+{
+    render()
+    {
+        return (
+            <div className="chart">
+                <BarChart />
+                <br></br>
+                <br></br>
+                <br></br>
+                <LineChart />
+            </div>
+        )
+    }
 }
 
-export default StockWarehouse
+export default withRouter(StockWarehouse);

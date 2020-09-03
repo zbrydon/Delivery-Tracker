@@ -6,3 +6,12 @@ h1
 {
     margin-left: 80px;
 }
+.spacer
+{
+    width: 300px;
+}
+.chart
+{
+    height: 200px;
+    width: 800px;
+}
