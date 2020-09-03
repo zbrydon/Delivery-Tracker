@@ -20,7 +20,7 @@ const Login = () => {
         );
        
         if (loginRes.data.type === "warehouse") {
-            history.push("/home");
+            history.push("/storeView");
             localStorage.setItem("auth-token", 'Bearer ' + loginRes.data.tokens.token);
         } else {
             history.push("/home2");
