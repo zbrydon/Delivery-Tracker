@@ -1,7 +1,6 @@
 import React, {Component} from "react"
 import "./styling.css";
-import BarChart from "./WarehouseCharts/WarehouseStockChart";
-import LineChart from "./WarehouseCharts/WarehouseTempChart";
+import Charts from "./WarehouseCharts/WarehouseChart"
 import { withRouter } from "react-router-dom";
 
 class StockWarehouse extends Component 
@@ -10,11 +9,7 @@ class StockWarehouse extends Component
     {
         return (
             <div className="chart">
-                <BarChart />
-                <br></br>
-                <br></br>
-                <br></br>
-                <LineChart />
+                <Charts />
             </div>
         )
     }
