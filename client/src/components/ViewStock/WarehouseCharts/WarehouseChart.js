@@ -1,26 +1,24 @@
-import React, {Component} from "react";
-import {Bar, Line} from "react-chartjs-2";
+import React, { Component } from "react";
+import { Bar, Line } from "react-chartjs-2";
 import "../styling.css";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
 
-class Charts extends Component
-{
+class Charts extends Component {
     redirectToLogin = () => {
         const { history } = this.props;
         if (history) history.push('/');
     }
-    constructor(props)
-    {
+    constructor(props) {
         super(props);
         this.state = {
             warehouseSOHData: {
                 labels: ['Frozen', 'Meat', 'Dairy', 'Produce', 'Ambient'],
-                datasets:[
+                datasets: [
                     {
                         label: 'Pallets',
                         data: [0, 0, 0, 0, 0],
-                        backgroundColor:[
+                        backgroundColor: [
                             'rgba(225, 99, 132, 0.6)',
                             'rgba(225, 99, 132, 0.6)',
                             'rgba(225, 99, 132, 0.6)',
@@ -32,11 +30,11 @@ class Charts extends Component
             },
             warehouseTempData: {
                 labels: ['Frozen', 'Meat', 'Dairy', 'Produce', 'Ambient'],
-                datasets:[
+                datasets: [
                     {
                         label: 'Temprature',
                         data: [0, 0, 0, 0, 0],
-                        backgroundColor:[
+                        backgroundColor: [
                             'rgba(225, 99, 132, 0.6)',
                             'rgba(225, 99, 132, 0.6)',
                             'rgba(225, 99, 132, 0.6)',
@@ -46,7 +44,7 @@ class Charts extends Component
                     }
                 ]
             }
-            
+
         }
     }
     componentDidMount() {
@@ -58,7 +56,7 @@ class Charts extends Component
         };
         axios.get(
             `${API_URL}/viewWarehouseSOH`, { headers }
-        ).then(response => {            
+        ).then(response => {
             if (response.data.success) {
                 this.setState({
                     warehouseSOHData: {
@@ -80,6 +78,7 @@ class Charts extends Component
                 });
             }
         }).catch(error => {
+            localStorage.setItem('error', error);
             if (error.response.status === 406) {
                 //display "please refresh your session" here
                 //return history.push("/refresh");
@@ -90,7 +89,7 @@ class Charts extends Component
         });
 
         // axios.get(
-        //     `${API_URL}/viewWarehouseSOH`, { headers }
+        //     `${API_URL}/viewWarehouseTEMP`, { headers }
         // ).then(response => {            
         //     if (response.data.success) {
         //         this.setState({
@@ -128,36 +127,37 @@ class Charts extends Component
         displayTitle: true,
         displayLegend: true,
         legendPosition: 'right'
-        
+
     }
-    render()
-    {
-        return(
+    render() {
+        return (
             <div>
                 <div className="chart">
                     <Bar
                         data={this.state.warehouseSOHData}
-                        options={{ maintainAspectRatio: true,
-                            title:{
+                        options={{
+                            maintainAspectRatio: true,
+                            title: {
                                 display: this.props.displayTitle,
                                 text: "The Amount of Pallets per Food Group",
                                 fontSize: 24
                             },
-                            legend:{
+                            legend: {
                                 display: this.props.displayLegend,
                                 position: this.props.legendPosition
                             },
                         }}
-                    /> 
-                    <Line 
+                    />
+                    <Line
                         data={this.state.warehouseTempData}
-                        options={{ maintainAspectRatio: true,
-                            title:{
+                        options={{
+                            maintainAspectRatio: true,
+                            title: {
                                 display: this.props.displayTitle,
                                 text: "The Amount of Pallets per Food Group",
                                 fontSize: 24
                             },
-                            legend:{
+                            legend: {
                                 display: this.props.displayLegend,
                                 position: this.props.legendPosition
                             },

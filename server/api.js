@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const mqtt = require('mqtt');
 
+
 /*
  * Imports all the routes to be used in the API 
  */
@@ -18,6 +19,7 @@ const login = require('./routes/login');
 const updateWarehouseSOH = require('./routes/updateWarehouseSOH');
 const updateStoreSOH = require('./routes/updateStoreSOH');
 const viewStoreSOH = require('./routes/viewStoreSOH');
+const viewWarehouseSOH = require('./routes/viewWarehouseSOH');
 
 /*
  * General setup | Database connection | body-parse setup | Allowing cross origin requests
@@ -53,6 +55,7 @@ app.use(login);
 app.use(updateWarehouseSOH);
 app.use(updateStoreSOH);
 app.use(viewStoreSOH);
+app.use(viewWarehouseSOH);
 
 /*
  * Connecting to the HIVEMC MQTT broker and subscribing to the topic '/219203655/location/'
