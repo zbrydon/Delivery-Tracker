@@ -7,12 +7,21 @@ function validate(req, res, next) {
             success: false,
             message: 'ID or Password in incorrect format'
         });
-    } else if (password != confirm_password) {
+    }if (password != confirm_password) {
         return res.status(406).send({
             success: false,
             message: 'Passwords do not match'
         });
-    } else {
+    } /*if (location) {
+        if (!validator.isJSON(JSON.stringify(location))) {
+            return res.status(400).send({
+                success: false,
+                message: 'Location in Incorrect format'
+            });
+        } else {
+            next();
+        }
+    }*/else {
         next();
     }
 };
