@@ -37,7 +37,7 @@ const viewStoreSOH = express.Router();
  *      }
  **/
 
-viewStoreSOH.get('/viewStoreSOH', authenticate, viewSOH, (req, res) => {
+viewStoreSOH.get('/viewStoreSOH', authenticate, viewSOH,  (req, res) => {
     return res.status(200).send({
         success: true,
         message: 'SOH Displayed',
