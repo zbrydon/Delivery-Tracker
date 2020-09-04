@@ -20,6 +20,10 @@ const updateWarehouseSOH = require('./routes/updateWarehouseSOH');
 const updateStoreSOH = require('./routes/updateStoreSOH');
 const viewStoreSOH = require('./routes/viewStoreSOH');
 const viewWarehouseSOH = require('./routes/viewWarehouseSOH');
+const tempUpdateStore = require('./services/tempUpdateStore');
+const viewStoreTEMP = require('./routes/viewStoreTEMP');
+const tempUpdateWarehouse = require('./services/tempUpdateWarehouse');
+const viewWarehouseTEMP = require('./routes/viewWarehouseTEMP');
 
 /*
  * General setup | Database connection | body-parse setup | Allowing cross origin requests
@@ -56,6 +60,8 @@ app.use(updateWarehouseSOH);
 app.use(updateStoreSOH);
 app.use(viewStoreSOH);
 app.use(viewWarehouseSOH);
+app.use(viewStoreTEMP);
+app.use(viewWarehouseTEMP);
 
 /*
  * Connecting to the HIVEMC MQTT broker and subscribing to the topic '/219203655/location/'
@@ -66,6 +72,8 @@ const client = mqtt.connect("mqtt://broker.hivemq.com:1883");
 client.on('connect', () => {
     console.log('mqtt connected');
     client.subscribe('/219203655/location/');
+    client.subscribe('/219203655/temp1/');
+    client.subscribe('/219203655/temp2/');
 });
 
 /*
@@ -89,6 +97,48 @@ client.on('message', (topic, message) => {
                     data: data
                 })
                 
+            }
+        });
+    }
+});
+client.on('message', (topic, message) => {
+    if (topic == '/219203655/temp1/') {
+        //console.log(JSON.parse(message));
+        tempUpdateStore(JSON.parse(message), function (err, data) {
+            if (err) {
+                return res.status(400).send({
+                    success: false,
+                    message: err
+                })
+            } else {
+                console.log(data);
+                return res.json({
+                    success: true,
+                    message: 'Temp added',
+                    data: data
+                })
+
+            }
+        });
+    }
+});
+client.on('message', (topic, message) => {
+    if (topic == '/219203655/temp2/') {
+        //console.log(JSON.parse(message));
+        tempUpdateWarehouse(JSON.parse(message), function (err, data) {
+            if (err) {
+                return res.status(400).send({
+                    success: false,
+                    message: err
+                })
+            } else {
+                console.log(data);
+                return res.json({
+                    success: true,
+                    message: 'Temp added',
+                    data: data
+                })
+
             }
         });
     }

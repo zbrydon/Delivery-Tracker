@@ -1,24 +1,24 @@
 const express = require('express');
 const authenticate = require('../middlewares/authenticateTokenStore');
-const viewSOH = require('../services/viewStoreSOH');
-const viewStoreSOH = express.Router();
+const viewTEMP = require('../services/viewStoreTEMP');
+const viewStoreTEMP = express.Router();
 
 /**
- * @api {get} /viewStoreSOH View Store SOH
- * @apiName View Store SOH
+ * @api {get} /viewStoreTEMP View Store TEMP
+ * @apiName View Store TEMP
  * @apiGroup Store
  *
  *
  * @apiSuccess {Boolean} success Request result
  * @apiSuccess {String} message Request status
- * @apiSuccess {Object} SOH The SOH from that store
+ * @apiSuccess {Object} TEMP The TEMP from that store
  *
  * @apiSuccessExample Success-Response:
  *      HTTP/1.1 200 OK
  *      {
  *           "success": true,
- *           "message": "SOH Displayed",
- *           "SOH": {
+ *           "message": "TEMP Displayed",
+ *           "TEMP": {
  *               "frozen": "6",
  *               "dairy": 0,
  *               "meat": 0,
@@ -37,12 +37,12 @@ const viewStoreSOH = express.Router();
  *      }
  **/
 
-viewStoreSOH.get('/viewStoreSOH', authenticate, viewSOH,  (req, res) => {
+viewStoreTEMP.get('/viewStoreTEMP', authenticate, viewTEMP, (req, res) => {
     return res.status(200).send({
         success: true,
-        message: 'SOH Displayed',
-        SOH: res.locals.SOH
+        message: 'TEMP Displayed',
+        TEMP: res.locals.TEMP
     })
 });
 
-module.exports = viewStoreSOH; 
+module.exports = viewStoreTEMP; 
