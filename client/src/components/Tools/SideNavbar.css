@@ -20,7 +20,7 @@
   height: 100vh;
   display: flex;
   justify-content: initial;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: -80%;
   transition: 700ms;

@@ -19,9 +19,9 @@ function App() {
         <Navbar />
         <Switch>
             {/* Place all thee stores that should have the navbar under here */}
+            <Route path="/storeView" component={StoreView} />
             <Route path="/stockStore" component={StockStore} />
             <Route path="/stockWarehouse" component={StockWarehouse} />
-            <Route path="/storeView" component={StoreView} />
         </Switch>
       </BrowserRouter>
     </div>
