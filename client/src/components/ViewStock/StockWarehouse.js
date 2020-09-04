@@ -14,5 +14,4 @@ class StockWarehouse extends Component
         )
     }
 }
-
 export default withRouter(StockWarehouse);
