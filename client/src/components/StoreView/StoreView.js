@@ -4,6 +4,7 @@ import NavBar from "../NavBar/NavBar";
 const StoreView = () => {
   return (
     <>
+
       <div class="card-container">
         <div class="cards">
           <div class="card">

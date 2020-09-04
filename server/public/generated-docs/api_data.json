@@ -389,6 +389,69 @@
     "groupTitle": "Store"
   },
   {
+    "type": "get",
+    "url": "/viewStoreTEMP",
+    "title": "View Store TEMP",
+    "name": "View_Store_TEMP",
+    "group": "Store",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Request result</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Request status</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "TEMP",
+            "description": "<p>The TEMP from that store</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n     \"success\": true,\n     \"message\": \"TEMP Displayed\",\n     \"TEMP\": {\n         \"frozen\": \"6\",\n         \"dairy\": 0,\n         \"meat\": 0,\n         \"produce\": 0,\n         \"ambient\": 0\n     }\n }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NotFound",
+            "description": "<p>The store does not exist.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n     \"success\": false,\n     \"message\": \"This store does not esist\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "routes/viewStoreTEMP.js",
+    "groupTitle": "Store"
+  },
+  {
     "type": "post",
     "url": "/login",
     "title": "Login",
@@ -851,6 +914,69 @@
     },
     "version": "0.0.0",
     "filename": "routes/viewWarehouseSOH.js",
+    "groupTitle": "Warehouse"
+  },
+  {
+    "type": "get",
+    "url": "/viewWarehouseTEMP",
+    "title": "View Warehouse TEMP",
+    "name": "View_Warehouse_TEMP",
+    "group": "Warehouse",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Request result</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Request status</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "TEMP",
+            "description": "<p>The TEMP from that warehouse</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n     \"success\": true,\n     \"message\": \"TEMP Displayed\",\n     \"TEMP\": {\n         \"frozen\": \"-6\",\n         \"dairy\": 0,\n         \"meat\": 0,\n         \"produce\": 0,\n         \"ambient\": 0\n     }\n }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NotFound",
+            "description": "<p>The warehouse does not exist.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n     \"success\": false,\n     \"message\": \"This warehouse does not esist\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "routes/viewWarehouseTEMP.js",
     "groupTitle": "Warehouse"
   }
 ]

@@ -4,6 +4,7 @@ module.exports = mongoose.model('Store', new mongoose.Schema({
     password: String,
     location: Object,
     hasOrdered: Boolean,
-    SOH: Object
+    SOH: Object,
+    TEMP:Object
 
 }));

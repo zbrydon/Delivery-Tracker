@@ -2,6 +2,7 @@ const express = require('express');
 const validate = require('../middlewares/updateSOHValidator');
 const authenticateWarehouse = require('../middlewares/authenticateTokenWarehouse');
 const updateWarehouseSOHH = require('../services/updateWarehouseSOH');
+const transmit = require('../middlewares/transitMqttInit');
 const updateWarehouseSOH = express.Router();
 
 /**
@@ -51,7 +52,7 @@ const updateWarehouseSOH = express.Router();
  *      }
  **/
 
-updateWarehouseSOH.post('/updateWarehouseSOH', authenticateWarehouse, validate, updateWarehouseSOHH ,(req, res) => {
+updateWarehouseSOH.post('/updateWarehouseSOH', authenticateWarehouse, validate, updateWarehouseSOHH, transmit,(req, res) => {
     return res.status(200).send({
         success: true,
         message: 'SOH Updated',

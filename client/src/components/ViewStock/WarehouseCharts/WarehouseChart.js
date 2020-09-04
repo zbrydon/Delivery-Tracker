@@ -88,38 +88,39 @@ class Charts extends Component {
             }
         });
 
-        // axios.get(
-        //     `${API_URL}/viewWarehouseTEMP`, { headers }
-        // ).then(response => {            
-        //     if (response.data.success) {
-        //         this.setState({
-        //             warehouseTempData: {
-        //                 labels: ['Frozen', 'Meat', 'Dairy', 'Produce', 'Ambient'],
-        //                 datasets: [
-        //                     {
-        //                         label: 'Pallets',
-        //                         data: [response.data.SOH.frozen, response.data.SOH.dairy, response.data.SOH.meat, response.data.SOH.produce, response.data.SOH.ambient],
-        //                         backgroundColor: [
-        //                             'rgba(100, 79, 150, 0.6)',
-        //                             'rgba(325, 199, 152, 0.6)',
-        //                             'rgba(275, 36, 32, 0.6)',
-        //                             'rgba(80, 258, 225, 0.6)',
-        //                             'rgba(225, 99, 132, 0.6)',
-        //                         ],
-        //                     }
-        //                 ]
-        //             },
-        //         });
-        //     }
-        // }).catch(error => {
-        //     if (error.response.status === 406) {
-        //         //display "please refresh your session" here
-        //         //return history.push("/refresh");
-        //     } if (error.response.status === 403) {
-        //         //display "please login" here
-        //         this.redirectToLogin();
-        //     }
-        // });
+         axios.get(
+             `${API_URL}/viewWarehouseTEMP`, { headers }
+         ).then(response => {            
+             if (response.data.success) {
+                 localStorage.setItem('g' , response.data.TEMP.frozen);
+                 this.setState({
+                     warehouseTempData: {
+                         labels: ['Frozen', 'Meat', 'Dairy', 'Produce', 'Ambient'],
+                         datasets: [
+                             {
+                                 label: 'Temperature',
+                                 data: [response.data.TEMP.frozen, response.data.TEMP.dairy, response.data.TEMP.meat, response.data.TEMP.produce, response.data.TEMP.ambient],
+                                 backgroundColor: [
+                                     'rgba(100, 79, 150, 0.6)',
+                                     'rgba(325, 199, 152, 0.6)',
+                                     'rgba(275, 36, 32, 0.6)',
+                                     'rgba(80, 258, 225, 0.6)',
+                                     'rgba(225, 99, 132, 0.6)',
+                                 ],
+                             }
+                         ]
+                     },
+                });
+             }
+         }).catch(error => {
+             if (error.response.status === 406) {
+                 //display "please refresh your session" here
+                 //return history.push("/refresh");
+             } if (error.response.status === 403) {
+                 //display "please login" here
+                 this.redirectToLogin();
+             }
+         });
 
 
     }
@@ -154,7 +155,7 @@ class Charts extends Component {
                             maintainAspectRatio: true,
                             title: {
                                 display: this.props.displayTitle,
-                                text: "The Amount of Pallets per Food Group",
+                                text: "Temperature",
                                 fontSize: 24
                             },
                             legend: {
