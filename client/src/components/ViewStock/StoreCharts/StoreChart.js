@@ -98,7 +98,7 @@ class Charts extends Component
                          labels: ['Frozen', 'Meat', 'Dairy', 'Produce', 'Ambient'],
                          datasets: [
                              {
-                                label: 'Pallets',
+                                label: 'Temperature',
                                  data: [response.data.TEMP.frozen, response.data.TEMP.dairy, response.data.TEMP.meat, response.data.TEMP.produce, response.data.TEMP.ambient],
                                  backgroundColor: [
                                      'rgba(100, 79, 150, 0.6)',

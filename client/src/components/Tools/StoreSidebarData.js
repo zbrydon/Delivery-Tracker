@@ -8,19 +8,13 @@ import * as Truck from "react-icons/fa"
 export const SidebarData = [
     {
         title: 'Dashboard',
-        path: "/home",
+        path: "/storeView",
         icon: <IconName.MdDashboard />,
         cName: "nav-text"
     },
     {
         title: 'Store Stock',
         path: "/stockStore",
-        icon: <IoIcons.IoIosPaper />,
-        cName: "nav-text"
-    },
-    {
-        title: 'Warehouse Stock',
-        path: "/stockWarehouse",
         icon: <IoIcons.IoIosPaper />,
         cName: "nav-text"
     },
@@ -36,10 +30,4 @@ export const SidebarData = [
         icon: <BookName.BiBookAlt />,
         cName: "nav-text"
     },
-    {
-        title: 'About Me',
-        path: "/about",
-        icon: <AboutMe.BsFillEnvelopeFill />,
-        cName: "nav-text"
-    }
 ]

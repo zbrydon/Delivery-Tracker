@@ -20,10 +20,10 @@ const Login = () => {
         );
        
         if (loginRes.data.type === "warehouse") {
-            history.push("/storeView");
+            history.push("/stockWarehouse");
             localStorage.setItem("auth-token", 'Bearer ' + loginRes.data.tokens.token);
         } else {
-            history.push("/home2");
+            history.push("/storeView");
             localStorage.setItem("auth-token", 'Bearer ' +  loginRes.data.tokens.token);
         }
     };

@@ -1,10 +1,11 @@
 import React from "react";
 import "../StoreView/StoreView.Modules.css";
-import NavBar from "../NavBar/NavBar";
+import NavBar from "../Tools/StoreNavbar";
 const StoreView = () => {
   return (
-    <>
-
+    <div>
+      <NavBar />
+      <br></br>
       <div class="card-container">
         <div class="cards">
           <div class="card">
@@ -52,7 +53,7 @@ const StoreView = () => {
           </div>
         </div>
       </div>
-    </>
+      </div>
   );
 };
 
