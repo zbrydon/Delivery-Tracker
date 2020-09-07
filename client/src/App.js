@@ -6,7 +6,7 @@ import Navbar from "./components/Tools/Navbar";
 import StockStore from "./components/ViewStock/StockStore";
 import StockWarehouse from "./components/ViewStock/StockWarehouse";
 import StoreView from "./components/StoreView/StoreView";
-
+import WarehouseDB from "./components/WarehouseDB/WarehouseDB";
 
 function App() {
   return (
@@ -18,10 +18,11 @@ function App() {
         </Switch>
         <Navbar />
         <Switch>
-            {/* Place all thee stores that should have the navbar under here */}
-            <Route path="/storeView" component={StoreView} />
-            <Route path="/stockStore" component={StockStore} />
-            <Route path="/stockWarehouse" component={StockWarehouse} />
+          {/* Place all thee stores that should have the navbar under here */}
+          <Route path="/storeView" component={StoreView} />
+          <Route path="/stockStore" component={StockStore} />
+          <Route path="/stockWarehouse" component={StockWarehouse} />
+          <Route path="/warehouseDB" component={WarehouseDB} />
         </Switch>
       </BrowserRouter>
     </div>

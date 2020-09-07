@@ -1,6 +1,6 @@
-const express = require('express');
-const authenticate = require('../middlewares/authenticateTokenWarehouse');
-const viewStoress = require('../services/viewStores');
+const express = require("express");
+const authenticate = require("../middlewares/authenticateTokenWarehouse");
+const viewStoress = require("../services/viewStores");
 const viewStores = express.Router();
 
 /**
@@ -41,12 +41,12 @@ const viewStores = express.Router();
  *      }
  **/
 
-viewStores.get('/viewStores', authenticate, viewStoress, (req, res) => {
-    return res.status(200).send({
-        success: true,
-        message: 'Stores Displayed',
-        stores: res.locals.stores
-    })
+viewStores.get("/viewStores", authenticate, viewStoress, (req, res) => {
+  return res.status(200).send({
+    success: true,
+    message: "Stores Displayed",
+    stores: res.locals.stores,
+  });
 });
 
-module.exports = viewStores; 
+module.exports = viewStores;

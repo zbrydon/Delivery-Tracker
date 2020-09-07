@@ -63,7 +63,7 @@ input[type="password"] {
   outline-style: none;
 }
 
-button {
+#login_btn {
   background-color: #58c6ea;
   padding: 10px 10px;
   border: none;
@@ -74,7 +74,7 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+#login_btn:hover {
   box-shadow: 2px 2px #aeb1b5;
 }
 
