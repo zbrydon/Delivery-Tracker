@@ -1,4 +1,5 @@
 const Order = require('../models/Order');
+const Store = require('../models/Store');
 
 function updateOrder(req, res, next) {
     const updated = res.orderId;
@@ -55,6 +56,36 @@ function updateOrder(req, res, next) {
                     }
                 });
         }
+        const storeId = order.storeId;
+        Order.find(
+            { storeId: storeId },
+            (err, orders) => {
+                if (err) {
+                    return res.status(400).send({
+                        success: false,
+                        message: err
+                    });
+                } if (!orders && newOrderStatus == "Delivered") {
+                    Store.findOneAndUpdate(
+                        { storeId: storeId },
+                        { $set: { hasOrdered: false } },
+                        {
+                            returnNewDocument: true,
+                            useFindAndModify: false
+                        },
+                        (err) => {
+                            if (err) {
+                                return res.status(400).send({
+                                    success: false,
+                                    message: err
+                                });
+                            } else {
+                                return;
+                            }
+
+                        });
+                }
+            });
         Order.findOneAndUpdate(
             { orderId: updated },
             { $set: { orderStatus: newOrderStatus } },
@@ -69,8 +100,6 @@ function updateOrder(req, res, next) {
                         message: err
                     });
                 } else {
-                    //console.log(order);
-                    //res.send({ order: order });
                     res.locals.order = order;
                     next();
                 }

@@ -24,6 +24,7 @@ const tempUpdateStore = require('./services/tempUpdateStore');
 const viewStoreTEMP = require('./routes/viewStoreTEMP');
 const tempUpdateWarehouse = require('./services/tempUpdateWarehouse');
 const viewWarehouseTEMP = require('./routes/viewWarehouseTEMP');
+const viewStores = require('./routes/viewStores');
 
 /*
  * General setup | Database connection | body-parse setup | Allowing cross origin requests
@@ -62,6 +63,7 @@ app.use(viewStoreSOH);
 app.use(viewWarehouseSOH);
 app.use(viewStoreTEMP);
 app.use(viewWarehouseTEMP);
+app.use(viewStores);
 
 /*
  * Connecting to the HIVEMC MQTT broker and subscribing to the topic '/219203655/location/'
