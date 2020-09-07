@@ -1,7 +1,8 @@
 const Order = require('../models/Order');
 const Store = require('../models/Store');
+const Warehouse = require('../models/Warehouse');
 
-function updateOrder(req, res, next) {
+async function updateOrder(req, res, next) {
     const updated = res.orderId;
     const newOrderStatus = res.orderStatus;
     Order.findOne({ orderId: updated }, (err, order) => {
@@ -57,6 +58,104 @@ function updateOrder(req, res, next) {
                 });
         }
         const storeId = order.storeId;
+        let storeSOH = null;
+        if (newOrderStatus == "Delivered") {
+
+            //Store
+            Store.find({ id: storeId }, (err, store) => {
+                if (err) {
+                    return res.status(400).send({
+                        success: false,
+                        message: err
+                    });
+                } if (!store) {
+                    return res.status(400).send({
+                        success: false,
+                        message: 'This store does not esist'
+                    });
+                } else {
+                    storeSOH = store[0].SOH;
+                    let frozenQuantity = storeSOH.frozen;
+                    let dairyQuantity = storeSOH.dairy;
+                    let meatQuantity = storeSOH.meat;
+                    let produceQuantity = storeSOH.produce;
+                    let ambientQuantity = storeSOH.ambient;
+                    let newSOH = {
+                        frozen: 0,
+                        dairy: 0,
+                        meat: 0,
+                        produce: 0,
+                        ambient: 0
+                    }
+                    if (order.productType == "frozen") {
+                        newSOH = {
+                            frozen: frozenQuantity + order.quantity,
+                            dairy: dairyQuantity,
+                            meat: meatQuantity,
+                            produce: produceQuantity,
+                            ambient: ambientQuantity
+                        }
+                    } if (order.productType == "dairy") {
+                        newSOH = {
+                            frozen: frozenQuantity,
+                            dairy: dairyQuantity + order.quantity,
+                            meat: meatQuantity,
+                            produce: produceQuantity,
+                            ambient: ambientQuantity
+                        }
+                    } if (order.productType == "meat") {
+                        newSOH = {
+                            frozen: frozenQuantity,
+                            dairy: dairyQuantity,
+                            meat: meatQuantity + order.quantity,
+                            produce: produceQuantity,
+                            ambient: ambientQuantity
+                        }
+                    } if (order.productType == "produce") {
+                        newSOH = {
+                            frozen: frozenQuantity,
+                            dairy: dairyQuantity,
+                            meat: meatQuantity,
+                            produce: produceQuantity + order.quantity,
+                            ambient: ambientQuantity
+                        }
+                    } if (order.productType == "ambient") {
+                        newSOH = {
+                            frozen: frozenQuantity,
+                            dairy: dairyQuantity,
+                            meat: meatQuantity,
+                            produce: produceQuantity,
+                            ambient: ambientQuantity + order.quantity
+                        }
+                    }
+                    Store.findOneAndUpdate(
+                        { id: storeId },
+                        { $set: { SOH: newSOH } },
+                        {
+                            returnNewDocument: true,
+                            useFindAndModify: false
+                        },
+                        (err) => {
+                            if (err) {
+                                return res.status(400).send({
+                                    success: false,
+                                    message: err
+                                })
+                            } else {
+
+
+                                return;
+                            }
+                        });
+                }
+
+            });
+        }       
+    });
+            
+
+        
+
         Order.find(
             { storeId: storeId },
             (err, orders) => {
@@ -88,7 +187,7 @@ function updateOrder(req, res, next) {
             });
         Order.findOneAndUpdate(
             { orderId: updated },
-            { $set: { orderStatus: newOrderStatus } },
+            { $set: { orderStatus: /*newOrderStatus*/"In Transit" } },
             {
                 returnNewDocument: true,
                 useFindAndModify: false
@@ -104,11 +203,6 @@ function updateOrder(req, res, next) {
                     next();
                 }
             });
-    });
-
-
-    
-
 };
 
 module.exports = updateOrder;  
