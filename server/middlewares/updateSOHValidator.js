@@ -1,23 +1,40 @@
 const validator = require('validator');
 
 function validate(req, res, next) {
-    const { productType, quantity } = req.body
+    const { frozenQuantity, dairyQuantity, meatQuantity, produceQuantity, ambientQuantity } = req.body
     const obj = res.obj;
-    if (!validator.equals(productType, 'frozen') && !validator.equals(productType, 'dairy') && !validator.equals(productType, 'meat') && !validator.equals(productType, 'produce') && !validator.equals(productType, 'ambient')) {
+    if (!validator.isInt(frozenQuantity.toString(), { min: 1 ,  max: 20 })) {
         return res.status(400).send({
             success: false,
-            message: 'Product Type in incorrect format'
+            message: 'Quantity inncorrect'
         });
-    }
-    if (!validator.isInt(quantity.toString(), { min: 1 ,  max: 20 })) {
+    } if (!validator.isInt(dairyQuantity.toString(), { min: 1, max: 20 })) {
+        return res.status(400).send({
+            success: false,
+            message: 'Quantity inncorrect'
+        });
+    } if (!validator.isInt(meatQuantity.toString(), { min: 1, max: 20 })) {
+        return res.status(400).send({
+            success: false,
+            message: 'Quantity inncorrect'
+        });
+    } if (!validator.isInt(produceQuantity.toString(), { min: 1, max: 20 })) {
+        return res.status(400).send({
+            success: false,
+            message: 'Quantity inncorrect'
+        });
+    } if (!validator.isInt(ambientQuantity.toString(), { min: 1, max: 20 })) {
         return res.status(400).send({
             success: false,
             message: 'Quantity inncorrect'
         });
     }else {
         res.obj = obj;
-        res.productType = productType;
-        res.quantity = quantity;
+        res.frozenQuantity = frozenQuantity;
+        res.dairyQuantity = dairyQuantity;
+        res.meatQuantity = meatQuantity;
+        res.produceQuantity = produceQuantity;
+        res.ambientQuantity = ambientQuantity;
         next();
     }
 };

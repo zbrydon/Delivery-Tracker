@@ -1,6 +1,6 @@
-import React, {Component} from "react"
+import React, { Component } from "react";
 import "./styling.css";
-import Charts from "./WarehouseCharts/WarehouseChart"
+import Charts from "./WarehouseCharts/WarehouseChart";
 import { withRouter } from "react-router-dom";
 import Navbar from "../Tools/WarehouseNavbar";
 

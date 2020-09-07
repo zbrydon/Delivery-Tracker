@@ -5,29 +5,31 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 
 const Login = () => {
-    const API_URL = process.env.REACT_APP_API_URL;
-    const [id, setId] = useState();
-    const [password, setPassword] = useState();
+  const API_URL = process.env.REACT_APP_API_URL;
+  const [id, setId] = useState();
+  const [password, setPassword] = useState();
 
-    const history = useHistory();
+  const history = useHistory();
 
-    const handleSubmitClick = async (e) => {
-        e.preventDefault();
-        const loginUser = { id, password };
-        const loginRes = await axios.post(
-            `${API_URL}/login`,
-            loginUser
-        );
-       
-        if (loginRes.data.type === "warehouse") {
-            history.push("/stockWarehouse");
-            localStorage.setItem("auth-token", 'Bearer ' + loginRes.data.tokens.token);
-        } else {
-            history.push("/storeView");
-            localStorage.setItem("auth-token", 'Bearer ' +  loginRes.data.tokens.token);
-        }
-    };
+  const handleSubmitClick = async (e) => {
+    e.preventDefault();
+    const loginUser = { id, password };
+    const loginRes = await axios.post(`${API_URL}/login`, loginUser);
 
+    if (loginRes.data.type === "warehouse") {
+      history.push("/storeView");
+      localStorage.setItem(
+        "auth-token",
+        "Bearer " + loginRes.data.tokens.token
+      );
+    } else {
+      history.push("/home2");
+      localStorage.setItem(
+        "auth-token",
+        "Bearer " + loginRes.data.tokens.token
+      );
+    }
+  };
 
   return (
     <div className="user-container">
@@ -53,7 +55,7 @@ const Login = () => {
           <button
             type="submit"
             className="btn"
-            id="login"
+            id="login_btn"
             onClick={handleSubmitClick}
           >
             LOGIN
