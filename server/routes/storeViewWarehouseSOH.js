@@ -1,17 +1,19 @@
 const express = require('express');
-const authenticateWarehouse = require('../middlewares/authenticateTokenWarehouse');
-const viewSOH = require('../services/viewWarehouseSOH');
-const viewWarehouseSOH = express.Router();
+const authenticate = require('../middlewares/authenticateTokenStore');
+const viewSOH = require('../services/storeViewWarehouseSOH');
+const validate = require('../middlewares/viewSOHValidator');
+const storeViewWarehouseSOH = express.Router();
 
 /**
- * @api {get} /viewWarehouseSOH View Warehouse SOH
- * @apiName View Warehouse SOH
- * @apiGroup Warehouse
+ * @api {post} /viewStoreSOH Store view warehouse SOH
+ * @apiName Store view warehouse SOH
+ * @apiGroup Store
  *
+ * @apiParam {Number} warehouseId The ID of the warehouse 
  *
  * @apiSuccess {Boolean} success Request result
  * @apiSuccess {String} message Request status
- * @apiSuccess {Object} SOH The SOH from that warehouse
+ * @apiSuccess {Object} SOH The SOH from that store
  *
  * @apiSuccessExample Success-Response:
  *      HTTP/1.1 200 OK
@@ -37,7 +39,7 @@ const viewWarehouseSOH = express.Router();
  *      }
  **/
 
-viewWarehouseSOH.get('/viewWarehouseSOH', authenticateWarehouse,viewSOH, (req, res) => {
+storeViewWarehouseSOH.post('/storeViewWarehouseSOH', authenticate, validate ,viewSOH, (req, res) => {
     return res.status(200).send({
         success: true,
         message: 'SOH Displayed',
@@ -45,4 +47,4 @@ viewWarehouseSOH.get('/viewWarehouseSOH', authenticateWarehouse,viewSOH, (req, r
     })
 });
 
-module.exports = viewWarehouseSOH; 
+module.exports = storeViewWarehouseSOH; 

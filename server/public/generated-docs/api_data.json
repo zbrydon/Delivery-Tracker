@@ -181,6 +181,82 @@
   },
   {
     "type": "post",
+    "url": "/viewStoreSOH",
+    "title": "Store view warehouse SOH",
+    "name": "Store_view_warehouse_SOH",
+    "group": "Store",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "warehouseId",
+            "description": "<p>The ID of the warehouse</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Request result</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Request status</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "SOH",
+            "description": "<p>The SOH from that store</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n     \"success\": true,\n     \"message\": \"SOH Displayed\",\n     \"SOH\": {\n         \"frozen\": \"6\",\n         \"dairy\": 0,\n         \"meat\": 0,\n         \"produce\": 0,\n         \"ambient\": 0\n     }\n }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NotFound",
+            "description": "<p>The warehouse does not exist.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n     \"success\": false,\n     \"message\": \"This warehouse does not esist\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "routes/storeViewWarehouseSOH.js",
+    "groupTitle": "Store"
+  },
+  {
+    "type": "post",
     "url": "/updateStoreSOH",
     "title": "Update Order",
     "name": "Update_Order",
