@@ -12,6 +12,7 @@ const viewStores = express.Router();
  * @apiSuccess {Boolean} success Request result
  * @apiSuccess {String} message Request status
  * @apiSuccess {Object} stores List of store ids
+ * @apiSuccess {Number} count number of store ids returned
  *
  * @apiSuccessExample Success-Response:
  *      HTTP/1.1 200 OK
@@ -28,7 +29,8 @@ const viewStores = express.Router();
  *              {
  *                  "id": 11113
  *              }
- *          ]
+ *          ],
+ *          "count": 4
  *      }
  *
  * @apiError NotFound No Stores have Ordered.
@@ -46,6 +48,7 @@ viewStores.get("/viewStores", authenticate, viewStoress, (req, res) => {
     success: true,
     message: "Stores Displayed",
     stores: res.locals.stores,
+    count: res.locals.count
   });
 });
 

@@ -792,6 +792,76 @@ define({ "api": [
   },
   {
     "type": "get",
+    "url": "/viewStores",
+    "title": "View Stores that have outstanding orders",
+    "name": "View_Stores",
+    "group": "Warehouse",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Request result</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Request status</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "stores",
+            "description": "<p>List of store ids</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "count",
+            "description": "<p>number of store ids returned</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"success\": true,\n    \"message\": \"Stores Displayed\",\n    \"stores\": [\n        {\n            \"id\": 11111\n        },\n        {\n            \"id\": 11112\n        },\n        {\n            \"id\": 11113\n        }\n    ],\n    \"count\": 4\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NotFound",
+            "description": "<p>No Stores have Ordered.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n     \"success\": false,\n     \"message\": \"No Stores have ordered\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "routes/viewStores.js",
+    "groupTitle": "Warehouse"
+  },
+  {
+    "type": "get",
     "url": "/viewWarehouseOrders",
     "title": "View Warehouse Orders",
     "name": "View_Warehouse_Orders",

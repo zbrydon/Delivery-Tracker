@@ -78,7 +78,6 @@ class Charts extends Component {
                 });
             }
         }).catch(error => {
-            localStorage.setItem('error', error);
             if (error.response.status === 406) {
                 //display "please refresh your session" here
                 //return history.push("/refresh");
@@ -92,7 +91,6 @@ class Charts extends Component {
              `${API_URL}/viewWarehouseTEMP`, { headers }
          ).then(response => {            
              if (response.data.success) {
-                 localStorage.setItem('g' , response.data.TEMP.frozen);
                  this.setState({
                      warehouseTempData: {
                          labels: ['Frozen', 'Meat', 'Dairy', 'Produce', 'Ambient'],
