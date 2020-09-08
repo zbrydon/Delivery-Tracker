@@ -182,6 +182,110 @@ define({ "api": [
   {
     "type": "post",
     "url": "/updateStoreSOH",
+    "title": "Update Order",
+    "name": "Update_Order",
+    "group": "Store",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "orderId",
+            "description": "<p>The ID of the order being updated</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "warehouseId",
+            "description": "<p>The new ID of the orders warehouse</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "productType",
+            "description": "<p>The type of SOH being updated (frozen || dairy || meat || produce || ambient)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "quantity",
+            "description": "<p>The new quantity</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "deliveryDateTime",
+            "description": "<p>The requested time of delivery arrival (&quot;2021-08-20 10:10:10&quot;)</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Update result</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Update status</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "store",
+            "description": "<p>The store that was updated</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"success\": true,\n    \"message\": \"Order Updated\",\n    \"order\": {\n        \"temperature\": [],\n        \"_id\": \"5f48ba4ad4ce8c6ee4329928\",\n        \"orderId\": 1001,\n        \"storeId\": 11111,\n        \"warehouseId\": 1111,\n        \"productType\": \"produce\",\n        \"quantity\": 6,\n        \"deliveryDateTime\": 1629418210000,\n        \"orderDateTime\": 1599540600000,\n        \"orderStatus\": \"In Transit\",\n        \"__v\": 0\n    }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "BadRequest",
+            "description": "<p>The order does not belong to that store.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 406 BadRequest\n{\n    \"success\": false,\n    \"message\": \"Order does not belong to this store\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "routes/updateOrder.js",
+    "groupTitle": "Store"
+  },
+  {
+    "type": "post",
+    "url": "/updateStoreSOH",
     "title": "Update Store SOH",
     "name": "Update_Store_SOH",
     "group": "Store",
