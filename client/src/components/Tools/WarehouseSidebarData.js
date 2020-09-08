@@ -32,7 +32,7 @@ export const SidebarData = [
     },
     {
         title: 'Add Stock',
-        path: "/addStock",
+        path: "/AddStock",
         icon: <AboutMe.BsFillEnvelopeFill />,
         cName: "nav-text"
     }
