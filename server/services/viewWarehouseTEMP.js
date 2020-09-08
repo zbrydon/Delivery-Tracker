@@ -1,7 +1,7 @@
 const Warehouse = require('../models/Warehouse');
 
 function viewTEMP(req, res, next) {
-    const warehouseId = res.obj.id;
+    const warehouseId = res.warehouseId;
     Warehouse.find({ id: warehouseId }, (err, warehouse) => {
         if (err) {
             return res.status(400).send({

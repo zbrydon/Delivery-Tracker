@@ -1,6 +1,10 @@
 const express = require('express');
 const mqtt = require('mqtt');
 const randomInt = require('random-int');
+const mongoose = require('mongoose');
+const Warehouse = require('./models/Warehouse');
+
+mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const app = express();
 
@@ -31,28 +35,45 @@ async function position(data) {
     let produceTemp = 0;
     let ambientTemp = 0;
 
-    //Re-visit how to display data when only some SOH is present
-    while (data.frozenCount != 0 || data.dairyCount != 0 || data.meatCount != 0 || data.produceCount != 0 || data.ambientCount != 0) {
-        if (data.frozenCount != 0) {
+    let frozen = 0;
+    let dairy = 0;
+    let meat = 0;
+    let produce = 0;
+    let ambient = 0;
+
+    await Warehouse.findOne({ id: warehouseId }, (err, warehouse) => {
+        if (err) {
+            client.publish(topic, err);
+            return;
+        } else {
+            frozen = warehouse.SOH.frozen;
+            dairy = warehouse.SOH.dairy;
+            meat = warehouse.SOH.meat;
+            produce = warehouse.SOH.produce;
+            ambient = warehouse.SOH.ambient;
+        }
+
+    })
+    while (frozen != 0 || dairy != 0 || meat != 0 || produce != 0 || ambient != 0) {
+        if (frozen != 0) {
             frozenTemp = randomInt(-25, -15);
         }
-        if (data.dairyCount != 0) {
+        if (dairy != 0) {
             dairyTemp = randomInt(0, 5)
         }
-        if (data.meatCount != 0) {
+        if (meat != 0) {
             meatTemp = randomInt(0, 5)
         }
-        if (data.produceCount != 0) {
+        if (produce != 0) {
             produceTemp = randomInt(0, 10)
         }
-        if (data.ambientCount != 0) {
+        if (ambient != 0) {
             ambientTemp = randomInt(15, 25)
         }
         let message = JSON.stringify({ warehouseId, frozenTemp, dairyTemp, meatTemp, produceTemp, ambientTemp });
         client.publish(topic, message);
         await sleep(5000);
     }
-    
 }
 function sleep(ms) {
     return new Promise((resolve) => {

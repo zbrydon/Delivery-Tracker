@@ -1,6 +1,7 @@
 const express = require('express');
 const authenticate = require('../middlewares/authenticateTokenStore');
 const viewTEMP = require('../services/viewStoreTEMP');
+const transmit = require('../middlewares/transmitStoreInit');
 const viewStoreTEMP = express.Router();
 
 /**
@@ -37,7 +38,7 @@ const viewStoreTEMP = express.Router();
  *      }
  **/
 
-viewStoreTEMP.get('/viewStoreTEMP', authenticate, viewTEMP, (req, res) => {
+viewStoreTEMP.get('/viewStoreTEMP', authenticate, transmit, viewTEMP, (req, res) => {
     return res.status(200).send({
         success: true,
         message: 'TEMP Displayed',
