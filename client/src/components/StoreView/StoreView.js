@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../StoreView/StoreView.Modules.css";
 import NavBar from "../Tools/StoreNavbar";
-import NavBar from "../NavBar/NavBar";
 import Axios from "axios";
 
 const StoreView = () => {
@@ -47,6 +46,7 @@ const StoreView = () => {
   return (
     <div>
       <NavBar />
+      <br></br>
       <div className="card-container">
         <div className="cards">
           <div

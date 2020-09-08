@@ -17,13 +17,13 @@ const Login = () => {
     const loginRes = await axios.post(`${API_URL}/login`, loginUser);
 
     if (loginRes.data.type === "warehouse") {
-      history.push("/storeView");
+      history.push("/WarehouseDB");
       localStorage.setItem(
         "auth-token",
         "Bearer " + loginRes.data.tokens.token
       );
     } else {
-      history.push("/home2");
+      history.push("/stockStore");
       localStorage.setItem(
         "auth-token",
         "Bearer " + loginRes.data.tokens.token

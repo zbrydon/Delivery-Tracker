@@ -8,7 +8,7 @@ import * as Truck from "react-icons/fa"
 export const SidebarData = [
     {
         title: 'Dashboard',
-        path: "/warehouseDashboard",
+        path: "/WarehouseDB",
         icon: <IconName.MdDashboard />,
         cName: "nav-text"
     },

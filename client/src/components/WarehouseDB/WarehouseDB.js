@@ -1,10 +1,11 @@
 import React from "react";
-import NavBar from "../NavBar/NavBar";
+import NavBar from "../Tools/WarehouseNavbar";
 import "../WarehouseDB/WarehouseDB.Modules.css";
 const WarehouseDB = () => {
   return (
     <>
       <NavBar />
+      <br/>
       <div className="wrap">
         <div className="search">
           <input type="text" className="searchID" placeholder="Deliver ID" />

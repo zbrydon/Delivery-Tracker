@@ -16,9 +16,8 @@ function App() {
           <Route path="/" exact component={Login} />
           <Route path="/register" component={Register} />
         </Switch>
-        {/* <Navbar /> */}
+        {/* <Navbar /> */}{/* Place all thee stores that should have the navbar under here */}
         <Switch>
-          {/* Place all thee stores that should have the navbar under here */}
           <Route path="/storeView" component={StoreView} />
           <Route path="/stockStore" component={StockStore} />
           <Route path="/stockWarehouse" component={StockWarehouse} />
