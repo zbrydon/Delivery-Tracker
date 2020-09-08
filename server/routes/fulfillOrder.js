@@ -1,5 +1,5 @@
 const express = require('express');
-const validate = require('../middlewares/orderUpdateValidator');
+const validate = require('../middlewares/updateOrderStatusValidator');
 const authenticate = require('../middlewares/authenticateTokenWarehouse');
 const updateOrderStatus = require('../services/updateOrderStatus');
 const transmit = require('../middlewares/transitMqttInit');

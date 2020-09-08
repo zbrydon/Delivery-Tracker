@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../StoreView/StoreView.Modules.css";
-import NavBar from "../Tools/StoreNavbar";
+import NavBar from "../Tools/WarehouseNavbar";
+//import NavBar from "../NavBar/NavBar";
 import Axios from "axios";
 
 const StoreView = () => {
@@ -16,6 +17,10 @@ const StoreView = () => {
       const headers = { authorization: token };
 
       const result = await Axios.get(`${API_URL}/viewStores`, { headers });
+        for (let i = 0; i < result.data.count; i++) {
+            //render components dynamically here
+        }
+
       if (result.data.stores[0].id === 11111 && result.data.success === true) {
         setStore1({ reqStatus: "Requested", theme: "#FDC0C3" });
       } else {
@@ -34,11 +39,11 @@ const StoreView = () => {
         setStore3({ reqStatus: "No Request", theme: "#c9deff" });
       }
 
-      // if (result.data.orders[3].id === 11114 && result.data.success === true) {
-      //   setStore4({ reqStatus: "Requested", theme: "#FDC0C3" });
-      // } else {
-      //   setStore4({ reqStatus: "No Request", theme: "#c9deff" });
-      // }
+      if (result.data.stores[3].id === 11114 && result.data.success === true) {
+        setStore4({ reqStatus: "Requested", theme: "#FDC0C3" });
+      } else {
+        setStore4({ reqStatus: "No Request", theme: "#c9deff" });
+      }
     };
     data();
   }, []);
