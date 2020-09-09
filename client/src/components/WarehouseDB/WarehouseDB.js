@@ -1,14 +1,58 @@
-import React from "react";
+import React, {useState, useEffect } from "react";
+import axios from "axios";
 import NavBar from "../Tools/WarehouseNavbar";
 import "../WarehouseDB/WarehouseDB.Modules.css";
+import { useHistory } from "react-router-dom";
+import Moment from 'react-moment';
+
 const WarehouseDB = () => {
-  return (
+
+  const [orders, setOrders] = useState([]);
+      const [ordersView, setOrdersView] = useState([]);
+
+  useEffect(() => {
+      const API_URL = process.env.REACT_APP_API_URL;
+      const token = localStorage.getItem("auth-token");
+      const loginId = localStorage.getItem('login_id');
+      const headers = { authorization: token };
+      const param = { warehouseId : loginId};
+
+
+      axios.get(`${API_URL}/viewWarehouseOrders`, { 
+        headers: headers,
+        params : param
+       })
+      .then(function (response) {
+        console.log(response);
+        let data = response.data;
+        setOrders(data.orders);
+        setOrdersView(data.orders);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+
+    }, []);
+
+    function searchOrder(e) {
+      let keySearch = e.target.value;
+      if(keySearch == '') {
+        setOrders(ordersView);
+        return;
+      }
+      keySearch = parseInt(keySearch);
+      let ordersTemp = ordersView.filter(x => x.storeId === keySearch);
+      setOrders(ordersTemp);
+    }
+
+    return (
     <>
       <NavBar />
       <br/>
       <div className="wrap">
         <div className="search">
-          <input type="text" className="searchID" placeholder="Deliver ID" />
+          <input type="text" className="searchID" placeholder="Deliver ID" onChange={searchOrder}/>
           <button type="submit" className="searchButton">
             <i className="glyphicon glyphicon-search"></i>
           </button>
@@ -23,16 +67,21 @@ const WarehouseDB = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>20/7/2020</td>
-                <td>Dispatched</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>30/8/2020</td>
-                <td>Unfullfiled</td>
-              </tr>
+            {orders.map((order, i) => {                  
+              // Return the element. Also pass key     
+              return (
+                <tr >
+                  <td>{order.orderId}</td>
+                  <td>
+                  <Moment format="DD/MM/YYYY" >
+                    {order.deliveryDateTime}
+                  </Moment>
+                    </td>
+                  <td>{order.orderStatus}</td>
+                </tr>
+              ) 
+            })}
+
             </tbody>
           </table>
         </div>
@@ -66,5 +115,6 @@ const WarehouseDB = () => {
     </>
   );
 };
+
 
 export default WarehouseDB;

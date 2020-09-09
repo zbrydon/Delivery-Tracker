@@ -14,7 +14,7 @@ const Register = () => {
   const handleSubmitClick = async (e) => {
     e.preventDefault();
     if (id == '' || password == '' || confirm_password == '') {
-      setMessage('Please input feild requied');
+      setMessage('Please input feild required');
       return;
     }
 
