@@ -1,6 +1,6 @@
 const Warehouse = require('../models/Warehouse');
 
-function viewTEMP(req, res, next) {
+function viewSOH(req, res, next) {
     const warehouseId = res.warehouseId;
     Warehouse.find({ id: warehouseId }, (err, warehouse) => {
         if (err) {
@@ -11,13 +11,13 @@ function viewTEMP(req, res, next) {
         } if (!warehouse) {
             return res.status(400).send({
                 success: false,
-                message: 'This warehouse does not esist'
+                message: 'This warehouse has no SOH'
             });
         } else {
-            res.locals.TEMP = warehouse[0].TEMP;
+            res.locals.SOH = warehouse[0].SOH;
             next();
         }
     });
 };
 
-module.exports = viewTEMP;  
+module.exports = viewSOH;  

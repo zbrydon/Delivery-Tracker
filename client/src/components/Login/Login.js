@@ -19,13 +19,13 @@ const Login = () => {
     localStorage.setItem('login_id', id);
 
     if (loginRes.data.type === "warehouse") {
-      history.push("/WarehouseDB");
+        history.push("/storeView");
       localStorage.setItem(
         "auth-token",
         "Bearer " + loginRes.data.tokens.token
       );
     } else {
-      history.push("/stockStore");
+        history.push("/StockStore");
       localStorage.setItem(
         "auth-token",
         "Bearer " + loginRes.data.tokens.token

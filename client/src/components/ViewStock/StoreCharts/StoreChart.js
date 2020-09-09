@@ -88,10 +88,9 @@ class Charts extends Component
                 this.redirectToLogin();
             }
         });
-
          axios.get(
              `${API_URL}/viewStoreTEMP`, { headers }
-         ).then(response => {            
+         ).then(response => {
              if (response.data.success) {
                  this.setState({
                      storeTempData: {
@@ -113,6 +112,7 @@ class Charts extends Component
                  });
              }
          }).catch(error => {
+             localStorage.setItem('err', error);
              if (error.response.status === 406) {
                  //display "please refresh your session" here
                  //return history.push("/refresh");

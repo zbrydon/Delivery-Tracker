@@ -33,9 +33,8 @@
 
 .nav-text {
   display: absolute;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 8px 15px 15px 8px;
+  justify-content: center;
+  align-items: top;
   list-style: none;
   height: 200px;
 }

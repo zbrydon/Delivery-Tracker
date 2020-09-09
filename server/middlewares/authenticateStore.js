@@ -59,7 +59,7 @@ function authenticate(req, res, next) {
 };
 
 function generateAccessToken(payload) {
-    return jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET_STORE, { expiresIn: '15m' });
+    return jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET_STORE, { expiresIn: '1h' });
 }
 
 
