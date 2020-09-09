@@ -3,9 +3,11 @@ import * as FaIcons from "react-icons/fa"
 import * as AiIcons from "react-icons/ai"
 import {Link} from "react-router-dom"
 import { SidebarData } from "./StoreSidebarData"
+//this links the store side data
 import "../Tools/SideNavbar.css"
 import { IconContext } from "react-icons"
 
+//this side bar will be specific to the store side
 function Navbar() {
     const [sidebar, setSidebar] = useState(false)
     const showSidebar = () => setSidebar(!sidebar)

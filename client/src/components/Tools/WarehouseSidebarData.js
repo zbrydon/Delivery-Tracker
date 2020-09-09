@@ -4,6 +4,8 @@ import * as IconName from "react-icons/md";
 import * as AboutMe from "react-icons/bs"
 import * as Truck from "react-icons/fa"
 
+//these are the pages and corresponding links for store side
+//to add more pase a curly brace and add a title, path, icon and cName.
 export const SidebarData = [
     {
         title: 'Dashboard',

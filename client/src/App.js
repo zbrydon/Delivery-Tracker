@@ -1,3 +1,4 @@
+// Import all the pages in this portion
 import React from "react";
 import { Route, Switch, BrowserRouter } from "react-router-dom";
 import Login from "./components/Login/Login";
@@ -16,6 +17,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Switch>
+          {/* the routes to the pages are below, the exact path will be the login page */}
           <Route path="/" exact component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/storeView" component={StoreView} />

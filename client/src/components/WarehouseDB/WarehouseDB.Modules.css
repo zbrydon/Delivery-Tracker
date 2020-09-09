@@ -25,6 +25,7 @@ body {
   border-radius: 5px 0 0 5px;
   outline: none;
   color: #9dbfaf;
+  margin-top: 8px;
 }
 
 .searchID:focus {
@@ -52,6 +53,7 @@ body {
 }
 
 .btn-sm {
+  width: 100%;
   background-color: salmon;
   color: white;
   font-weight: bold;

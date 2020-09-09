@@ -2,19 +2,21 @@ import React from 'react';
 import Navbar from "../Tools/WarehouseNavbar";
 import "../AddStock/AddStock.css";
 
+// the add stock for the warehouse page
 class AddStock extends React.Component
 {   
     state = {
         palletType: '',
         palletQuantity: '',
     }
+    //api will go here
     render()
 {
-        return(
+    return(
+        <div>
             <div>
-                <div>
-                    <Navbar />  
-                </div>
+                <Navbar />  
+            </div>
                 <div>
                     <br></br>
                     <form className='main-block'>
