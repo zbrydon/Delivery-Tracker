@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from "../Tools/StoreNavbar";
+import Navbar from "../Tools/WarehouseNavbar";
 import "../AddStock/AddStock.css";
 
 class AddStock extends React.Component
@@ -44,7 +44,7 @@ class AddStock extends React.Component
                         <label className="ChooseWarehouse" for="warehouseID">Choose a Quantity:</label>
                         <label className="Quant" for="quantity">Choose amount 1-8</label>
                         <br></br>
-                        <input className="input-number"type="number" id="quantity" name="quantity" min="1" max="8"></input>
+                        <input className="input-number"type="number" id={this.state.palletQuantity} name="quantity" min="1" max="8"></input>
                         <div class="btn-block">
                             <button type="submit" href="/">Submit</button>
                         </div>

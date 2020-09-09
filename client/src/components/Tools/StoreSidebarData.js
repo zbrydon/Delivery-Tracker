@@ -7,7 +7,7 @@ import * as Truck from "react-icons/fa";
 export const SidebarData = [
     {
         title: 'Dashboard',
-        path: "/storeView",
+        path: "/StoreDB",
         icon: <IconName.MdDashboard />,
         cName: "nav-text"
     },
@@ -25,8 +25,13 @@ export const SidebarData = [
     },
     {
         title: 'View Orders',
-        path: "/viewOrders",
+        path: "/StoreViewOrder",
         icon: <BookName.BiBookAlt />,
         cName: "nav-text"
     },
+    {
+        title: 'Logout!',
+        path: "/",
+        cName: "nav-text"
+    }
 ]

@@ -2,13 +2,14 @@ import React from "react";
 import { Route, Switch, BrowserRouter } from "react-router-dom";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
-// import Navbar from "./components/Tools/StoreNavbar";
 import StockStore from "./components/ViewStock/StockStore";
 import StockWarehouse from "./components/ViewStock/StockWarehouse";
 import StoreView from "./components/StoreView/StoreView";
 import WarehouseDB from "./components/WarehouseDB/WarehouseDB";
 import createOrder from "./components/CreateOrder/createOrder";
 import AddStock from "./components/AddStock/AddStock";
+import FulfillOrder from "./components/FufillOrder/fulfillOrder";
+import StoreViewOrder from "./components/StoreViewOrder/StoreViewOrder"
 
 function App() {
   return (
@@ -17,15 +18,14 @@ function App() {
         <Switch>
           <Route path="/" exact component={Login} />
           <Route path="/register" component={Register} />
-        </Switch>
-        {/* <Navbar /> */}{/* Place all thee stores that should have the navbar under here */}
-        <Switch>
           <Route path="/storeView" component={StoreView} />
           <Route path="/stockStore" component={StockStore} />
           <Route path="/stockWarehouse" component={StockWarehouse} />
           <Route path="/warehouseDB" component={WarehouseDB} />
           <Route path="/createOrder" component={createOrder} />
           <Route path="/AddStock" component={AddStock} />
+          <Route path="/fulfillOrder" component={FulfillOrder} />
+          <Route path="/StoreViewOrder" component={StoreViewOrder} />
         </Switch>
       </BrowserRouter>
     </div>

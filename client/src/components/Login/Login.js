@@ -19,7 +19,7 @@ const Login = () => {
     localStorage.setItem('login_id', id);
 
     if (loginRes.data.type === "warehouse") {
-        history.push("/storeView");
+        history.push("/WarehouseDB");
       localStorage.setItem(
         "auth-token",
         "Bearer " + loginRes.data.tokens.token
