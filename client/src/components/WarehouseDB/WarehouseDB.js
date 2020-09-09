@@ -13,17 +13,10 @@ const WarehouseDB = () => {
   useEffect(() => {
       const API_URL = process.env.REACT_APP_API_URL;
       const token = localStorage.getItem("auth-token");
-      const loginId = localStorage.getItem('login_id');
       const headers = { authorization: token };
-      const param = { warehouseId : loginId};
 
 
-      axios.get(`${API_URL}/viewWarehouseOrders`, { 
-        headers: headers,
-        params : param
-       })
-      .then(function (response) {
-        console.log(response);
+      axios.get(`${API_URL}/viewWarehouseOrders`, { headers }).then(function (response) {
         let data = response.data;
         setOrders(data.orders);
         setOrdersView(data.orders);

@@ -31,6 +31,12 @@ function createOrder(req, res, next) {
                 message: 'Order does not belong to this store'
             });
         }
+        if (order.orderStatus == "In Transit" || order.orderStatus == "Delivered") {
+            return res.status(406).send({
+                success: false,
+                message: 'Order cannot be updated it has left the warehouse'
+            });
+        }
         //Old warehouse
         Warehouse.findOne({ id: order.warehouseId }, (err, warehouse) => {
             if (err) {
@@ -104,7 +110,7 @@ function createOrder(req, res, next) {
                 { id: order.warehouseId },
                 { $set: { SOH: oldSOH } },
                 {
-                    returnNewDocument: true,
+                    returnOriginal: false,
                     useFindAndModify: false
                 },
                 (err) => {
@@ -120,7 +126,6 @@ function createOrder(req, res, next) {
                     }
                 });
             //New warehouse
-
             Warehouse.findOne({ id: warehouseId }, (err, warehouse) => {
                 if (err) {
                     return res.status(400).send({
@@ -128,6 +133,8 @@ function createOrder(req, res, next) {
                         message: err
                     });
                 } if (!warehouse) {
+                    console.log('here');
+
                     return res.status(404).send({
                         success: false,
                         message: 'Warehouse does not exist'
@@ -242,35 +249,35 @@ function createOrder(req, res, next) {
                             return;
                         }
                     });
+                Order.findOneAndUpdate(
 
+                    { orderId: orderId },
+                    {
+                        $set: {
+                            warehouseId: warehouseId,
+                            productType: productType,
+                            quantity: quantity,
+                            deliveryDateTime: deliveryDateTime,
+                            orderDateTime: orderDateTime
+                        }
+                    }, {
+                        returnOriginal: false,
+                    useFindAndModify: false
+                },
+                    (err, order) => {
+                        if (err) {
+                            return res.status(400).send({
+                                success: false,
+                                message: err
+                            })
+                        } else {
+                            res.locals.order = order;
+                            next();
+                        }
+                    });
             });
 
-            Order.findOneAndUpdate(
-
-                { orderId: orderId },
-                {
-                    $set: {
-                        warehouseId: warehouseId,
-                        productType: productType,
-                        quantity: quantity,
-                        deliveryDateTime: deliveryDateTime,
-                        orderDateTime: orderDateTime
-                    }
-                }, {
-                returnNewDocument: true,
-                useFindAndModify: false
-            },
-                (err, order) => {
-                    if (err) {
-                        return res.status(400).send({
-                            success: false,
-                            message: err
-                        })
-                    } else {
-                        res.locals.order = order;
-                        next();
-                    }
-                });
+            
         })
     });
 };

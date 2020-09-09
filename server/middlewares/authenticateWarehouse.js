@@ -9,7 +9,7 @@ function authenticate(req, res, next) {
     const { id, password } = req.body
     const s = process.env.STORE_ID_LENGTH;
     const w = process.env.WAREHOUSE_ID_LENGTH;
-    if (id.length == w.toString()) {
+    if (id.toString().length == w.toString()) {
         Warehouse.findOne({ id: id }, (err, warehouse) => {
             if (err) {
                 return res.json({
@@ -50,7 +50,7 @@ function authenticate(req, res, next) {
         }
 
         )
-    } else if (id.length == s.toString()) {
+    } else if (id.toString().length == s.toString()) {
         next();
     } else {
         return res.status(400).send({
@@ -63,7 +63,7 @@ function authenticate(req, res, next) {
 };
 
 function generateAccessToken(payload) {
-    return jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET_WAREHOUSE, { expiresIn: '15m' });
+    return jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET_WAREHOUSE/*, { expiresIn: '24h' }*/);
 }
 
 

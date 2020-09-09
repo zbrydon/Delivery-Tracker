@@ -1,5 +1,5 @@
 const express = require('express');
-const validate = require('../middlewares/registerValidator');
+const validate = require('../middlewares/registerStoreValidator');
 const createStore = require('../services/createStore');
 const registerStore = express.Router();
 

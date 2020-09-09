@@ -5,12 +5,12 @@ function authenticateToken(req, res, next) {
     if (token) {
         jwt.verify(token, process.env.ACCESS_TOKEN_SECRET_WAREHOUSE, (err, obj) => {
             if (err) {
+                console.log('this');
                 return res.status(406).send({
                     success: false,
                     message: 'Failed to authenticate token.'
                 })
             } else {
-                
                 res.token = token;
                 res.obj = obj;
                 next();

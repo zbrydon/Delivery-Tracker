@@ -38,14 +38,15 @@ async function updateOrder(req, res, next) {
         if (newOrderStatus == "In Transit") {
             let currentDate = new Date();
             currentDate = Date.parse(currentDate);
+            //Update the delivery time to current 
             Order.findOneAndUpdate(
                 { orderId: updated },
                 { $set: { deliveryDateTime: currentDate } },
                 {
-                    returnNewDocument: true,
+                    returnOriginal: false,
                     useFindAndModify: false
                 },
-                (err, Order) => {
+                (err, order) => {
                     if (err) {
                         return res.status(400).send({
                             success: false,
@@ -61,7 +62,7 @@ async function updateOrder(req, res, next) {
         let storeSOH = null;
         if (newOrderStatus == "Delivered") {
 
-            //Store
+            //updates the Store's SOH
             Store.find({ id: storeId }, (err, store) => {
                 if (err) {
                     return res.status(400).send({
@@ -132,7 +133,7 @@ async function updateOrder(req, res, next) {
                         { id: storeId },
                         { $set: { SOH: newSOH } },
                         {
-                            returnNewDocument: true,
+                            returnOriginal: false,
                             useFindAndModify: false
                         },
                         (err) => {
@@ -150,12 +151,7 @@ async function updateOrder(req, res, next) {
                 }
 
             });
-        }       
-    });
-            
-
-        
-
+        }     
         Order.find(
             { storeId: storeId },
             (err, orders) => {
@@ -169,7 +165,7 @@ async function updateOrder(req, res, next) {
                         { storeId: storeId },
                         { $set: { hasOrdered: false } },
                         {
-                            returnNewDocument: true,
+                            returnOriginal: false,
                             useFindAndModify: false
                         },
                         (err) => {
@@ -187,9 +183,10 @@ async function updateOrder(req, res, next) {
             });
         Order.findOneAndUpdate(
             { orderId: updated },
-            { $set: { orderStatus: /*newOrderStatus*/"In Transit" } },
+            { $set: { orderStatus: newOrderStatus } },
             {
-                returnNewDocument: true,
+                returnOriginal: false
+            , 
                 useFindAndModify: false
             },
             (err, order) => {
@@ -203,6 +200,12 @@ async function updateOrder(req, res, next) {
                     next();
                 }
             });
+    });
+            
+
+        
+
+       
 };
 
 module.exports = updateOrder;  

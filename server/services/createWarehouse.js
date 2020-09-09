@@ -26,12 +26,11 @@ function createWarehouse(req, res, next) {
             const newWarehouse = new Warehouse({
                 id: id, password: password_hash, SOH: SOH
             });
-            console.log(newWarehouse);
             newWarehouse.save((err) => {
                 if (err) {
-                    return res.status(406).send({
+                    return res.status(400).send({
                         success: false,
-                        message: 'ID or Password in incorrect format'
+                        message: err
                     });
                 } else {
                     console.log('success');

@@ -19,7 +19,7 @@ function addSOH(req, res, next) {
         { id: id },
         { $set: { SOH: newSOH } },
         {
-            returnNewDocument: true,
+            returnOriginal: false,
             useFindAndModify: false
         },
         (err, warehouse) => {
@@ -29,7 +29,6 @@ function addSOH(req, res, next) {
                     message: err
                 })
             } else {
-
 
                 res.locals.warehouse = warehouse;
                 next();

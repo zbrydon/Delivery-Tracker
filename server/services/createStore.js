@@ -25,12 +25,11 @@ function createStore(req, res, next) {
                     ambient: 0
                 }
             });
-
             newStore.save((err) => {
                 if (err) {
-                    return res.status(406).send({
+                    return res.status(400).send({
                         success: false,
-                        message: 'ID or Password in incorrect format'
+                        message: err
                     });
                 } else {
                     next();

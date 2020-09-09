@@ -9,7 +9,7 @@ function authenticate(req, res, next) {
     const { id, password } = req.body
     const s = process.env.STORE_ID_LENGTH;
     const w = process.env.WAREHOUSE_ID_LENGTH;
-    if (id.length == s.toString()) {
+    if (id.toString().length == s.toString()) {
         Store.findOne({ id: id }, (err, store) => {
             if (err) {
                 return res.json({
@@ -49,7 +49,7 @@ function authenticate(req, res, next) {
         }
 
         )
-    } else if (id.length == w.toString()) {
+    } else if (id.toString().length == w.toString()) {
         
         next();
     } else {
@@ -59,7 +59,7 @@ function authenticate(req, res, next) {
 };
 
 function generateAccessToken(payload) {
-    return jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET_STORE, { expiresIn: '1h' });
+    return jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET_STORE, { expiresIn: '24h' });
 }
 
 

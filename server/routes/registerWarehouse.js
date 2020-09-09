@@ -1,5 +1,5 @@
 const express = require('express');
-const validate = require('../middlewares/registerValidator');
+const validate = require('../middlewares/registerWarehouseValidator');
 const createWarehouse = require('../services/createWarehouse');
 const registerWarehouse = express.Router();
 
