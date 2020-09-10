@@ -9,8 +9,11 @@ const updateWarehouseSOH = express.Router();
  * @apiName Update Warehouse SOH
  * @apiGroup Warehouse
  *
- * @apiParam { String } productType The type of SOH being updated (frozen || dairy || meat || produce || ambient)
- * @apiParam { Number } quantity The new quantity
+ * @apiParam { Number } frozenQuantity Number of frozen pallets
+ * @apiParam { Number } dairyQuantity Number of dairy pallets
+ * @apiParam { Number } meatQuantity Number of meat pallets
+ * @apiParam { Number } produceQuantity Number of produce pallets
+ * @apiParam { Number } ambientQuantity Number of ambient pallets
  *
  * @apiSuccess {Boolean} success Update result
  * @apiSuccess {String} message Update status
@@ -41,13 +44,13 @@ const updateWarehouseSOH = express.Router();
  *           }
  *       }
  *
- * @apiError BadRequest The product type is incorrect.
+ * @apiError BadRequest The quantity is incorrect.
  *
  * @apiErrorExample Error-Response:
- *      HTTP/1.1 406 BadRequest
+ *      HTTP/1.1 400 BadRequest
  *      {
  *           "success": false,
- *           "message": "Product Type in incorrect format"
+ *           "message": "Quantity inncorrect"
  *      }
  **/
 

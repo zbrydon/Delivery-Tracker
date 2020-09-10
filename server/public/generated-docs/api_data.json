@@ -898,17 +898,38 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "String",
+            "type": "Number",
             "optional": false,
-            "field": "productType",
-            "description": "<p>The type of SOH being updated (frozen || dairy || meat || produce || ambient)</p>"
+            "field": "frozenQuantity",
+            "description": "<p>Number of frozen pallets</p>"
           },
           {
             "group": "Parameter",
             "type": "Number",
             "optional": false,
-            "field": "quantity",
-            "description": "<p>The new quantity</p>"
+            "field": "dairyQuantity",
+            "description": "<p>Number of dairy pallets</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "meatQuantity",
+            "description": "<p>Number of meat pallets</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "produceQuantity",
+            "description": "<p>Number of produce pallets</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "ambientQuantity",
+            "description": "<p>Number of ambient pallets</p>"
           }
         ]
       }
@@ -954,14 +975,14 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "BadRequest",
-            "description": "<p>The product type is incorrect.</p>"
+            "description": "<p>The quantity is incorrect.</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 406 BadRequest\n{\n     \"success\": false,\n     \"message\": \"Product Type in incorrect format\"\n}",
+          "content": "HTTP/1.1 400 BadRequest\n{\n     \"success\": false,\n     \"message\": \"Quantity inncorrect\"\n}",
           "type": "json"
         }
       ]
