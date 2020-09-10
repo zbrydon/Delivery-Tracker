@@ -1,6 +1,6 @@
 import React from "react";
 import "./StoreDB.css";
-import NavBar from "../Tools/WarehouseNavbar";
+import NavBar from "../Tools/StoreNavbar";
 const StoreDB = () => {
   return (
     <>
