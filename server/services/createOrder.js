@@ -8,8 +8,11 @@ const Warehouse = require('../models/Warehouse');
 function createOrder(req, res, next) {
     const storeId = res.storeId;
     const warehouseId = res.warehouseId;
-    const productType = res.productType;
-    const quantity = res.quantity;
+    const frozenQuantity = res.frozenQuantity;
+    const dairyQuantity = res.dairyQuantity;
+    const meatQuantity = res.meatQuantity;
+    const produceQuantity = res.produceQuantity;
+    const ambientQuantity = res.ambientQuantity;
     const deliveryDateTime = res.deliveryDateTime;
     const orderDateTime = res.orderDateTime;
     Warehouse.findOne({ id: warehouseId }, (err, warehouse) => {
@@ -24,14 +27,6 @@ function createOrder(req, res, next) {
                 message: 'Warehouse does not exist'
             });
         }
-        const SOH = warehouse.SOH;
-
-        const frozenQuantity = SOH.frozen;
-        const dairyQuantity = SOH.dairy;
-        const meatQuantity = SOH.meat;
-        const produceQuantity = SOH.produce;
-        const ambientQuantity = SOH.ambient;
-
         let newSOH = {
             frozen: 0,
             dairy: 0,
@@ -39,81 +34,18 @@ function createOrder(req, res, next) {
             produce: 0,
             ambient: 0
         }
-
-        if (productType == "frozen") {
-            if (SOH.frozen < quantity) {
-                return res.status(406).send({
-                    success: false,
-                    message: 'Warehouse does not have enough stock to fulfill the order'
-                });
-            } else {
-                newSOH = {
-                    frozen: frozenQuantity - quantity,
-                    dairy: dairyQuantity,
-                    meat: meatQuantity,
-                    produce: produceQuantity,
-                    ambient: ambientQuantity
-                }
-            }
-        } if (productType == "dairy") {
-            if (SOH.dairy < quantity) {
-                return res.status(406).send({
-                    success: false,
-                    message: 'Warehouse does not have enough stock to fulfill the order'
-                });
-            } else {
-                newSOH = {
-                    frozen: frozenQuantity,
-                    dairy: dairyQuantity - quantity,
-                    meat: meatQuantity,
-                    produce: produceQuantity,
-                    ambient: ambientQuantity
-                }
-            }
-        } if (productType == "meat") {
-            if (SOH.meat < quantity) {
-                return res.status(406).send({
-                    success: false,
-                    message: 'Warehouse does not have enough stock to fulfill the order'
-                });
-            } else {
-                newSOH = {
-                    frozen: frozenQuantity,
-                    dairy: dairyQuantity,
-                    meat: meatQuantity - quantity,
-                    produce: produceQuantity,
-                    ambient: ambientQuantity
-                }
-            }
-        } if (productType == "produce") {
-            if (SOH.produce < quantity) {
-                return res.status(406).send({
-                    success: false,
-                    message: 'Warehouse does not have enough stock to fulfill the order'
-                });
-            } else {
-                newSOH = {
-                    frozen: frozenQuantity,
-                    dairy: dairyQuantity,
-                    meat: meatQuantity,
-                    produce: produceQuantity - quantity,
-                    ambient: ambientQuantity
-                }
-            }
-        } if (productType == "ambient") {
-            if (SOH.ambient < quantity) {
-                return res.status(406).send({
-                    success: false,
-                    message: 'Warehouse does not have enough stock to fulfill the order'
-                });
-            } else {
-                newSOH = {
-                    frozen: frozenQuantity,
-                    dairy: dairyQuantity,
-                    meat: meatQuantity,
-                    produce: produceQuantity,
-                    ambient: ambientQuantity - quantity
-                }
+        if (frozenQuantity > warehouse.SOH.frozen || dairyQuantity > warehouse.SOH.dairy || meatQuantity > warehouse.SOH.meat || produceQuantity > warehouse.SOH.produce || ambientQuantity > warehouse.SOH.ambient) {
+            return res.status(406).send({
+                success: false,
+                message: 'Warehouse does not have enough stock to fulfill the order'
+            });
+        } else {
+            newSOH = {
+                frozen: warehouse.SOH.frozen - frozenQuantity,
+                dairy: warehouse.SOH.dairy - dairyQuantity,
+                meat: warehouse.SOH.meat - meatQuantity,
+                produce: warehouse.SOH.produce - produceQuantity,
+                ambient: warehouse.SOH.ambient - ambientQuantity
             }
         }
         Warehouse.findOneAndUpdate(
@@ -123,7 +55,7 @@ function createOrder(req, res, next) {
                 returnNewDocument: true,
                 useFindAndModify: false
             },
-            (err, warehouse) => {
+            (err) => {
                 if (err) {
                     return res.status(400).send({
                         success: false,
@@ -164,8 +96,11 @@ function createOrder(req, res, next) {
                                 orderId: orderId,
                                 storeId: storeId,
                                 warehouseId: warehouseId,
-                                productType: productType,
-                                quantity: quantity,
+                                frozenQuantity: frozenQuantity,
+                                dairyQuantity: dairyQuantity,
+                                meatQuantity: meatQuantity,
+                                produceQuantity: produceQuantity,
+                                ambientQuantity: ambientQuantity,
                                 deliveryDateTime: deliveryDateTime,
                                 orderDateTime: orderDateTime,
                                 temperature: [],
@@ -207,8 +142,11 @@ function createOrder(req, res, next) {
                                 orderId: orderId,
                                 storeId: storeId,
                                 warehouseId: warehouseId,
-                                productType: productType,
-                                quantity: quantity,
+                                frozenQuantity: frozenQuantity,
+                                dairyQuantity: dairyQuantity,
+                                meatQuantity: meatQuantity,
+                                produceQuantity: produceQuantity,
+                                ambientQuantity: ambientQuantity,
                                 deliveryDateTime: deliveryDateTime,
                                 orderDateTime: orderDateTime,
                                 temperature: [],

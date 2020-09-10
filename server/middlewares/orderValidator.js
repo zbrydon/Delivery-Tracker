@@ -1,7 +1,7 @@
 const validator = require('validator');
 
 function validate(req, res, next) {
-    const { warehouseId, productType, quantity } = req.body
+    const { warehouseId, frozenQuantity, dairyQuantity, meatQuantity, produceQuantity, ambientQuantity} = req.body
     let deliveryDateTime = req.body.deliveryDateTime;
     const storeId = res.obj.id;
 
@@ -11,14 +11,28 @@ function validate(req, res, next) {
             message: 'Warehouse ID in incorrect format'
         });
     }
-    if (!validator.equals(productType, 'frozen') && !validator.equals(productType, 'dairy') && !validator.equals(productType, 'meat') && !validator.equals(productType, 'produce') && !validator.equals(productType, 'ambient')) {
-        return res.status(406).send({
+    if (!validator.isInt(frozenQuantity.toString(), { min: 1, max: 20 })) {
+        return res.status(400).send({
             success: false,
-            message: 'Product Type in incorrect format'
+            message: 'Quantity inncorrect'
         });
-    }
-    if (!validator.isInt(quantity.toString(), { min: 1 ,  max: 20 })) {
-        return res.status(406).send({
+    } if (!validator.isInt(dairyQuantity.toString(), { min: 1, max: 20 })) {
+        return res.status(400).send({
+            success: false,
+            message: 'Quantity inncorrect'
+        });
+    } if (!validator.isInt(meatQuantity.toString(), { min: 1, max: 20 })) {
+        return res.status(400).send({
+            success: false,
+            message: 'Quantity inncorrect'
+        });
+    } if (!validator.isInt(produceQuantity.toString(), { min: 1, max: 20 })) {
+        return res.status(400).send({
+            success: false,
+            message: 'Quantity inncorrect'
+        });
+    } if (!validator.isInt(ambientQuantity.toString(), { min: 1, max: 20 })) {
+        return res.status(400).send({
             success: false,
             message: 'Quantity inncorrect'
         });
@@ -34,8 +48,11 @@ function validate(req, res, next) {
     else {
         res.storeId = storeId;
         res.warehouseId = warehouseId;
-        res.productType = productType;
-        res.quantity = quantity;
+        res.frozenQuantity = parseInt(frozenQuantity);
+        res.dairyQuantity = parseInt(dairyQuantity);
+        res.meatQuantity = parseInt(meatQuantity);
+        res.produceQuantity = parseInt(produceQuantity);
+        res.ambientQuantity = parseInt(ambientQuantity);
         res.deliveryDateTime = Number(deliveryDateTime);
         res.orderDateTime = Date.parse(currentDate);
         next();

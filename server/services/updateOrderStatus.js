@@ -1,6 +1,5 @@
 const Order = require('../models/Order');
 const Store = require('../models/Store');
-const Warehouse = require('../models/Warehouse');
 
 async function updateOrder(req, res, next) {
     const updated = res.orderId;
@@ -58,12 +57,10 @@ async function updateOrder(req, res, next) {
                     }
                 });
         }
-        const storeId = order.storeId;
-        let storeSOH = null;
         if (newOrderStatus == "Delivered") {
 
             //updates the Store's SOH
-            Store.find({ id: storeId }, (err, store) => {
+            Store.findOne({ id: order.storeId }, (err, store) => {
                 if (err) {
                     return res.status(400).send({
                         success: false,
@@ -75,59 +72,12 @@ async function updateOrder(req, res, next) {
                         message: 'This store does not esist'
                     });
                 } else {
-                    storeSOH = store[0].SOH;
-                    let frozenQuantity = storeSOH.frozen;
-                    let dairyQuantity = storeSOH.dairy;
-                    let meatQuantity = storeSOH.meat;
-                    let produceQuantity = storeSOH.produce;
-                    let ambientQuantity = storeSOH.ambient;
-                    let newSOH = {
-                        frozen: 0,
-                        dairy: 0,
-                        meat: 0,
-                        produce: 0,
-                        ambient: 0
-                    }
-                    if (order.productType == "frozen") {
-                        newSOH = {
-                            frozen: frozenQuantity + order.quantity,
-                            dairy: dairyQuantity,
-                            meat: meatQuantity,
-                            produce: produceQuantity,
-                            ambient: ambientQuantity
-                        }
-                    } if (order.productType == "dairy") {
-                        newSOH = {
-                            frozen: frozenQuantity,
-                            dairy: dairyQuantity + order.quantity,
-                            meat: meatQuantity,
-                            produce: produceQuantity,
-                            ambient: ambientQuantity
-                        }
-                    } if (order.productType == "meat") {
-                        newSOH = {
-                            frozen: frozenQuantity,
-                            dairy: dairyQuantity,
-                            meat: meatQuantity + order.quantity,
-                            produce: produceQuantity,
-                            ambient: ambientQuantity
-                        }
-                    } if (order.productType == "produce") {
-                        newSOH = {
-                            frozen: frozenQuantity,
-                            dairy: dairyQuantity,
-                            meat: meatQuantity,
-                            produce: produceQuantity + order.quantity,
-                            ambient: ambientQuantity
-                        }
-                    } if (order.productType == "ambient") {
-                        newSOH = {
-                            frozen: frozenQuantity,
-                            dairy: dairyQuantity,
-                            meat: meatQuantity,
-                            produce: produceQuantity,
-                            ambient: ambientQuantity + order.quantity
-                        }
+                    const newSOH = {
+                        frozen: order.frozenQuantity + store.SOH.frozen,
+                        dairy: order.dairyQuantity + store.SOH.dairy,
+                        meat: order.meatQuantity + store.SOH.meat,
+                        produce: order.produceQuantity + store.SOH.produce,
+                        ambient: order.ambientQuantity + store.SOH.ambient
                     }
                     Store.findOneAndUpdate(
                         { id: storeId },
@@ -153,7 +103,7 @@ async function updateOrder(req, res, next) {
             });
         }     
         Order.find(
-            { storeId: storeId },
+            { storeId: order.storeId },
             (err, orders) => {
                 if (err) {
                     return res.status(400).send({
@@ -162,7 +112,7 @@ async function updateOrder(req, res, next) {
                     });
                 } if (!orders && newOrderStatus == "Delivered") {
                     Store.findOneAndUpdate(
-                        { storeId: storeId },
+                        { storeId: order.storeId },
                         { $set: { hasOrdered: false } },
                         {
                             returnOriginal: false,
