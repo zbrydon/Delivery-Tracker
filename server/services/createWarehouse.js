@@ -24,7 +24,15 @@ function createWarehouse(req, res, next) {
                 ambient: 0
             };
             const newWarehouse = new Warehouse({
-                id: id, password: password_hash, SOH: SOH
+                id: id, password: password_hash, SOH: SOH,
+                
+                TEMP: {
+                frozen: 0,
+                dairy: 0,
+                meat: 0,
+                produce: 0,
+                ambient: 0
+            }
             });
             newWarehouse.save((err) => {
                 if (err) {

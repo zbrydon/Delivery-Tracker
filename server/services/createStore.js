@@ -23,6 +23,13 @@ function createStore(req, res, next) {
                     meat: 0,
                     produce: 0,
                     ambient: 0
+                },
+                TEMP: {
+                    frozen: 0,
+                    dairy: 0,
+                    meat: 0,
+                    produce: 0,
+                    ambient: 0
                 }
             });
             newStore.save((err) => {

@@ -112,7 +112,6 @@ class Charts extends Component
                  });
              }
          }).catch(error => {
-             localStorage.setItem('err', error);
              if (error.response.status === 406) {
                  //display "please refresh your session" here
                  //return history.push("/refresh");
