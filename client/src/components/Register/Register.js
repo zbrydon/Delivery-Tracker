@@ -14,7 +14,7 @@ const Register = () => {
   const handleSubmitClick = async (e) => {
     e.preventDefault();
     if (id == '' || password == '' || confirm_password == '') {
-      setMessage('Please input feild required');
+      setMessage('Please input field required');
       return;
     }
 
@@ -28,7 +28,6 @@ const Register = () => {
       setLocation('store1');
   
       setMessage(data.message);
-
 
     })
     .catch(function (error) {
