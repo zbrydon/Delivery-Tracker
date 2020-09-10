@@ -30,11 +30,11 @@ function validate(req, res, next) {
         });
     }else {
         res.obj = obj;
-        res.frozenQuantity = frozenQuantity;
-        res.dairyQuantity = dairyQuantity;
-        res.meatQuantity = meatQuantity;
-        res.produceQuantity = produceQuantity;
-        res.ambientQuantity = ambientQuantity;
+        res.frozenQuantity = parseInt(frozenQuantity);
+        res.dairyQuantity = parseInt(dairyQuantity);
+        res.meatQuantity = parseInt(meatQuantity);
+        res.produceQuantity = parseInt(produceQuantity);
+        res.ambientQuantity = parseInt(ambientQuantity);
         next();
     }
 };

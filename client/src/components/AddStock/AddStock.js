@@ -1,69 +1,96 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from "../Tools/WarehouseNavbar";
 import "../AddStock/AddStock.css";
+import axios from "axios";
 
 // the add stock for the warehouse page
-class AddStock extends React.Component
-{   
-    state = {
-        frozen: '',
-        dairy: '',
-        meat: '',
-        produce: '',
-        ambient: '',
-        palletType: '',
-        palletQuantity: '',
-    }
-    //api will go here
-    render()
-{
-    return(
+const AddStock = () => {
+    const API_URL = process.env.REACT_APP_API_URL;
+    const [frozenQuantity, setFrozenQuantity] = useState();
+    const [dairyQuantity, setDairyQuantity] = useState();
+    const [meatQuantity, setMeatQuantity] = useState();
+    const [produceQuantity, setProduceQuantity] = useState();
+    const [ambientQuantity, setAmbientQuantity] = useState();
+
+    const token = localStorage.getItem('auth-token');
+    const headers = {
+        'authorization': token
+    };
+
+    const handleSubmitClick = async (e) => {
+        e.preventDefault();
+        const updateSOH = { frozenQuantity, dairyQuantity, meatQuantity, produceQuantity, ambientQuantity };
+        const updateRes = await axios.post(`${API_URL}/updateWarehouseSOH`, updateSOH, { headers });
+
+    };
+
+    return (
         <div>
             <div>
-                <Navbar />  
-            </div>
-                <div>
-                    <br></br>
-                    <form className='main-block'>
-                        <h1>Add Stock</h1>
-                        <label className="ChooseWarehouse" for="warehouseID">Choose Pallets: </label>
-                        <div class="multiselect">
-                        <label className="Quant" for="quantity">Choose amount 1-5</label>
-                            <br/>
-                            <div class="selectBox">
-                            </div>
-                            <div className="pallets" id={this.state.palletType}>
-                                <label for="one">
-                                    <label id={this.state.frozen} />Frozen</label>
-                                    <input className="input-number"type="number" id={this.state.palletQuantity} name="quantity" min="1" max="5"></input>
-                                    <br/>
-                                <label for="two">
-                                    <label id={this.state.dairy} />Dairy</label>
-                                    <input className="input-number"type="number" id={this.state.palletQuantity} name="quantity" min="1" max="5"></input>
-                                    <br/>
-                                <label for="three">
-                                    <label id={this.state.meat} />Meat</label>
-                                    <input className="input-number"type="number" id={this.state.palletQuantity} name="quantity" min="1" max="5"></input>
-                                    <br/>
-                                <label for="four">
-                                    <label id={this.state.produce} />Produce</label>
-                                    <input className="input-number"type="number" id={this.state.palletQuantity} name="quantity" min="1" max="5"></input>
-                                    <br/>
-                                <label for="five">
-                                    <label id={this.state.ambient} />Ambient</label>
-                                    <input className="input-number"type="number" id={this.state.palletQuantity} name="quantity" min="1" max="5"></input>
-                                    <br/>
-                            </div>
-                        </div>
-                        <br></br>
-                        {/* <label className="ChooseWarehouse" for="warehouseID">Choose a Quantity:</label> */}
-                        <div class="btn-block">
-                            <button type="submit" href="/" onClick="Ordered">Submit</button>
-                        </div>
-                    </form>
+                <Navbar />
                 </div>
+                <div>
+                <br></br>
+                <form className='main-block'>
+                    <h1>Add Stock</h1>
+                    <label className="ChooseWarehouse">Choose Pallets: </label>
+                    <div className="multiselect">
+                        <label className="Quant">Choose amount 1-20</label>
+                        <br />
+                        <div className="selectBox">
+                        </div>
+                        <div className="pallets">
+                                <label>Frozen</label>
+                            <input className="input-number"
+                                type="number"
+                                id="frozen"
+                                name="quantity"
+                                min="1" max="20"
+                                onChange={(e) => setFrozenQuantity(e.target.value)}/>
+                            <br />
+                                <label>Dairy</label>
+                            <input className="input-number"
+                                type="number"
+                                id="dairy"
+                                name="quantity"
+                                min="1" max="20"
+                                onChange={(e) => setDairyQuantity(e.target.value)} />
+                            <br />
+                                <label>Meat</label>
+                            <input className="input-number"
+                                type="number"
+                                id="meat"
+                                name="quantity"
+                                min="1" max="20"
+                                onChange={(e) => setMeatQuantity(e.target.value)} />
+                            <br />
+                                <label>Produce</label>
+                            <input className="input-number"
+                                type="number"
+                                id="produce"
+                                name="quantity"
+                                min="1" max="20"
+                                onChange={(e) => setProduceQuantity(e.target.value)} />
+                            <br />
+                                <label>Ambient</label>
+                            <input className="input-number"
+                                type="number"
+                                id="ambient"
+                                name="quantity"
+                                min="1" max="20"
+                                onChange={(e) => setAmbientQuantity(e.target.value)} />
+                            <br />
+                        </div>
+                    </div>
+                    <br></br>
+                    {/* <label className="ChooseWarehouse" for="warehouseID">Choose a Quantity:</label> */}
+                    <div className="btn-block">
+                        <button type="submit" href="/" onClick={handleSubmitClick}>Submit</button>
+                    </div>
+                </form>
             </div>
-        );
-    }
-}
+        </div>
+    );
+
+};
 export default AddStock
