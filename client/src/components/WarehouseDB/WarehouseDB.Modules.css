@@ -6,7 +6,7 @@ body {
 }
 
 .wrap {
-  margin-left: 100px;
+  margin-left: 150px;
   margin-top: 20px;
 }
 /* Search */
@@ -25,7 +25,6 @@ body {
   border-radius: 5px 0 0 5px;
   outline: none;
   color: #9dbfaf;
-  margin-top: 8px;
 }
 
 .searchID:focus {

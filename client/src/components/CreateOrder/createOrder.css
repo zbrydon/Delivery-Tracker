@@ -1,121 +1,103 @@
-.main-block
-{
-    max-width: 400px; 
-    min-height: 640px; 
-    padding: 10px 0;
-    margin: auto;
-    border-radius: 5px; 
-    border: solid 1px #ccc;
-    box-shadow: 1px 2px 5px rgba(0,0,0,.31); 
-    background: #ebebeb; 
+.main-block {
+  max-width: 400px;
+  min-height: 640px;
+  padding: 10px 0;
+  margin: auto;
+  border-radius: 5px;
+  border: solid 1px #ccc;
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.31);
+  background: #ebebeb;
 }
-.ChooseWarehouse
-{
-    justify-content: center;
-    margin: auto;
-    display: flex;
-    font-family: Roboto, Arial, sans-serif;
-    font-size: 24px;
-    color: #666;
+.ChooseWarehouse {
+  justify-content: center;
+  margin: auto;
+  display: flex;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 24px;
+  color: #666;
 }
-.Quant
-{
-    justify-content: center;
-    margin: auto;
-    display: flex;
-    font-family: Roboto, Arial, sans-serif;
-    font-size: 16px;
-    color: #666;
+.Quant {
+  justify-content: center;
+  margin: auto;
+  display: flex;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 16px;
+  color: #666;
 }
-.input-number
-{
-    justify-content: center;
-    margin: auto;
-    display: flex;
-    min-width: 100px;
+.input-number {
+  justify-content: center;
+  margin: auto;
+  display: flex;
+  min-width: 100px;
 }
-.Choices
-{
-    margin: auto;
-    justify-content: center;
-    display: flex;
-    padding: 0px 30px;
-    font-size: 20px;
-    font-weight: 300;
-    text-align: center;
+.Choices {
+  margin: auto;
+  justify-content: center;
+  display: flex;
+  padding: 0px 30px;
+  font-size: 20px;
+  font-weight: 300;
+  text-align: center;
 }
-h1 
-{
-    padding: 10px 0;
-    font-size: 32px;
-    font-weight: 300;
-    text-align: center;
-    margin: auto;
+h1 {
+  padding: 10px 0;
+  font-size: 32px;
+  font-weight: 300;
+  text-align: center;
+  margin: auto;
 }
-.btn-block 
-{
-    margin-top: 20px;
-    text-align: center;
+.btn-block {
+  margin-top: 20px;
+  text-align: center;
 }
-button 
-{
-    width: 60%;
-    padding: 10px 0;
-    margin: 10px auto;
-    border-radius: 5px; 
-    border: none;
-    background:  #1c87c9; 
-    font-size: 14px;
-    font-weight: 600;
-    color: #fff;
+.createOrder-submitBtn {
+  width: 60%;
+  padding: 10px 0;
+  margin: 10px auto;
+  border-radius: 5px;
+  border: none;
+  background: #1c87c9;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
 }
-button:hover 
-{
-    background: #26a9e0;
+.createOrder-submitBtn :hover {
+  background: #26a9e0;
 }
-.multiselect 
-{
-    margin: auto;
-    text-align: center;
-    width: 200px;
+.multiselect {
+  margin: auto;
+  text-align: center;
+  width: 200px;
 }
-  
-.selectBox 
-{
-    position: relative;
-}
-  
-.selectBox select 
-{
-    width: 100%;
-    font-weight: bold;
-}
-  
-.pallets 
-{
-    margin: center;
-    text-align: center;
-    display: block;
-    border: 2px #dadada solid;
-}
-  
-#checkboxes label 
-{
-    display: flex;
-    align-content: center;
-    margin: 10px auto;
 
+.selectBox {
+  position: relative;
 }
-#checkboxes label:hover 
-{
-    background-color: #1e90ff;
+
+.selectBox select {
+  width: 100%;
+  font-weight: bold;
 }
-.date
-{
-    display: flex;
-    margin: auto;
+
+.pallets {
+  margin: center;
+  text-align: center;
+  display: block;
+  border: 2px #dadada solid;
 }
-.time
-{
-    margin-left: 150px;
+
+#checkboxes label {
+  display: flex;
+  align-content: center;
+  margin: 10px auto;
+}
+#checkboxes label:hover {
+  background-color: #1e90ff;
+}
+.date {
+  display: flex;
+  margin: auto;
+}
+.time {
+  margin-left: 150px;
 }

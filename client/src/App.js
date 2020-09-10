@@ -10,7 +10,10 @@ import WarehouseDB from "./components/WarehouseDB/WarehouseDB";
 import createOrder from "./components/CreateOrder/createOrder";
 import UpdateStock from "./components/UpdateStock/UpdateStock";
 import FulfillOrder from "./components/FufillOrder/fulfillOrder";
-import StoreViewOrder from "./components/StoreViewOrder/StoreViewOrder"
+import StoreViewOrder from "./components/StoreViewOrder/StoreViewOrder";
+import PastOrders from "./components/PastOrders/PastOrders";
+import StoreDB from "./components/StoreDB/StoreDB";
+import UpdateOrder from "./components/UpdateOrder/UpdateOrder";
 
 function App() {
   return (
@@ -28,6 +31,9 @@ function App() {
           <Route path="/UpdateStock" component={UpdateStock} />
           <Route path="/fulfillOrder" component={FulfillOrder} />
           <Route path="/StoreViewOrder" component={StoreViewOrder} />
+          <Route path="/pastOrders" component={PastOrders} />
+          <Route path="/storeDB" component={StoreDB} />
+          <Route path="/updateOrder" component={UpdateOrder} />
         </Switch>
       </BrowserRouter>
     </div>

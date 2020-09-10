@@ -48,8 +48,8 @@ a {
   color: #58c6ea;
   text-decoration: none;
 }
-input[type="text"],
-input[type="password"] {
+#UserName,
+#Password {
   margin-bottom: 40px;
   width: 100%;
   height: 40px;
@@ -62,18 +62,17 @@ input[type="password"] {
   outline-style: none;
 }
 
-button {
+.register-button {
   background-color: #58c6ea;
   padding: 10px 10px;
   border: none;
   border-radius: 5px;
   display: flex;
-  margin: 0 auto;
   color: white;
   cursor: pointer;
 }
 
-button:hover {
+.register-button:hover {
   box-shadow: 2px 2px #aeb1b5;
 }
 
@@ -91,8 +90,8 @@ button:hover {
     margin-top: 100px;
   }
 
-  input[type="text"],
-  input[type="password"] {
+  #UserName,
+  #Password {
     height: 35px;
   }
 }
@@ -107,15 +106,15 @@ button:hover {
     margin-top: 100px;
   }
 
-  input[type="text"],
-  input[type="password"] {
+  #UserName,
+  #Password {
     height: 35px;
   }
 }
 
 @media only screen and (max-width: 850px) {
-  input[type="text"],
-  input[type="password"] {
+  #UserName,
+  #Password {
     height: 35px;
   }
 }

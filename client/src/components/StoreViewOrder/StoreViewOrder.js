@@ -1,17 +1,17 @@
-import React from 'react'
-import NavBar from "../Tools/StoreNavbar"
-import "../StoreViewOrder/StoreView.css"
+import React from "react";
+import NavBar from "../Tools/StoreNavbar";
+import "../StoreViewOrder/StoreView.css";
 
 // this page will show the orders that the store has placed for a particular warehouse
 function storeViewOrder() {
-    return (
-        <>
+  return (
+    <>
       <NavBar />
-      <br/>
+      <br />
       <div className="wrap">
         <div className="search">
           <input type="text" className="searchID" placeholder="Order ID" />
-          <button type="submit" className="searchButton" value="select">
+          <button type="submit" className="detailsButton" value="select">
             <i className="glyphicon glyphicon-search"></i>
           </button>
         </div>
@@ -29,30 +29,30 @@ function storeViewOrder() {
               </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Example</td>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
-                    <td>6</td>
-                </tr>
-                <tr>
+              <tr>
                 <td>Example</td>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
-                    <td>6</td>
-                </tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+              </tr>
+              <tr>
+                <td>Example</td>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+              </tr>
             </tbody>
           </table>
         </div>
       </div>
-      </>
-    )
+    </>
+  );
 }
 
-export default storeViewOrder
+export default storeViewOrder;

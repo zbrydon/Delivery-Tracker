@@ -1,80 +1,49 @@
-* 
-{
-    box-sizing: border-box;
+* {
+  box-sizing: border-box;
 }
-body 
-{
-    margin: 0;
-}
-  
-.wrap 
-{
-    margin-left: 230px;
-    margin-top: 20px;
-}
-  /* Search */
-.search 
-{
-    width: 50%;
-    position: relative;
-    display: flex;
+body {
+  margin: 0;
 }
 
-.searchID 
-{
-    height: 20px;
-    vertical-align: middle;
-    margin-top: 8px;
+.wrap {
+  margin-left: 150px;
+  margin-top: 20px;
 }
-  
-.searchID:focus 
-{
-    color: #00b4cc;
+
+.detailsButton {
+  vertical-align: middle;
+  width: 60px;
+  height: 40px;
+  border: 1px solid #00b4cc;
+  background: #00b4cc;
+  text-align: top;
+  color: #fff;
+  border-radius: 0px 5px 5px 0;
+  cursor: pointer;
+  font-size: 14px;
 }
-  
-.searchButton 
-{
-    vertical-align: middle;
-    width: 60px;
-    height: 40px;
-    border: 1px solid #00b4cc;
-    background: #00b4cc;
-    text-align: top;
-    color: #fff;
-    border-radius: 0px 5px 5px 0;
-    cursor: pointer;
-    font-size: 14px;
-    
-}
-.deliver-table 
-{
-    width: 90%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    height: 250px;
-    overflow: auto;
+.deliver-table {
+  width: 90%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  height: 250px;
+  overflow: auto;
 }
 .deliver-table th,
-
-.deliver-table td 
-{
+.deliver-table td {
   border: 1px solid #ddd;
   padding: 2px 2px;
 }
 
-.deliver-table tr:nth-child(even) 
-{
+.deliver-table tr:nth-child(even) {
   background-color: #edebeb;
 }
 
-
-.deliver-table tr:hover 
-{
+.deliver-table tr:hover {
   background-color: #ddd;
 }
 
-.deliver-table th 
-{
+.deliver-table th {
   padding-top: 4px;
   padding-bottom: 4px;
   text-align: left;

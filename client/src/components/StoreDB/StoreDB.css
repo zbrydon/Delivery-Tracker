@@ -1,0 +1,111 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0 0 0 0;
+}
+
+.wrap {
+  margin-left: 150px;
+  margin-top: 20px;
+}
+/* Search */
+.search {
+  width: 70%;
+  margin-top: -20px;
+  position: relative;
+  display: flex;
+}
+
+.searchID {
+  height: 42px;
+  width: 80%;
+  border: 3px solid #00b4cc;
+  border-right: none;
+  padding: 5px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9dbfaf;
+  margin: 0;
+}
+
+.searchID:focus {
+  color: #00b4cc;
+}
+
+.searchButton {
+  width: 40px;
+  height: 42px;
+  border: 1px solid #00b4cc;
+  background: #00b4cc;
+  text-align: center;
+  color: #fff;
+  border-radius: 0px 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/* Table */
+.deliver-table {
+  width: 98%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  height: 250px;
+  overflow: auto;
+  padding: 10px 10px 10px 30px;
+}
+
+.deliver-table th,
+.deliver-table td {
+  border: 1px solid #ddd;
+  padding: 2px 2px;
+}
+
+.deliver-table tr:nth-child(even) {
+  background-color: #edebeb;
+}
+
+.deliver-table tr:hover {
+  background-color: #ddd;
+}
+
+.deliver-table th {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  text-align: left;
+  background-color: #58c6ea;
+  color: white;
+}
+
+/* Cards */
+
+.cards {
+  margin-top: 80px;
+  padding: 20px 100px 20px 10px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-self: center;
+}
+
+#option {
+  padding: 10px 10px;
+  font-size: 1.5em;
+  margin: 0 auto;
+}
+
+.choosing-btn {
+  width: 100% !important;
+  padding: 10px 20px !important;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  background-color: #58c6ea;
+  border: none;
+  box-shadow: 2px 2px #aeb1b5;
+}
+
+.choosing-btn:hover {
+  background-color: #199eca;
+}
