@@ -7,6 +7,11 @@ class createOrder extends React.Component
 {   
     state = {
         warehouseID: '',
+        frozen: '',
+        dairy: '',
+        meat: '',
+        produce: '',
+        ambient: '',
         palletType: '',
         palletQuantity: '',
     }
@@ -31,33 +36,34 @@ class createOrder extends React.Component
                         <br></br>
                         <label className="ChooseWarehouse" for="warehouseID">Choose Pallets: </label>
                         <div class="multiselect">
+                        <label className="Quant" for="quantity">Choose amount 1-5</label>
                             <div class="selectBox">
                             </div>
                             <div className="pallets" id={this.state.palletType}>
                                 <label for="one">
-                                    <input type="checkbox" id="one" />Frozen</label>
-                                    <br></br>
+                                    <label id="one" />Frozen</label>
+                                    <input className="input-number"type="number" id={this.state.frozen} name="quantity" min="1" max="8"></input>
+                                    <br/>
                                 <label for="two">
-                                    <input type="checkbox" id="two" />Dairy</label>
-                                    <br></br>
+                                    <label id="two" />Dairy</label>
+                                    <input className="input-number"type="number" id={this.state.dairy} name="quantity" min="1" max="8"></input>
+                                    <br/>
                                 <label for="three">
-                                    <input type="checkbox" id="three" />Meat</label>
-                                    <br></br>
+                                    <label id="three" />Meat</label>
+                                    <input className="input-number"type="number" id={this.state.meat} name="quantity" min="1" max="8"></input>
+                                    <br/>
                                 <label for="four">
-                                    <input type="checkbox" id="four" />Produce</label>
-                                    <br></br>
+                                    <label id="four" />Produce</label>
+                                    <input className="input-number"type="number" id={this.state.produce} name="quantity" min="1" max="8"></input>
+                                    <br/>
                                 <label for="five">
-                                    <input type="checkbox" id="five" />Ambient</label>
+                                    <label id="five" />Ambient</label>
+                                    <input className="input-number"type="number" id={this.state.ambient} name="quantity" min="1" max="8"></input>
+                                    <br/>
                             </div>
                         </div>
-                        <br></br>
-                        <label className="ChooseWarehouse" for="warehouseID">Choose a Quantity:</label>
-                        <label className="Quant" for="quantity">Choose amount 1-8</label>
-                        <br></br>
-                        <input className="input-number"type="number" id="quantity" name="quantity" min="1" max="8"></input>
-                        <br></br>
+                        <br/>
                         <label className="ChooseWarehouse">Choose Date:</label>
-                        <br></br>
                         <div>
                            <DatePickers /> 
                         </div>

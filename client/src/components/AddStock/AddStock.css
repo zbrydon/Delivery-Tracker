@@ -6,7 +6,7 @@
     margin: auto;
     border-radius: 5px; 
     border: solid 1px #ccc;
-    box-shadow: 1px 2px 5px rgba(0,0,0,.31); 
+    box-shadow: 6px 6px 6px rgba(0,0,0,.31); 
     background: #ebebeb; 
 }
 .ChooseWarehouse
@@ -96,7 +96,7 @@ button:hover
     margin: center;
     text-align: center;
     display: block;
-    border: 2px #dadada solid;
+    border: 3px #dadada solid;
 }
   
 #checkboxes label 

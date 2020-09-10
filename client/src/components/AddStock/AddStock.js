@@ -6,6 +6,11 @@ import "../AddStock/AddStock.css";
 class AddStock extends React.Component
 {   
     state = {
+        frozen: '',
+        dairy: '',
+        meat: '',
+        produce: '',
+        ambient: '',
         palletType: '',
         palletQuantity: '',
     }
@@ -23,32 +28,37 @@ class AddStock extends React.Component
                         <h1>Add Stock</h1>
                         <label className="ChooseWarehouse" for="warehouseID">Choose Pallets: </label>
                         <div class="multiselect">
+                        <label className="Quant" for="quantity">Choose amount 1-5</label>
+                            <br/>
                             <div class="selectBox">
                             </div>
                             <div className="pallets" id={this.state.palletType}>
                                 <label for="one">
-                                    <input type="checkbox" id="one" />Frozen</label>
-                                    <br></br>
+                                    <label id={this.state.frozen} />Frozen</label>
+                                    <input className="input-number"type="number" id={this.state.palletQuantity} name="quantity" min="1" max="5"></input>
+                                    <br/>
                                 <label for="two">
-                                    <input type="checkbox" id="two" />Dairy</label>
-                                    <br></br>
+                                    <label id={this.state.dairy} />Dairy</label>
+                                    <input className="input-number"type="number" id={this.state.palletQuantity} name="quantity" min="1" max="5"></input>
+                                    <br/>
                                 <label for="three">
-                                    <input type="checkbox" id="three" />Meat</label>
-                                    <br></br>
+                                    <label id={this.state.meat} />Meat</label>
+                                    <input className="input-number"type="number" id={this.state.palletQuantity} name="quantity" min="1" max="5"></input>
+                                    <br/>
                                 <label for="four">
-                                    <input type="checkbox" id="four" />Produce</label>
-                                    <br></br>
+                                    <label id={this.state.produce} />Produce</label>
+                                    <input className="input-number"type="number" id={this.state.palletQuantity} name="quantity" min="1" max="5"></input>
+                                    <br/>
                                 <label for="five">
-                                    <input type="checkbox" id="five" />Ambient</label>
+                                    <label id={this.state.ambient} />Ambient</label>
+                                    <input className="input-number"type="number" id={this.state.palletQuantity} name="quantity" min="1" max="5"></input>
+                                    <br/>
                             </div>
                         </div>
                         <br></br>
-                        <label className="ChooseWarehouse" for="warehouseID">Choose a Quantity:</label>
-                        <label className="Quant" for="quantity">Choose amount 1-8</label>
-                        <br></br>
-                        <input className="input-number"type="number" id={this.state.palletQuantity} name="quantity" min="1" max="8"></input>
+                        {/* <label className="ChooseWarehouse" for="warehouseID">Choose a Quantity:</label> */}
                         <div class="btn-block">
-                            <button type="submit" href="/">Submit</button>
+                            <button type="submit" href="/" onClick="Ordered">Submit</button>
                         </div>
                     </form>
                 </div>
