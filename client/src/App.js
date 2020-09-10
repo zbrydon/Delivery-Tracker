@@ -8,7 +8,7 @@ import StockWarehouse from "./components/ViewStock/StockWarehouse";
 import StoreView from "./components/StoreView/StoreView";
 import WarehouseDB from "./components/WarehouseDB/WarehouseDB";
 import createOrder from "./components/CreateOrder/createOrder";
-import AddStock from "./components/AddStock/AddStock";
+import UpdateStock from "./components/UpdateStock/UpdateStock";
 import FulfillOrder from "./components/FufillOrder/fulfillOrder";
 import StoreViewOrder from "./components/StoreViewOrder/StoreViewOrder"
 
@@ -25,7 +25,7 @@ function App() {
           <Route path="/stockWarehouse" component={StockWarehouse} />
           <Route path="/warehouseDB" component={WarehouseDB} />
           <Route path="/createOrder" component={createOrder} />
-          <Route path="/AddStock" component={AddStock} />
+          <Route path="/UpdateStock" component={UpdateStock} />
           <Route path="/fulfillOrder" component={FulfillOrder} />
           <Route path="/StoreViewOrder" component={StoreViewOrder} />
         </Switch>
