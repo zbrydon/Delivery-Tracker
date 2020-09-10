@@ -26,8 +26,8 @@ export const SidebarData = [
         cName: "nav-text"
     },
     {
-        title: 'Add Stock',
-        path: "/AddStock",
+        title: 'Update Stock',
+        path: "/UpdateStock",
         icon: <AboutMe.BsFillEnvelopeFill />,
         cName: "nav-text"
     },

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Navbar from "../Tools/WarehouseNavbar";
-import "../AddStock/AddStock.css";
+import "../UpdateStock/UpdateStock.css";
 import axios from "axios";
 
 // the add stock for the warehouse page
@@ -32,7 +32,7 @@ const AddStock = () => {
                 <div>
                 <br></br>
                 <form className='main-block'>
-                    <h1>Add Stock</h1>
+                    <h1>Update Stock</h1>
                     <label className="ChooseWarehouse">Choose Pallets: </label>
                     <div className="multiselect">
                         <label className="Quant">Choose amount 1-20</label>
