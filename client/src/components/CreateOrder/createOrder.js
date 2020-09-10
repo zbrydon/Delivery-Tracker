@@ -65,7 +65,8 @@ class createOrder extends React.Component
                         <br/>
                         <label className="ChooseWarehouse">Choose Date:</label>
                         <div>
-                           <DatePickers /> 
+                            <DatePickers /> 
+                            <input className="time" type="time" id="appt" name="appt"></input>
                         </div>
                         <div class="btn-block">
                             <button type="submit" href="/">Submit</button>
