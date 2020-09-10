@@ -115,3 +115,7 @@ button:hover
     display: flex;
     margin: auto;
 }
+.time
+{
+    margin-left: 150px;
+}
