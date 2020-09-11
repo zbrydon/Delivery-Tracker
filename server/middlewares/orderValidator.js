@@ -11,27 +11,27 @@ function validate(req, res, next) {
             message: 'Warehouse ID in incorrect format'
         });
     }
-    if (!validator.isInt(frozenQuantity.toString(), { min: 1, max: 20 })) {
+    if (!validator.isInt(frozenQuantity.toString(), { min: 1, max: 5 })) {
         return res.status(400).send({
             success: false,
             message: 'Quantity inncorrect'
         });
-    } if (!validator.isInt(dairyQuantity.toString(), { min: 1, max: 20 })) {
+    } if (!validator.isInt(dairyQuantity.toString(), { min: 1, max: 5 })) {
         return res.status(400).send({
             success: false,
             message: 'Quantity inncorrect'
         });
-    } if (!validator.isInt(meatQuantity.toString(), { min: 1, max: 20 })) {
+    } if (!validator.isInt(meatQuantity.toString(), { min: 1, max: 5 })) {
         return res.status(400).send({
             success: false,
             message: 'Quantity inncorrect'
         });
-    } if (!validator.isInt(produceQuantity.toString(), { min: 1, max: 20 })) {
+    } if (!validator.isInt(produceQuantity.toString(), { min: 1, max: 5 })) {
         return res.status(400).send({
             success: false,
             message: 'Quantity inncorrect'
         });
-    } if (!validator.isInt(ambientQuantity.toString(), { min: 1, max: 20 })) {
+    } if (!validator.isInt(ambientQuantity.toString(), { min: 1, max: 5 })) {
         return res.status(400).send({
             success: false,
             message: 'Quantity inncorrect'
