@@ -23,7 +23,7 @@ const Login = () => {
         "Bearer " + loginRes.data.tokens.token
       );
     } else {
-        history.push("/StockStore");
+        history.push("/StoreDB");
       localStorage.setItem(
         "auth-token",
         "Bearer " + loginRes.data.tokens.token
