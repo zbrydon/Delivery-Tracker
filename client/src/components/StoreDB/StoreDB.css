@@ -19,14 +19,14 @@ body {
 
 .searchID {
   height: 42px;
-  width: 80%;
+  width: 60%;
   border: 3px solid #00b4cc;
   border-right: none;
-  padding: 5px;
+  padding: 10px;
   border-radius: 5px 0 0 5px;
   outline: none;
   color: #9dbfaf;
-  margin: 0;
+  margin-left: 80px;
 }
 
 .searchID:focus {
@@ -47,10 +47,11 @@ body {
 
 /* Table */
 .deliver-table {
-  width: 98%;
+  width: 85%;
   border-collapse: collapse;
   margin-top: 20px;
-  height: 250px;
+  margin-left: 80px;
+  height: 200px;
   overflow: auto;
   padding: 10px 10px 10px 30px;
 }
@@ -81,8 +82,8 @@ body {
 
 .cards {
   margin-top: 80px;
-  padding: 20px 100px 20px 10px;
-  max-width: 100%;
+  padding: 10px 80px 20px 10px;
+  max-width: 80%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -96,11 +97,12 @@ body {
 }
 
 .choosing-btn {
-  width: 100% !important;
-  padding: 10px 20px !important;
+  width: 80% !important;
+  padding: 10px 10px !important;
   border-radius: 5px;
   color: white;
   cursor: pointer;
+  margin-left: 100px;
   background-color: #58c6ea;
   border: none;
   box-shadow: 2px 2px #aeb1b5;

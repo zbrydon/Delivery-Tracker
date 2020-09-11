@@ -108,7 +108,7 @@ body {
 }
 /* Order Card */
 .card1 {
-  width: 50%;
+  width: 40%;
   height: 200px;
   border: 1px solid #e5e5e5;
   border-radius: 10px 10px;
@@ -116,7 +116,7 @@ body {
   padding: 5px 10px 10px 10px;
   display: flex;
   flex-direction: column;
-  margin-left: 100px;
+  margin-left: 185px;
 }
 h4 {
   text-align: left;

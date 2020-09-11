@@ -45,11 +45,6 @@ const StoreDB = () => {
             </a>
           </div>
           <div id="option">
-            <a href={"/pastOrders"}>
-              <button className="choosing-btn">View Past Order</button>
-            </a>
-          </div>
-          <div id="option">
             <a href={"/createOrder"}>
               <button className="choosing-btn">Create Order</button>
             </a>
