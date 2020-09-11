@@ -110,7 +110,9 @@ class fulfillOrder extends React.Component {
               rowSelection="multiple"
               onGridReady={params => this.gridApi = params.api}
             />
-            <button onClick={this.onButtonClick}>Fulfill</button>
+            <br/>
+            <button className="button" onClick={this.onButtonClick}>Fulfill</button>
+            <button className="button">In Transit</button>
           </div>
         </>
     )

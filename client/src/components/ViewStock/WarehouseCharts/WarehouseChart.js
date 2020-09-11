@@ -145,6 +145,11 @@ class Charts extends Component {
                                 display: this.props.displayLegend,
                                 position: this.props.legendPosition
                             },
+                            scales : {
+                                yAxes:[{
+                                    stacked: true
+                                }]
+                            }
                         }}
                     />
                     <Line

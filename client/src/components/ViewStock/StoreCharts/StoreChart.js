@@ -126,7 +126,8 @@ class Charts extends Component
     static defaultProps = {
         displayTitle: true,
         displayLegend: true,
-        legendPosition: 'right'
+        legendPosition: 'right',
+        
         
     }
     render()
@@ -146,6 +147,11 @@ class Charts extends Component
                                 display: this.props.displayLegend,
                                 position: this.props.legendPosition
                             },
+                            scales : {
+                                yAxes:[{
+                                    stacked: true
+                                }]
+                            }
                         }}
                     /> 
                     <Line 
