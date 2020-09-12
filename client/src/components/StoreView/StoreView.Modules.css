@@ -39,6 +39,7 @@ body {
 .card-container {
   max-width: 100%;
   margin-top: 40px;
+  margin-left: 100px;
 }
 
 .cards {
