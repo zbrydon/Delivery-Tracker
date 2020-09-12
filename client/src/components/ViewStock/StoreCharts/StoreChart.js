@@ -112,7 +112,6 @@ class Charts extends Component
                  });
              }
          }).catch(error => {
-             localStorage.setItem('err', error);
              if (error.response.status === 406) {
                  //display "please refresh your session" here
                  //return history.push("/refresh");
@@ -127,7 +126,8 @@ class Charts extends Component
     static defaultProps = {
         displayTitle: true,
         displayLegend: true,
-        legendPosition: 'right'
+        legendPosition: 'right',
+        
         
     }
     render()
@@ -147,6 +147,11 @@ class Charts extends Component
                                 display: this.props.displayLegend,
                                 position: this.props.legendPosition
                             },
+                            scales : {
+                                yAxes:[{
+                                    stacked: true
+                                }]
+                            }
                         }}
                     /> 
                     <Line 

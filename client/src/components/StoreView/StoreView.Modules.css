@@ -5,10 +5,6 @@ body {
   margin: 0;
 }
 
-.wrap {
-  margin-left: 150px;
-}
-
 .detail-button {
   display: block;
   margin: 10px auto;
@@ -39,7 +35,7 @@ body {
 .card-container {
   max-width: 100%;
   margin-top: 40px;
-  margin-left: 100px;
+  /* margin-left: 100px; */
 }
 
 .cards {
@@ -50,11 +46,10 @@ body {
   align-items: center;
 }
 .card {
-  width: 60%;
+  width: 100%;
   height: 150px;
   text-align: center;
   margin-bottom: 40px;
-  /* background: #c9deff; */
   color: black;
   display: flex;
   justify-content: space-between;
@@ -75,7 +70,7 @@ body {
 
   .card {
     width: 25%;
-    height: 250px;
+    height: 220px;
     text-align: center;
     margin-bottom: 40px;
     /* background: #c9deff; */
@@ -126,7 +121,7 @@ body {
     margin-left: 50px;
   }
   nav {
-    width: 60px;
+    width: 50px;
   }
 }
 

@@ -1,6 +1,6 @@
 import React from "react";
 import "./StoreDB.css";
-import NavBar from "../Tools/WarehouseNavbar";
+import NavBar from "../Tools/StoreNavbar";
 const StoreDB = () => {
   return (
     <>
@@ -38,20 +38,20 @@ const StoreDB = () => {
           </table>
         </div>
 
-        <div className="cards">
+        <div className="cards-container">
           <div id="option">
             <a href={"/stockStore"}>
               <button className="choosing-btn">View SOH</button>
             </a>
           </div>
           <div id="option">
-            <a href={"/pastOrders"}>
-              <button className="choosing-btn">View Past Order</button>
+            <a href={"/createOrder"}>
+              <button className="choosing-btn">Create Order</button>
             </a>
           </div>
           <div id="option">
-            <a href={"/createOrder"}>
-              <button className="choosing-btn">Create Order</button>
+            <a href={"/pastOrders"}>
+              <button className="choosing-btn">Past Order</button>
             </a>
           </div>
           <div id="option">
