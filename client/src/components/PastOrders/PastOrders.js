@@ -3,9 +3,11 @@ import axios from "axios";
 import "./PastOrders.css";
 import NavBar from "../Tools/StoreNavbar";
 import Moment from "react-moment";
+import { useHistory } from "react-router-dom";
 
 const PastOrders = () => {
   const [orders, setOrders] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     const API_URL = process.env.REACT_APP_API_URL;
@@ -36,7 +38,11 @@ const PastOrders = () => {
        
       })
       .catch(function (error) {
-        console.log(error);
+        let response = error.response;
+        if (response.status == 403) {
+            // redirect to login page
+            history.push("/");
+        }
       });
   }, []);
 
