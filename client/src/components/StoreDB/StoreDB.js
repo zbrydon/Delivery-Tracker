@@ -1,7 +1,52 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import "./StoreDB.css";
+import axios from "axios";
 import NavBar from "../Tools/StoreNavbar";
+import { useHistory } from "react-router-dom";
+import Moment from "react-moment";
+
+
 const StoreDB = () => {
+  const [orders, setOrders] = useState([]);
+  const history = useHistory();
+
+  useEffect(() => {
+    const API_URL = process.env.REACT_APP_API_URL;
+    const token = localStorage.getItem("auth-token");
+    const headers = { authorization: token };
+    const storeId = localStorage.getItem("login_id");
+    const param = { storeId: storeId };
+
+    axios
+      .get(`${API_URL}/viewStoreOrders`, {
+        headers: headers,
+        params: param,
+      })
+      .then(function (response) {
+        let data = response.data; 
+        let orders = data.orders;
+        debugger;
+        
+        orders.sort((orders1, orders2) => (orders1.orderDateTime < orders2.orderDateTime) ? 1 : -1);
+        
+        if (orders.length > 2) {
+          // Remove two element first
+          orders.splice(2, orders.length -1);
+        }
+
+        setOrders(orders);
+       
+      })
+      .catch(function (error) {
+        let response = error.response;
+        if (response.status == 403) {
+            // redirect to login page
+            history.push("/");
+        }
+      });
+  }, []);
+
+
   return (
     <>
       <NavBar />
@@ -24,16 +69,21 @@ const StoreDB = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>20/7/2020</td>
-                <td>Dispatched</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>30/8/2020</td>
-                <td>Unfullfiled</td>
-              </tr>
+            {orders.map((order, i) => {
+                // Return the element. Also pass key
+                return (
+                  <tr key={i} >
+                    <td>{order.orderId}</td>
+                    <td>
+                      <Moment format="DD/MM/YYYY">
+                        {order.deliveryDateTime}
+                      </Moment>
+                    </td>
+                    <td>{order.orderStatus}</td>
+                  </tr>
+                );
+              })}
+    
             </tbody>
           </table>
         </div>
