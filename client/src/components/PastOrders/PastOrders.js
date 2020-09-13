@@ -31,6 +31,7 @@ const PastOrders = () => {
           orders.splice(0, 2);
         }
 
+        // Set data to orders
         setOrders(data.orders);
        
       })
