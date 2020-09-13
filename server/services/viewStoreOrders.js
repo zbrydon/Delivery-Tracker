@@ -1,7 +1,9 @@
 const Order = require('../models/Order');
+const url = require("url");
 
 function viewOrder(req, res, next) {
-    const storeId = res.obj.id;
+    const query = url.parse(req.url, true).query;
+    const storeId = query.storeId;
     Order.find({ storeId: storeId }, (err, orders) => {
         if (err) {
             return res.status(400).send({

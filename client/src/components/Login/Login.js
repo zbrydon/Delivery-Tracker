@@ -16,6 +16,7 @@ const Login = () => {
     const loginUser = { id, password };
     const loginRes = await axios.post(`${API_URL}/login`, loginUser);
 
+    localStorage.setItem('login_id', id);
     if (loginRes.data.type === "warehouse") {
         history.push("/storeView");
       localStorage.setItem(
