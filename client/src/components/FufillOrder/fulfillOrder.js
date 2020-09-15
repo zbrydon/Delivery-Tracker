@@ -119,10 +119,10 @@ class fulfillOrder extends React.Component {
                 }
             }).catch(error => {
                 localStorage.setItem('err', error);
-                if (error.response.status === 406) {
+                if (error.response === 406) {
                     //display "please refresh your session" here
                     //return history.push("/refresh");
-                } if (error.response.status === 403) {
+                } if (error.response  === 403) {
                     //display "please login" here
                     this.redirectToLogin();
                 }

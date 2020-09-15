@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Bar, Line } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 import "../styling.css";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
