@@ -28,11 +28,12 @@ function deleteOrder(req, res, next) {
                 message: 'Order cannot be deleted it has left the warehouse'
             });
         }
-    }
-    Order.deleteOne(query)
-        .then(result => console.log(`Deleted ${result.deletedCount} item.`))
-        .catch(err => console.error(`Delete failed with error: ${err}`))
-    next();
+
+        Order.deleteOne(query)
+            .then(result => console.log(`Deleted ${result.deletedCount} item.`))
+            .catch(err => console.error(`Delete failed with error: ${err}`))
+        next();
+    })
 };
 
 module.exports = deleteOrder;  
