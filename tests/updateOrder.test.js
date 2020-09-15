@@ -7,8 +7,11 @@ test('Update Order Test Success', async () => {
     const body = {
         orderId: 1003,
         warehouseId: 1111,
-        productType: "frozen",
-        quantity: 5,
+        frozenQuantity: 1,
+        dairyQuantity: 2,
+        meatQuantity: 3,
+        produceQuantity: 4,
+        ambientQuantity: 5,
         deliveryDateTime: "2021-08-20 10:10:10"
     }
     const response = await updateOrder(body);
@@ -17,18 +20,24 @@ test('Update Order Test Success', async () => {
     expect(response.data.order.orderId).toBe(1003);
     expect(response.data.order.storeId).toBe(11111);
     expect(response.data.order.warehouseId).toBe(1111);
-    expect(response.data.order.productType).toBe('frozen');
-    expect(response.data.order.quantity).toBe(5);
+    expect(response.data.order.frozenQuantity).toBe(1);
+    expect(response.data.order.dairyQuantity).toBe(2);
+    expect(response.data.order.meatQuantity).toBe(3);
+    expect(response.data.order.produceQuantity).toBe(4);
+    expect(response.data.order.ambientQuantity).toBe(5);
     expect(response.data.order.deliveryDateTime).toEqual(Date.parse("2021-08-20 10:10:10"));
     expect(response.data.order.orderDateTime).toEqual(expect.any(Number));
-    expect(response.data.order.orderStatus).toBe("Unfulfilled");
+    expect(response.data.order.orderStatus).toBe("Fulfilled");
 })
 test('Update Order Test Fail 1', async () => {
     const body = {
         orderId: 100,
         warehouseId: 1111,
-        productType: "frozen",
-        quantity: 5,
+        frozenQuantity: 1,
+        dairyQuantity: 2,
+        meatQuantity: 3,
+        produceQuantity: 4,
+        ambientQuantity: 5,
         deliveryDateTime: "2021-08-20 10:10:10"
     }
     return updateOrder(body).catch(e => {
@@ -39,8 +48,11 @@ test('Update Order Test Fail 2', async () => {
     const body = {
         orderId: "abcd",
         warehouseId: 1111,
-        productType: "frozen",
-        quantity: 5,
+        frozenQuantity: 1,
+        dairyQuantity: 2,
+        meatQuantity: 3,
+        produceQuantity: 4,
+        ambientQuantity: 5,
         deliveryDateTime: "2021-08-20 10:10:10"
     }
     return updateOrder(body).catch(e => {
@@ -51,8 +63,11 @@ test('Update Order Test Fail 3', async () => {
     const body = {
         orderId: 10000,
         warehouseId: 1111,
-        productType: "frozen",
-        quantity: 5,
+        frozenQuantity: 1,
+        dairyQuantity: 2,
+        meatQuantity: 3,
+        produceQuantity: 4,
+        ambientQuantity: 5,
         deliveryDateTime: "2021-08-20 10:10:10"
     }
     return updateOrder(body).catch(e => {
@@ -63,32 +78,26 @@ test('Update Order Test Fail 4', async () => {
     const body = {
         orderId: 1003,
         warehouseId: 11111,
-        productType: "frozen",
-        quantity: 5,
+        frozenQuantity: 1,
+        dairyQuantity: 2,
+        meatQuantity: 3,
+        produceQuantity: 4,
+        ambientQuantity: 5,
         deliveryDateTime: "2021-08-20 10:10:10"
     }
     return updateOrder(body).catch(e => {
         expect(e.response.data.message).toMatch('Warehouse ID in incorrect format');
     });
 })
-test('Update Order Test Fail 5', async () => {
-    const body = {
-        orderId: 1003,
-        warehouseId: 1111,
-        productType: "rotten",
-        quantity: 5,
-        deliveryDateTime: "2021-08-20 10:10:10"
-    }
-    return updateOrder(body).catch(e => {
-        expect(e.response.data.message).toMatch('Product Type in incorrect format');
-    });
-})
 test('Update Order Test Fail 6', async () => {
     const body = {
         orderId: 1003,
         warehouseId: 1111,
-        productType: "frozen",
-        quantity: 0,
+        frozenQuantity: -1,
+        dairyQuantity: 2,
+        meatQuantity: 3,
+        produceQuantity: 4,
+        ambientQuantity: 5,
         deliveryDateTime: "2021-08-20 10:10:10"
     }
     return updateOrder(body).catch(e => {
@@ -99,8 +108,11 @@ test('Update Order Test Fail 7', async () => {
     const body = {
         orderId: 1003,
         warehouseId: 1111,
-        productType: "frozen",
-        quantity: 21,
+        frozenQuantity: 1,
+        dairyQuantity: 2,
+        meatQuantity: 3,
+        produceQuantity: 4,
+        ambientQuantity: 7,
         deliveryDateTime: "2021-08-20 10:10:10"
     }
     return updateOrder(body).catch(e => {
@@ -111,8 +123,11 @@ test('Update Order Test Fail 8', async () => {
     const body = {
         orderId: 1003,
         warehouseId: 1111,
-        productType: "frozen",
-        quantity: 5,
+        frozenQuantity: 1,
+        dairyQuantity: 2,
+        meatQuantity: 3,
+        produceQuantity: 4,
+        ambientQuantity: 5,
         deliveryDateTime: "2012-08-20 10:10:10"
     }
     return updateOrder(body).catch(e => {
@@ -123,8 +138,11 @@ test('update Order Test Fail 9', async () => {
     const body = {
         orderId: 1003,
         warehouseId: 1111,
-        productType: "frozen",
-        quantity: 5,
+        frozenQuantity: 1,
+        dairyQuantity: 2,
+        meatQuantity: 3,
+        produceQuantity: 4,
+        ambientQuantity: 5,
         deliveryDateTime: "10:10:10-2021/08/20"
     }
     return updateOrder(body).catch(e => {
@@ -135,8 +153,11 @@ test('Update Order Test Fail 10', async () => {
     const body = {
         orderId: 9999,
         warehouseId: 1111,
-        productType: "frozen",
-        quantity: 5,
+        frozenQuantity: 1,
+        dairyQuantity: 2,
+        meatQuantity: 3,
+        produceQuantity: 4,
+        ambientQuantity: 5,
         deliveryDateTime: "2021-08-20 10:10:10"
     }
     return updateOrder(body).catch(e => {
@@ -147,8 +168,11 @@ test('Update Order Test Fail 11', async () => {
     const body = {
         orderId: 1000,
         warehouseId: 1111,
-        productType: "frozen",
-        quantity: 5,
+        frozenQuantity: 1,
+        dairyQuantity: 2,
+        meatQuantity: 3,
+        produceQuantity: 4,
+        ambientQuantity: 5,
         deliveryDateTime: "2021-08-20 10:10:10"
     }
     return updateOrder(body).catch(e => {
@@ -159,8 +183,11 @@ test('Update Order Test Fail 12', async () => {
     const body = {
         orderId: 1003,
         warehouseId: 1000,
-        productType: "frozen",
-        quantity: 5,
+        frozenQuantity: 1,
+        dairyQuantity: 2,
+        meatQuantity: 3,
+        produceQuantity: 4,
+        ambientQuantity: 5,
         deliveryDateTime: "2021-08-20 10:10:10"
     }
     return updateOrder(body).catch(e => {
@@ -171,8 +198,11 @@ test('Update Order Test Fail 13', async () => {
     const body = {
         orderId: 1001,
         warehouseId: 2222,
-        productType: "frozen",
-        quantity: 5,
+        frozenQuantity: 1,
+        dairyQuantity: 2,
+        meatQuantity: 3,
+        produceQuantity: 4,
+        ambientQuantity: 5,
         deliveryDateTime: "2021-08-20 10:10:10"
     }
     return updateOrder(body).catch(e => {

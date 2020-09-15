@@ -13,13 +13,13 @@ function validate(req, res, next) {
             message: 'Passwords do not match'
         });
     }
-     /*const loc = location.lat.toString() + ',' + location.long.toString();
+     const loc = location.lat.toString() + ',' + location.long.toString();
      if (!validator.isLatLong(loc)) {
          return res.status(400).send({
              success: false,
              message: 'Location in Incorrect format'
          });
-     }*/ else {
+     } else {
          next();
      }
 };

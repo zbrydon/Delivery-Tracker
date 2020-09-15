@@ -98,7 +98,6 @@ client.on('message', (topic, message) => {
                     message: err
                 })
             } else {
-                console.log(data);
                 return res.json({
                     success: true,
                     message: 'Calculated',
@@ -119,7 +118,6 @@ client.on('message', (topic, message) => {
                     message: err
                 })
             } else {
-                console.log(data);
                 return res.json({
                     success: true,
                     message: 'Temp added',
