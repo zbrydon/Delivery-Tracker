@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 
 
 function createWarehouse(req, res, next) {
-    const { id, password } = req.body
+    const { id, password, location} = req.body
     Warehouse.findOne({ id: id }, (err, warehouse) => {
         if (warehouse) {
             return res.status(406).send({
@@ -24,7 +24,7 @@ function createWarehouse(req, res, next) {
                 ambient: 0
             };
             const newWarehouse = new Warehouse({
-                id: id, password: password_hash, SOH: SOH,
+                id: id, password: password_hash, location: location, SOH: SOH,
                 
                 TEMP: {
                 frozen: 0,

@@ -1,6 +1,6 @@
 const express = require('express');
 const mqtt = require('mqtt');
-const coordinates = require('./location.json')
+const coordinates = require('./route.json')
 
 const app = express();
 
