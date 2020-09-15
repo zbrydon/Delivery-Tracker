@@ -25,14 +25,10 @@ const PastOrders = () => {
 
         // Sort decrease by orderDateTime
         orders.sort((orders1, orders2) => (orders1.orderDateTime < orders2.orderDateTime) ? 1 : -1);
-        
-        if (orders.length > 0) {
-          // Remove two element first
-          orders.splice(0, 2);
-        }
 
+        orders = orders.filter(order=> order.orderStatus != 'Unfulfilled');
        
-        setOrders(data.orders);
+        setOrders(orders);
        
       })
       .catch(function (error) {

@@ -25,6 +25,7 @@ const viewStoreTEMP = require('./routes/viewStoreTEMP');
 const tempUpdateWarehouse = require('./services/tempUpdateWarehouse');
 const viewWarehouseTEMP = require('./routes/viewWarehouseTEMP');
 const viewStores = require('./routes/viewStores');
+const viewOrdersByOrderId = require('./routes/viewOrdersByOrderId');
 const updateOrder = require('./routes/updateOrder');
 const storeViewWarehouseSOH = require('./routes/storeViewWarehouseSOH');
 const viewWarehouses = require('./routes/viewWarehouses');
@@ -74,6 +75,7 @@ app.use(storeViewWarehouseSOH);
 app.use(viewWarehouses);
 app.use(deleteorder);
 app.use(viewPopularOrders);
+app.use(viewOrdersByOrderId);
 
 /*
  * Connecting to the HIVEMC MQTT broker and subscribing to the topic '/219203655/location/'
