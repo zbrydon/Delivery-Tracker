@@ -47,7 +47,7 @@ const fulfillOrder = express.Router();
  *      }
  **/ 
 
-fulfillOrder.post('/fulfillOrder', authenticate, validate, updateOrderStatus, /*transmit ,*/ (req, res) => {
+fulfillOrder.post('/fulfillOrder', authenticate, validate, updateOrderStatus, transmit , (req, res) => {
     return res.status(200).send({
         success: true,
         message: 'Updated Order',

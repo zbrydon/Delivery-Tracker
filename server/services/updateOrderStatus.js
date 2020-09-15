@@ -151,9 +151,7 @@ async function updateOrder(req, res, next) {
                 }
             });
     });
-            
 
-        
 
        
 };

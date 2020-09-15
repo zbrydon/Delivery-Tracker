@@ -93,7 +93,7 @@ client.on('connect', () => {
 client.on('message', (topic, message) => {
     if (topic == '/219203655/location/') {
         //console.log(JSON.parse(message));
-        distanceCalc(JSON.parse(message), function (err, data) {
+        distanceCalc(JSON.parse(message), function (err) {
             if (err) {
                 return res.status(400).send({
                     success: false,
@@ -102,8 +102,7 @@ client.on('message', (topic, message) => {
             } else {
                 return res.json({
                     success: true,
-                    message: 'Calculated',
-                    data: data
+                    message: 'Calculated'
                 })
                 
             }

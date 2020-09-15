@@ -104,7 +104,13 @@ function createOrder(req, res, next) {
                                 deliveryDateTime: deliveryDateTime,
                                 orderDateTime: orderDateTime,
                                 temperature: [],
-                                orderStatus: 'Unfulfilled'
+                                orderStatus: 'Unfulfilled',
+                                location: {
+                                    "lat": null,
+                                    "long":null
+                                },
+                                ETA: null,
+                                EDA: null
                             });
                             newOrder.save((err) => {
                                 if (err) {
@@ -150,7 +156,13 @@ function createOrder(req, res, next) {
                                 deliveryDateTime: deliveryDateTime,
                                 orderDateTime: orderDateTime,
                                 temperature: [],
-                                orderStatus: 'Unfulfilled'
+                                orderStatus: 'Unfulfilled',
+                                location: {
+                                    "lat": null,
+                                    "long": null
+                                },
+                                ETA: null,
+                                EDA: null
                             });
                             newOrder.save((err) => {
                                 if (err) {
