@@ -14,8 +14,11 @@ test('Fulfill Order Test Success', async () => {
     expect(response.data.order.orderId).toBe(1003);
     expect(response.data.order.storeId).toBe(11111);
     expect(response.data.order.warehouseId).toBe(1111);
-    expect(response.data.order.productType).toBe('frozen');
-    expect(response.data.order.quantity).toBe(5);
+    expect(response.data.order.frozenQuantity).toBe(1);
+    expect(response.data.order.dairyQuantity).toBe(2);
+    expect(response.data.order.meatQuantity).toBe(3);
+    expect(response.data.order.produceQuantity).toBe(4);
+    expect(response.data.order.ambientQuantity).toBe(5);
     expect(response.data.order.deliveryDateTime).toEqual(Date.parse("2021-08-20 10:10:10"));
     expect(response.data.order.orderDateTime).toEqual(expect.any(Number));
     expect(response.data.order.orderStatus).toBe("Fulfilled");

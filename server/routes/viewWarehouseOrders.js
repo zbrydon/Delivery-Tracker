@@ -61,7 +61,8 @@ viewWarehouseOrders.get('/viewWarehouseOrders', authenticate, viewOrder, (req, r
     return res.status(200).send({
         success: true,
         message: 'Orders Displayed',
-        orders: res.locals.orders
+        orders: res.locals.orders,
+        count: res.locals.count
     })
 });
 
