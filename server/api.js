@@ -29,6 +29,7 @@ const updateOrder = require('./routes/updateOrder');
 const storeViewWarehouseSOH = require('./routes/storeViewWarehouseSOH');
 const viewWarehouses = require('./routes/viewWarehouses');
 const deleteorder = require('./routes/deleteOrder');
+const viewPopularOrders = require('./routes/viewPopularOrders');
 
 /*
  * General setup | Database connection | body-parse setup | Allowing cross origin requests
@@ -72,6 +73,7 @@ app.use(updateOrder);
 app.use(storeViewWarehouseSOH);
 app.use(viewWarehouses);
 app.use(deleteorder);
+app.use(viewPopularOrders);
 
 /*
  * Connecting to the HIVEMC MQTT broker and subscribing to the topic '/219203655/location/'

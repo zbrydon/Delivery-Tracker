@@ -13,13 +13,11 @@ const PastOrders = () => {
     const API_URL = process.env.REACT_APP_API_URL;
     const token = localStorage.getItem("auth-token");
     const headers = { authorization: token };
-    const storeId = localStorage.getItem("login_id");
-    const param = { storeId: storeId };
+
 
     axios
       .get(`${API_URL}/viewStoreOrders`, {
-        headers: headers,
-        params: param,
+        headers: headers
       })
       .then(function (response) {
         let data = response.data;
