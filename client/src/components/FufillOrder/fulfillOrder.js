@@ -111,8 +111,9 @@ class fulfillOrder extends React.Component {
               onGridReady={params => this.gridApi = params.api}
             />
             <br/>
-            <button className="button" onClick={this.onButtonClick}>Fulfill</button>
+            <button className="button" onClick={this.onButtonClick}><span>Fulfill</span></button>
             <button className="button">In Transit</button>
+            <button className="button">Complete</button>
           </div>
         </>
     )

@@ -1,21 +1,28 @@
 import React, { Component } from "react";
 import "./styling.css";
-import Charts from "./WarehouseCharts/WarehouseChart";
+import BarChart from "./WarehouseCharts/BarWarehouseChart";
+import LineChart from "./WarehouseCharts/LineWarehouseChart"
 import { withRouter } from "react-router-dom";
 import Navbar from "../Tools/WarehouseNavbar";
 
 class StockWarehouse extends Component 
 {
     render()
-    {
-        
-        return (
+    {   
+        return(
             <div>
                 <div>
-                <Navbar />  
+                    <Navbar />
                 </div>
-                <div className="chart">
-                    <Charts />
+                <br/>
+                <div className="block">
+                    <div className="Stock">
+                        <BarChart />
+                    </div>
+                    <div className='Temp'>    
+                        <LineChart />
+                    </div>
+                <br/>
                 </div>
             </div>
         )

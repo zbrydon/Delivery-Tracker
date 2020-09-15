@@ -1,5 +1,5 @@
 .main-block {
-  max-width: 400px;
+  min-width: 400px;
   min-height: 500px;
   padding: 10px 0;
   margin: auto;
@@ -51,7 +51,7 @@ h1 {
   text-align: center;
 }
 .update-Submit {
-  width: 60%;
+  width: 20%;
   padding: 10px 0;
   margin: 10px auto;
   border-radius: 5px;

@@ -27,6 +27,7 @@ body {
   outline: none;
   color: #9dbfaf;
   margin-left: 80px;
+  z-index: -1;
 }
 
 .searchID:focus {
