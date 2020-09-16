@@ -61,12 +61,16 @@ body {
 }
 
 /* Table */
+.table-pieChart {
+  width: 85%;
+  height: 50%;
+}
 .deliver-table {
-  width: 90%;
+  width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
-  height: 250px;
-  overflow: auto;
+  height: 60px;
+  overflow-y: scroll;
 }
 
 .deliver-table th,

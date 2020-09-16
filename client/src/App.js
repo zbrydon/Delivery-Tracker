@@ -14,6 +14,7 @@ import StoreViewOrder from "./components/StoreViewOrder/StoreViewOrder";
 import PastOrders from "./components/PastOrders/PastOrders";
 import StoreDB from "./components/StoreDB/StoreDB";
 import UpdateOrder from "./components/UpdateOrder/UpdateOrder";
+import WarehouseChart from "./components/WarehouseChart/WarehouseChart";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path="/StoreViewOrder" component={StoreViewOrder} />
           <Route path="/pastOrders" component={PastOrders} />
           <Route path="/storeDB" component={StoreDB} />
+          <Route path="/warehouseChart" component={WarehouseChart} />
           <Route path="/updateOrder" component={UpdateOrder} />
         </Switch>
       </BrowserRouter>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import NavBar from "../Tools/WarehouseNavbar";
 import "../WarehouseDB/WarehouseDB.Modules.css";
-import { useHistory, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Moment from "react-moment";
 
 const WarehouseDB = () => {
@@ -24,6 +24,8 @@ const WarehouseDB = () => {
       })
       .then(function (response) {
         let data = response.data;
+        console.log(data);
+
         setOrders(data.orders);
         setOrdersView(data.orders);
       })
@@ -110,18 +112,34 @@ const WarehouseDB = () => {
           </button>
           <button
             className="btn btn-sm"
-            id={productType == "normal" ? "button" : "button-none"}
+            id={productType == "dairy" ? "button" : "button-none"}
           >
             <span className="glyphicon glyphicon-tree-deciduous">
-              <strong>Normal</strong>
+              <strong>Dairy</strong>
             </span>
           </button>
           <button
             className="btn btn-sm"
-            id={productType == "dry" ? "button" : "button-none"}
+            id={productType == "meat" ? "button" : "button-none"}
           >
             <span className="glyphicon glyphicon-grain">
-              <strong>Dry</strong>
+              <strong>Meat</strong>
+            </span>
+          </button>
+          <button
+            className="btn btn-sm"
+            id={productType == "produce" ? "button" : "button-none"}
+          >
+            <span className="glyphicon glyphicon-grain">
+              <strong>Produce</strong>
+            </span>
+          </button>
+          <button
+            className="btn btn-sm"
+            id={productType == "ambient" ? "button" : "button-none"}
+          >
+            <span className="glyphicon glyphicon-grain">
+              <strong>Ambient</strong>
             </span>
           </button>
         </div>
