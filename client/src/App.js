@@ -15,6 +15,7 @@ import PastOrders from "./components/PastOrders/PastOrders";
 import StoreDB from "./components/StoreDB/StoreDB";
 import UpdateOrder from "./components/UpdateOrder/UpdateOrder";
 import DisplayWarehouses from "./components/DisplayWarehouses/displayWarehouse";
+import InTransit from "./components/InTransit/inTransit"
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path="/storeDB" component={StoreDB} />
           <Route path="/updateOrder" component={UpdateOrder} />
           <Route path="/displayWarehouses" component={DisplayWarehouses} />
+          <Route path="/inTransit" component={InTransit} />
         </Switch>
       </BrowserRouter>
     </div>

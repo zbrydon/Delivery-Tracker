@@ -27,7 +27,7 @@ export const SidebarData = [
     },
     {
         title: 'View Orders',
-        path: "/StoreViewOrder",
+        path: "/pastOrders",
         icon: <BookName.BiBookAlt />,
         cName: "nav-text"
     },
