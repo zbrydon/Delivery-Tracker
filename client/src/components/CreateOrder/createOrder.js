@@ -51,8 +51,8 @@ const CreateOrder = () => {
             <div>
                 <Navbar />
             </div>
+            <br />
             <div>
-                <br></br>
                 <form className="main-block">
                     <h1>Create Order</h1>
                     <br></br>
@@ -132,7 +132,7 @@ const CreateOrder = () => {
                         <button type="submit" href="/" className="createOrder-submitBtn"
                             onClick={handleSubmitClick}>
                             Submit
-              </button>
+                        </button>
                     </div>
                 </form>
             </div>
