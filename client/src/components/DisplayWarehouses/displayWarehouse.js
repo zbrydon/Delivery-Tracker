@@ -7,6 +7,9 @@ import Bar from './warehouseStockSelector'
 import axios from 'axios'
 import { withRouter } from 'react-router'
 
+var lat
+var long
+
 function Map()
 {
     return(
@@ -16,7 +19,10 @@ function Map()
                 defaultCenter={{lat: -37.850130, lng: 145.119060}}
                 defaultOptions={{styles: mapStyles}}
             >
-            
+            <Marker 
+             position={{lat: lat, lng: long}}
+             
+             />
             </GoogleMap>
         </div>
     );
@@ -25,7 +31,6 @@ const WrappedMap = withScriptjs(withGoogleMap(Map))
 
 export default class displayWarehouses extends React.Component
 {
-
     componentDidMount()
     {
         const API_URL = process.env.REACT_APP_API_URL;
@@ -40,9 +45,15 @@ export default class displayWarehouses extends React.Component
                     let data = response.data.warehouses
                     for(let i = 0; data; i++)
                     {
-                        return response.data.warehouses[i].location
-                        // console.log(response.data.warehouses[i].location)
+                        //return response.data.warehouses[i].location
+                        //this.setState(response.data.warehouses[i].location.lat)
+                        //this.setState(response.data.warehouses[i].location.long)
+                        lat = response.data.warehouses[i].location.lat
+                        long = response.data.warehouses[i].location.long
+                        
                     }
+                    console.log(lat)
+                    console.log(long)
                 } 
             }
             ).catch(error => {
