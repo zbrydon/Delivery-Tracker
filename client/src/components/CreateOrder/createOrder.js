@@ -152,18 +152,10 @@ const CreateOrder = () => {
                     <br />
                     <label className="ChooseWarehouse">Choose Date:</label>
                     <div>
-                        <label>Date and Time</label>
-                        <label>Date and Time Entry Format</label>
-                        <label>yyyy-mm-dd hh:mm:ss</label>
-                        <input
-                            className="time"
-                            type="string"
-                            id="dateTime"
-                            name="dateTime"
-                            onChange={(e) => setDeliveryDateTime(e.target.value)}
-                        />
+                        
                     </div>
                     <div className="btn-block">
+                        <input className="time" type="datetime-local" id="dateTime" name="dateTime" onChange={(e) => setDeliveryDateTime(e.target.value)}/>
                         <button type="submit" href="/" className="createOrder-submitBtn"
                             onClick={handleSubmitClick}>
                             Submit
