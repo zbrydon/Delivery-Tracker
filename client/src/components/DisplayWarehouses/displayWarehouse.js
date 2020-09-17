@@ -21,7 +21,6 @@ function Map()
             >
             <Marker 
              position={{lat: lat, lng: long}}
-             
              />
             </GoogleMap>
         </div>
