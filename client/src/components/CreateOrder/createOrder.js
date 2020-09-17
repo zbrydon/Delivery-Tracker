@@ -50,6 +50,7 @@ const CreateOrder = () => {
             }
         });
         alert("Order has been Sumbitted")
+        window.location.reload()
         
     };
     useEffect(() => {
