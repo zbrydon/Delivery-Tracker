@@ -1,6 +1,7 @@
 const validator = require('validator');
 
 function validate(req, res, next) {
+    console.log(req.body);
     const { orderId } = req.body
     const storeId = res.obj.id;
 
