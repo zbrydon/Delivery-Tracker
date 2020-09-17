@@ -9,6 +9,7 @@ function validate(req, res, next) {
         });
     }
     if (!validator.equals(orderStatus, 'Unfulfilled') && !validator.equals(orderStatus, 'Fulfilled') && !validator.equals(orderStatus, 'In Transit') && !validator.equals(orderStatus, 'Delivered')) {
+        
         return res.status(400).send({
             success: false,
             message: 'Status in incorrect format'

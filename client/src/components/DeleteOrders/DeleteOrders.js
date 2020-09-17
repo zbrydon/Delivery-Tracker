@@ -16,40 +16,47 @@ const DeleteOrders = () => {
     return new URLSearchParams(useLocation().search);
   }
   useEffect(() => {
-    axios
-      .get(`${API_URL}/viewStoreOrders`, {
-        headers: headers,
-      })
-      .then(function (response) {
-        let data = response.data;
-        let orders = data.orders;
-
-        orders.sort((orders1, orders2) =>
-          orders1.orderDateTime < orders2.orderDateTime ? 1 : -1
-        );
-
-        orders = orders.filter((order) => order.orderStatus === "Unfulfilled");
-        setOrders(orders);
-      })
-      .catch(function (error) {
-        let response = error.response;
-        // if (response.status == 403) {
-        //   // redirect to login page
-        //   history.push("/");
-        // }
-      });
+    getOrder();
   }, []);
 
+  function getOrder() {
+    axios
+    .get(`${API_URL}/viewStoreOrders`, {
+      headers: headers,
+    })
+    .then(function (response) {
+      let data = response.data;
+      let orders = data.orders;
+
+      orders.sort((orders1, orders2) =>
+        orders1.orderDateTime < orders2.orderDateTime ? 1 : -1
+      );
+
+      orders = orders.filter((order) => order.orderStatus === "Unfulfilled");
+      setOrders(orders);
+    })
+    .catch(function (error) {
+      let response = error.response;
+      // if (response.status == 403) {
+      //   // redirect to login page
+      //   history.push("/");
+      // }
+    });
+  }
+
   //Delete orders button
-  const handleSubmitClick = async (e) => {
+  const handleSubmitClick = async (orderId, e) => {
     e.preventDefault();
+
     await axios
-      .post(`${API_URL}/deleteOrder`, {
+      .post(`${API_URL}/deleteOrder`, {orderId : orderId}, {
         headers: headers,
       })
       .then(function (res) {
         let data = res.data;
         console.log(data);
+        getOrder();
+        
       })
       .catch(function (err) {
         let errData = err.response;
@@ -69,7 +76,7 @@ const DeleteOrders = () => {
                 {" "}
                 Order {order.orderId}
               </div>
-              <div className="card-body">
+              <div key={index} className="card-body">
                 <table className="table">
                   <thead>
                     <tr>
@@ -126,7 +133,7 @@ const DeleteOrders = () => {
                     </tr>
                   </tbody>
                 </table>
-                <button className="btn btn-danger" onClick={handleSubmitClick}>
+                <button className="btn btn-danger" onClick={handleSubmitClick.bind(this, order.orderId)}>
                   Delete
                 </button>
               </div>

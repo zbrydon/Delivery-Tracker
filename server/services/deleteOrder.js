@@ -1,11 +1,11 @@
 const Order = require('../models/Order');
 
 function deleteOrder(req, res, next) {
-    const deletee = res.orderId;
-    const storeId = res.storeId;
-    const query = { "orderId": deletee };
+    const storeId = res.obj.id;
+    const orderId = req.body.orderId;
+    const param = { "orderId": orderId };
 
-    Order.findOne({ orderId: deletee }, (err, order) => {
+    Order.findOne({ orderId: orderId }, (err, order) => {
         if (err) {
             return res.status(400).send({
                 success: false,
@@ -29,7 +29,7 @@ function deleteOrder(req, res, next) {
             });
         }
 
-        Order.deleteOne(query)
+        Order.deleteOne(param)
             .then(result => console.log(`Deleted ${result.deletedCount} item.`))
             .catch(err => console.error(`Delete failed with error: ${err}`))
         next();
