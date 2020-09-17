@@ -12,7 +12,7 @@ function viewWarehouses(req, res, next) {
         }
     });
 
-    Warehouse.find({ }, { id: 1, _id: 0 }, (err, warehouses) => {
+    Warehouse.find({ }, { id: 1, location: 1 ,  _id: 0 }, (err, warehouses) => {
         if (err) {
             return res.status(400).send({
                 success: false,

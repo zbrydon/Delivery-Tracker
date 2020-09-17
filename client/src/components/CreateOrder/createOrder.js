@@ -3,6 +3,7 @@ import Navbar from "../Tools/StoreNavbar";
 import "../CreateOrder/createOrder.css";
 import DatePickers from "../CreateOrder/DatePicker";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
  
 const CreateOrder = () => {
     const API_URL = process.env.REACT_APP_API_URL;
@@ -23,15 +24,42 @@ const CreateOrder = () => {
     const handleSubmitClick = async (e) => {
         e.preventDefault();
         const body = {
-            warehouseId,
-            frozenQuantity,
-            dairyQuantity,
-            meatQuantity,
-            produceQuantity,
-            ambientQuantity,
-            deliveryDateTime
+            warehouseId: 1111,
+            frozenQuantity: frozenQuantity,
+            dairyQuantity: dairyQuantity,
+            meatQuantity: meatQuantity,
+            produceQuantity: produceQuantity,
+            ambientQuantity: ambientQuantity,
+            deliveryDateTime: deliveryDateTime
         };
-        const updateRes = await axios.post(`${API_URL}/submitOrder`, body, { headers });
+        localStorage.setItem('date', deliveryDateTime);
+
+        axios.post(
+            `${API_URL}/submitOrder`, body, { headers }
+        ).then(response => {
+            if (response.data.success) {
+                
+            }
+        }).catch(error => {
+            if (error.response.status === 406) {
+                //display "please refresh your session" here
+                localStorage.setItem('err', JSON.stringify(error.response));
+                //return history.push("/refresh");
+            } if (error.response.status === 403) {
+                localStorage.setItem('err', error.response);
+                //display "please login" here
+                //this.redirectToLogin();
+            }
+        });
+
+
+        /*const updateRes = await axios.post(`${API_URL}/submitOrder`, body, { headers });
+        localStorage.setItem('err', updateRes.data);
+
+        if (updateRes.data.success == true) {
+            //history.push("/StoreDB");
+
+        }*/
     };
     useEffect(() => {
         const data = async () => {
@@ -45,7 +73,6 @@ const CreateOrder = () => {
         };
         data();
     }, []);
-    localStorage.setItem('thiss', warehouses[0]);
     return (
         <div>
             <div>
@@ -125,8 +152,16 @@ const CreateOrder = () => {
                     <br />
                     <label className="ChooseWarehouse">Choose Date:</label>
                     <div>
-                        <DatePickers />
-                        <input className="time" type="time" id="appt" name="appt" onChange={(e) => setDeliveryDateTime(e.target.value)}/>
+                        <label>Date and Time</label>
+                        <label>Date and Time Entry Format</label>
+                        <label>yyyy-mm-dd hh:mm:ss</label>
+                        <input
+                            className="time"
+                            type="string"
+                            id="dateTime"
+                            name="dateTime"
+                            onChange={(e) => setDeliveryDateTime(e.target.value)}
+                        />
                     </div>
                     <div className="btn-block">
                         <button type="submit" href="/" className="createOrder-submitBtn"
@@ -145,7 +180,25 @@ const CreateOrder = () => {
 
 
 
-/*class createOrder extends React.Component {
+/*
+ * 
+ * 
+ * 
+ * 
+ * Date pickers
+ * 
+ * 
+ * <DatePickers />
+                        <input className="time" type="time" id="appt" name="appt" onChange={(e) => setDeliveryDateTime(e.target.value)}/>
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * class createOrder extends React.Component {
   state = {
     warehouseID: "",
     frozen: "",
