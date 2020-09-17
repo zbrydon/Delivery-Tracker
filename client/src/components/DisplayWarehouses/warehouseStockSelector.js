@@ -37,8 +37,9 @@ class Charts extends Component {
         const headers = {
             'authorization': token
         };
-        axios.get(
-            `${API_URL}/viewWarehouseSOH`, { headers }
+        const ID = {warehouseId : 1111}
+        axios.post(
+            `${API_URL}/storeViewWarehouseSOH`, ID ,{ headers }
         ).then(response => {
             if (response.data.success) {
                 this.setState({

@@ -41,7 +41,8 @@ class BarCharts extends Component
         };
         axios.get(
             `${API_URL}/viewStoreSOH`, { headers }
-        ).then(response => {            
+        ).then(response => {  
+            console.log(response.data)          
             if (response.data.success) {
                 this.setState({
                     storeSOHData: {

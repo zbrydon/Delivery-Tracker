@@ -3,12 +3,12 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
 function DatePickers() {
-    const [selectedDate, setDelectedDate] = useState(null)
+    const [selectedDate, setSelectedDate] = useState(null)
     return (
         <div style={{ justifyContent: "center", margin: "auto", display: "flex", padding: "0px" }}>
             <DatePicker
                 selected={selectedDate}
-                onChange={date => setDelectedDate(date)}
+                onChange={date => setSelectedDate(date)}
                 dateFormat="dd/MM/yyyy"
                 minDate={new Date()}
                 

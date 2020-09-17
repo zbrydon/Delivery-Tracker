@@ -5,6 +5,7 @@ import "../DisplayWarehouses/maps.css"
 import mapStyles from './mapStyles'
 import Bar from './warehouseStockSelector'
 import axios from 'axios'
+import { withRouter } from 'react-router'
 
 function Map()
 {
@@ -14,8 +15,9 @@ function Map()
                 defaultZoom={14}
                 defaultCenter={{lat: -37.850130, lng: 145.119060}}
                 defaultOptions={{styles: mapStyles}}
-            />
-            <Marker position={{lat: -37.850130, lng: 145.119060}}/>
+            >
+            
+            </GoogleMap>
         </div>
     );
 }
@@ -35,19 +37,22 @@ export default class displayWarehouses extends React.Component
         axios.get(`${API_URL}/viewWarehouses`, {headers})
             .then(response => {   
                 if(response.data.success) {
-                    console.log(response.data);
-                    this.setState({location: response.data})
+                    let data = response.data.warehouses
+                    for(let i = 0; data; i++)
+                    {
+                        return response.data.warehouses[i].location
+                        // console.log(response.data.warehouses[i].location)
+                    }
                 } 
             }
             ).catch(error => {
                 let response = error.response;
-                if (response.status == 403) {
+                if (response == 403) {
                     console.log(error)
                 }
             }
         );
     }
-
     render() {
         return(
             <div>
@@ -77,3 +82,4 @@ export default class displayWarehouses extends React.Component
         )
     }
 }
+const displayTheWarehouse = withRouter(displayWarehouses)
