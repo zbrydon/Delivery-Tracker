@@ -1,7 +1,7 @@
 const validator = require('validator');
 
 function validate(req, res, next) {
-    const { warehouseId } = req.body
+    const { warehouseId } = req.body;
     const storeId = res.obj.id;
 
     if (!validator.isInt(warehouseId.toString(), { min: 1000, max: 9999 })) {

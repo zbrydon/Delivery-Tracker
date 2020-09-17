@@ -1,5 +1,5 @@
 const express = require('express');
-const authenticate = require('../middlewares/authenticateTokenStore');
+const authenticate = require('../middlewares/authenticateTokenWarehouse');
 const viewOrder = require('../services/viewPopularOrders');
 const viewPopularOrders = express.Router();
 
