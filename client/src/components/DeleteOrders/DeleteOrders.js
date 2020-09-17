@@ -43,10 +43,9 @@ const DeleteOrders = () => {
   //Delete orders button
   const handleSubmitClick = async (e) => {
     e.preventDefault();
-    axios
+    await axios
       .post(`${API_URL}/deleteOrder`, {
         headers: headers,
-        orderId: orders.orderId,
       })
       .then(function (res) {
         let data = res.data;

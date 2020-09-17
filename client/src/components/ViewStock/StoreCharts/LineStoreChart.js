@@ -51,6 +51,7 @@ class LineCharts extends Component
                              {
                                 label: 'Temperature',
                                  data: [response.data.TEMP.frozen, response.data.TEMP.dairy, response.data.TEMP.meat, response.data.TEMP.produce, response.data.TEMP.ambient],
+                                 fill: false,
                                  backgroundColor: [
                                      'rgba(100, 79, 150, 0.6)',
                                      'rgba(325, 199, 152, 0.6)',
