@@ -93,4 +93,4 @@ export default class displayWarehouses extends React.Component
         )
     }
 }
-const displayTheWarehouse = withRouter(displayWarehouses)
+const displayWarehouse = withRouter(displayWarehouses)
