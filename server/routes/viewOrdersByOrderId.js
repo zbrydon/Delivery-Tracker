@@ -1,17 +1,17 @@
 const express = require('express');
-const authenticate = require('../middlewares/authenticateTokenWarehouse');
-const viewOrder = require('../services/viewWarehouseOrders');
-const viewWarehouseOrders = express.Router();
+const authenticate = require('../middlewares/authenticateTokenStore');
+const viewOrder = require('../services/viewOrdersByOrderId');
+const viewOrdersByOrderId = express.Router();
 
 /**
- * @api {get} /viewWarehouseOrders View Warehouse Orders
- * @apiName View Warehouse Orders
- * @apiGroup Warehouse
+ * @api {get} /viewOrdersByOrderId View Store Orders
+ * @apiName View Store Orders
+ * @apiGroup Store
  *
  *
  * @apiSuccess {Boolean} success Request result
  * @apiSuccess {String} message Request status
- * @apiSuccess {Array} orders The orders from that Warehouse
+ * @apiSuccess {Array} orders The orders from that store
  *
  * @apiSuccessExample Success-Response:
  *      HTTP/1.1 200 OK
@@ -47,23 +47,22 @@ const viewWarehouseOrders = express.Router();
  *               }
  *       }
  *
- * @apiError NotFound The warehouse has no orders.
+ * @apiError NotFound The store has no orders.
  *
  * @apiErrorExample Error-Response:
  *      HTTP/1.1 404 Not Found
  *      {
  *           "success": false,
- *           "message": "This warehouse has no orders"
+ *           "message": "This store has no orders"
  *      }
  **/
 
-viewWarehouseOrders.get('/viewWarehouseOrders', authenticate, viewOrder, (req, res) => {
+viewOrdersByOrderId.get('/viewOrdersByOrderId', authenticate, viewOrder , (req, res) => {
     return res.status(200).send({
         success: true,
         message: 'Orders Displayed',
-        orders: res.locals.orders,
-        count: res.locals.count
+        orders: res.locals.orders
     })
 });
 
-module.exports = viewWarehouseOrders; 
+module.exports = viewOrdersByOrderId; 

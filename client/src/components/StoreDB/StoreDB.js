@@ -8,6 +8,7 @@ import Moment from "react-moment";
 
 const StoreDB = () => {
   const [orders, setOrders] = useState([]);
+  const [orderId, setOrderId] = useState();
   const history = useHistory();
 
   useEffect(() => {
@@ -28,6 +29,8 @@ const StoreDB = () => {
         debugger;
         
         orders.sort((orders1, orders2) => (orders1.orderDateTime < orders2.orderDateTime) ? 1 : -1);
+
+        orders = orders.filter(order=> order.orderStatus == 'Unfulfilled');
         
         if (orders.length > 2) {
           // Remove two element first
@@ -46,7 +49,9 @@ const StoreDB = () => {
       });
   }, []);
 
-
+  const selectRow = async (orderId) => {
+    setOrderId(orderId);
+  };
   return (
     <>
       <NavBar />
@@ -72,7 +77,7 @@ const StoreDB = () => {
             {orders.map((order, i) => {
                 // Return the element. Also pass key
                 return (
-                  <tr key={i} >
+                  <tr key={i} onClick={selectRow.bind(this, order.orderId)}>
                     <td>{order.orderId}</td>
                     <td>
                       <Moment format="DD/MM/YYYY">
@@ -104,11 +109,16 @@ const StoreDB = () => {
               <button className="choosing-btn">Past Order</button>
             </a>
           </div>
-          <div id="option">
-            <a href={"/updateOrder"}>
-              <button className="choosing-btn">Update Order</button>
-            </a>
-          </div>
+          {
+            orderId  ?
+            <div id="option">
+              <a href={"/updateOrder?orderId=" + orderId}>
+                <button className="choosing-btn">Update Order</button>
+              </a>
+            </div>
+            :''
+          }
+          
         </div>
       </div>
     </>

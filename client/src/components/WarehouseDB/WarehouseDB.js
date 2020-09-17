@@ -7,8 +7,14 @@ import Moment from "react-moment";
 
 const WarehouseDB = () => {
   const [orders, setOrders] = useState([]);
+  const [itemOrder, setItemOrder] = useState({
+    frozenQuantity: 0,
+    meatQuantity: 0,
+    dairyQuantity: 0,
+    ambientQuantity: 0,
+    produceQuantity: 0,
+  });
   const [ordersView, setOrdersView] = useState([]);
-  const [productType, setproductType] = useState("");
   const query = useQuery();
 
   useEffect(() => {
@@ -51,8 +57,7 @@ const WarehouseDB = () => {
 
   function selecteRow(index) {
     let order = ordersView[index];
-    let productType = order.productType;
-    setproductType(productType);
+    setItemOrder(order);
   }
 
   return (
@@ -104,42 +109,67 @@ const WarehouseDB = () => {
           <h4>Order from Store</h4>
           <button
             className="btn btn-sm"
-            id={productType == "frozen" ? "button" : "button-none"}
+            id={itemOrder.frozenQuantity > 0 ? "button" : "button-none"}
           >
             <span className="glyphicon glyphicon-asterisk">
-              <strong>Frozen</strong>
+              <strong>
+                Frozen{" "}
+                {itemOrder.frozenQuantity > 0
+                  ? "(" + itemOrder.frozenQuantity + ")"
+                  : ""}
+              </strong>
             </span>
           </button>
           <button
             className="btn btn-sm"
-            id={productType == "dairy" ? "button" : "button-none"}
+            id={itemOrder.meatQuantity > 0 ? "button" : "button-none"}
           >
             <span className="glyphicon glyphicon-tree-deciduous">
-              <strong>Dairy</strong>
+              <strong>
+                Meat{" "}
+                {itemOrder.meatQuantity > 0
+                  ? "(" + itemOrder.meatQuantity + ")"
+                  : ""}
+              </strong>
             </span>
           </button>
           <button
             className="btn btn-sm"
-            id={productType == "meat" ? "button" : "button-none"}
+            id={itemOrder.dairyQuantity > 0 ? "button" : "button-none"}
           >
             <span className="glyphicon glyphicon-grain">
-              <strong>Meat</strong>
+              <strong>
+                Dairy{" "}
+                {itemOrder.dairyQuantity > 0
+                  ? "(" + itemOrder.dairyQuantity + ")"
+                  : ""}
+              </strong>
             </span>
           </button>
           <button
             className="btn btn-sm"
-            id={productType == "produce" ? "button" : "button-none"}
+            id={itemOrder.ambientQuantity > 0 ? "button" : "button-none"}
           >
             <span className="glyphicon glyphicon-grain">
-              <strong>Produce</strong>
+              <strong>
+                Ambient{" "}
+                {itemOrder.ambientQuantity > 0
+                  ? "(" + itemOrder.ambientQuantity + ")"
+                  : ""}
+              </strong>
             </span>
           </button>
           <button
             className="btn btn-sm"
-            id={productType == "ambient" ? "button" : "button-none"}
+            id={itemOrder.produceQuantity > 0 ? "button" : "button-none"}
           >
             <span className="glyphicon glyphicon-grain">
-              <strong>Ambient</strong>
+              <strong>
+                Produce{" "}
+                {itemOrder.produceQuantity > 0
+                  ? "(" + itemOrder.produceQuantity + ")"
+                  : ""}
+              </strong>
             </span>
           </button>
         </div>

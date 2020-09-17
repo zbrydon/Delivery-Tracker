@@ -21,7 +21,7 @@ export const SidebarData = [
   },
   {
     title: "Create Order",
-    path: "/createOrder",
+    path: "/displayWarehouses",
     icon: <Truck.FaTruckMoving />,
     cName: "nav-text",
   },

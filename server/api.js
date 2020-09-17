@@ -25,9 +25,12 @@ const viewStoreTEMP = require('./routes/viewStoreTEMP');
 const tempUpdateWarehouse = require('./services/tempUpdateWarehouse');
 const viewWarehouseTEMP = require('./routes/viewWarehouseTEMP');
 const viewStores = require('./routes/viewStores');
+const viewOrdersByOrderId = require('./routes/viewOrdersByOrderId');
 const updateOrder = require('./routes/updateOrder');
 const storeViewWarehouseSOH = require('./routes/storeViewWarehouseSOH');
 const viewWarehouses = require('./routes/viewWarehouses');
+const deleteorder = require('./routes/deleteOrder');
+const viewPopularOrders = require('./routes/viewPopularOrders');
 
 /*
  * General setup | Database connection | body-parse setup | Allowing cross origin requests
@@ -70,6 +73,9 @@ app.use(viewStores);
 app.use(updateOrder);
 app.use(storeViewWarehouseSOH);
 app.use(viewWarehouses);
+app.use(deleteorder);
+app.use(viewPopularOrders);
+app.use(viewOrdersByOrderId);
 
 /*
  * Connecting to the HIVEMC MQTT broker and subscribing to the topic '/219203655/location/'
@@ -91,18 +97,16 @@ client.on('connect', () => {
 client.on('message', (topic, message) => {
     if (topic == '/219203655/location/') {
         //console.log(JSON.parse(message));
-        distanceCalc(JSON.parse(message), function (err, data) {
+        distanceCalc(JSON.parse(message), function (err) {
             if (err) {
                 return res.status(400).send({
                     success: false,
                     message: err
                 })
             } else {
-                console.log(data);
                 return res.json({
                     success: true,
-                    message: 'Calculated',
-                    data: data
+                    message: 'Calculated'
                 })
                 
             }
@@ -119,7 +123,6 @@ client.on('message', (topic, message) => {
                     message: err
                 })
             } else {
-                console.log(data);
                 return res.json({
                     success: true,
                     message: 'Temp added',

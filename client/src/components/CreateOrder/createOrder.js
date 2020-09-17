@@ -51,22 +51,10 @@ const CreateOrder = () => {
             <div>
                 <Navbar />
             </div>
+            <br />
             <div>
-                <br></br>
                 <form className="main-block">
                     <h1>Create Order</h1>
-                    <label className="ChooseWarehouse">
-                        Choose a Warehouse:
-            </label>
-                    <br></br>
-                    <select
-                        className="Choices"
-                        name="warehouseID"
-                    >
-                        <option value={useEffect}>Warehouse 1</option>
-                        <option value="warehouseID">Warehouse 2</option>
-                        <option value="warehouseID">Warehouse 3</option>
-                    </select>
                     <br></br>
                     <label className="ChooseWarehouse">
                         Choose Pallets:{" "}
@@ -144,7 +132,7 @@ const CreateOrder = () => {
                         <button type="submit" href="/" className="createOrder-submitBtn"
                             onClick={handleSubmitClick}>
                             Submit
-              </button>
+                        </button>
                     </div>
                 </form>
             </div>

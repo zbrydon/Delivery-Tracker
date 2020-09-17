@@ -19,6 +19,7 @@ const AddStock = () => {
 
   const handleSubmitClick = async (e) => {
     e.preventDefault();
+    alert("Stock Updated")
     const updateSOH = {
       frozenQuantity,
       dairyQuantity,

@@ -1,0 +1,15 @@
+.Maps
+{
+    display: block;
+    margin-left: auto;
+    margin-top: 10px;
+    margin-right: auto;
+    z-index: 1;
+}
+.bbutton
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 125px;
+    border-radius: 5px;
+}

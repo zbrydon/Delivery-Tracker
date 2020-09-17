@@ -15,6 +15,8 @@ import PastOrders from "./components/PastOrders/PastOrders";
 import StoreDB from "./components/StoreDB/StoreDB";
 import UpdateOrder from "./components/UpdateOrder/UpdateOrder";
 import WarehouseChart from "./components/WarehouseChart/WarehouseChart";
+import DeleteOrders from "./components/DeleteOrders/DeleteOrders";
+// import DisplayWarehouses from "./components/DisplayWarehouses/displayWarehouse";
 
 function App() {
   return (
@@ -36,6 +38,8 @@ function App() {
           <Route path="/storeDB" component={StoreDB} />
           <Route path="/warehouseChart" component={WarehouseChart} />
           <Route path="/updateOrder" component={UpdateOrder} />
+          <Route path="/deleteOrder" component={DeleteOrders} />
+          {/* <Route path="/displayWarehouses" component={DisplayWarehouses} /> */}
         </Switch>
       </BrowserRouter>
     </div>

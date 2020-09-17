@@ -101,3 +101,8 @@ h1 {
 .time {
   margin-left: 150px;
 }
+.button
+{
+  margin-left: auto;
+  margin-right: auto;
+}
