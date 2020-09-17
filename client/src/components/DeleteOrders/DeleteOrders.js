@@ -69,7 +69,7 @@ const DeleteOrders = () => {
                 {" "}
                 Order {order.orderId}
               </div>
-              <div className="card-body">
+              <div key={index} className="card-body">
                 <table className="table">
                   <thead>
                     <tr>

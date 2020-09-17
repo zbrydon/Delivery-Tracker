@@ -8,11 +8,11 @@ const UpdateOrder = () => {
   const query = useQuery();
   const history = useHistory();
   const [order, setOrder] = useState({});
-  const [frozenQuantity, setFrozenQuantity] = useState();
-  const [dairyQuantity, setDairyQuantity] = useState();
-  const [meatQuantity, setMeatQuantity] = useState();
-  const [produceQuantity, setProduceQuantity] = useState();
-  const [ambientQuantity, setAmbientQuantity] = useState();
+  const [frozenQuantity, setFrozenQuantity] = useState('');
+  const [dairyQuantity, setDairyQuantity] = useState('');
+  const [meatQuantity, setMeatQuantity] = useState('');
+  const [produceQuantity, setProduceQuantity] = useState('');
+  const [ambientQuantity, setAmbientQuantity] = useState('');
   const API_URL = process.env.REACT_APP_API_URL;
   const token = localStorage.getItem("auth-token");
   const headers = { authorization: token };
@@ -22,20 +22,19 @@ const UpdateOrder = () => {
     return new URLSearchParams(useLocation().search);
   }
 
-  function updateOrder() {
-    let params = {
+  function updateOrder(event) {
+    event.preventDefault();
+
+    let data = {
       frozenQuantity: frozenQuantity,
       dairyQuantity: dairyQuantity,
       meatQuantity: meatQuantity,
       produceQuantity: produceQuantity,
       ambientQuantity: ambientQuantity,
+      orderId: order.orderId
     };
 
-    axios
-      .post(`${API_URL}/updateOrder`, {
-        headers: headers,
-        params: params,
-      })
+    axios.post(`${API_URL}/updateOrder`, data, {headers: headers})
       .then(function (response) {
         let data = response.data;
 
@@ -58,6 +57,12 @@ const UpdateOrder = () => {
         let orders = data.orders;
         if (orders.length > 0) {
           setOrder(orders[0]);
+
+          setFrozenQuantity(orders[0].frozenQuantity);
+          setDairyQuantity(orders[0].dairyQuantity);
+          setMeatQuantity(orders[0].meatQuantity);
+          setProduceQuantity(orders[0].produceQuantity);
+          setAmbientQuantity(orders[0].ambientQuantity);
         }
       })
       .catch(function (error) {
@@ -89,35 +94,35 @@ const UpdateOrder = () => {
           <input
             type="number"
             id="product"
-            value={order.frozenQuantity}
+            value={frozenQuantity}
             onChange={(e) => setFrozenQuantity(e.target.value)}
           />
           <label for="normal-product">Dairy</label>
           <input
             type="number"
             id="product"
-            value={order.dairyQuantity}
+            value={dairyQuantity}
             onChange={(e) => setDairyQuantity(e.target.value)}
           />
           <label for="frozen-product">Meat</label>
           <input
             type="number"
             id="product"
-            value={order.meatQuantity}
+            value={meatQuantity}
             onChange={(e) => setMeatQuantity(e.target.value)}
           />
           <label for="frozen-product">Produce</label>
           <input
             type="number"
             id="product"
-            value={order.produceQuantity}
+            value={produceQuantity}
             onChange={(e) => setProduceQuantity(e.target.value)}
           />
           <label for="frozen-product">Ambient</label>
           <input
             type="number"
             id="product"
-            value={order.ambientQuantity}
+            value={ambientQuantity}
             onChange={(e) => setAmbientQuantity(e.target.value)}
           />
 
