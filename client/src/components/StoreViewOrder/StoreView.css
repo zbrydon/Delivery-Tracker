@@ -17,31 +17,3 @@ body {
   cursor: pointer;
   font-size: 14px;
 }
-.deliver-table {
-  width: 90%;
-  border-collapse: collapse;
-  margin-top: 20px;
-  height: 250px;
-  overflow: auto;
-}
-.deliver-table th,
-.deliver-table td {
-  border: 1px solid #ddd;
-  padding: 2px 2px;
-}
-
-.deliver-table tr:nth-child(even) {
-  background-color: #edebeb;
-}
-
-.deliver-table tr:hover {
-  background-color: #ddd;
-}
-
-.deliver-table th {
-  padding-top: 4px;
-  padding-bottom: 4px;
-  text-align: left;
-  background-color: #58c6ea;
-  color: white;
-}

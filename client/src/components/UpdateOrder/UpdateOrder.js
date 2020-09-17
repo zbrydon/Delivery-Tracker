@@ -1,4 +1,4 @@
-import React,  { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./UpdateOrder.css";
 import NavBar from "../Tools/StoreNavbar";
@@ -16,7 +16,7 @@ const UpdateOrder = () => {
   const API_URL = process.env.REACT_APP_API_URL;
   const token = localStorage.getItem("auth-token");
   const headers = { authorization: token };
-  const param = { orderId:  query.get("orderId") };
+  const param = { orderId: query.get("orderId") };
 
   function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -24,11 +24,11 @@ const UpdateOrder = () => {
 
   function updateOrder() {
     let params = {
-      frozenQuantity : frozenQuantity,
-      dairyQuantity : dairyQuantity,
-      meatQuantity : meatQuantity,
-      produceQuantity : produceQuantity,
-      ambientQuantity : ambientQuantity
+      frozenQuantity: frozenQuantity,
+      dairyQuantity: dairyQuantity,
+      meatQuantity: meatQuantity,
+      produceQuantity: produceQuantity,
+      ambientQuantity: ambientQuantity,
     };
 
     axios
@@ -38,7 +38,6 @@ const UpdateOrder = () => {
       })
       .then(function (response) {
         let data = response.data;
-        
 
         // setMessage(data.message);
       })
@@ -49,14 +48,13 @@ const UpdateOrder = () => {
   }
 
   useEffect(() => {
-
     axios
       .get(`${API_URL}/viewOrdersByOrderId`, {
         headers: headers,
         params: param,
       })
       .then(function (response) {
-        let data = response.data; 
+        let data = response.data;
         let orders = data.orders;
         if (orders.length > 0) {
           setOrder(orders[0]);
@@ -65,8 +63,8 @@ const UpdateOrder = () => {
       .catch(function (error) {
         let response = error.response;
         if (response.status == 403) {
-            // redirect to login page
-            history.push("/");
+          // redirect to login page
+          history.push("/");
         }
       });
   }, []);
@@ -80,64 +78,51 @@ const UpdateOrder = () => {
           <h1 className="headP">
             <strong>Update Order</strong>
           </h1>
-          <fieldset>
-            <legend>
-              <span className="number">1</span>Order Stock To:
-            </legend>
-            
-            <label for="OrderID">Order ID:</label>
-            <input 
-            type="text" 
-            id="OrderID"
-            value={order.orderId}
-            />
-            <label for="dry-product">Frozen</label>
-            <input 
-            type="number" 
-            id="product" 
+
+          <legend>
+            <span className="number">1</span>Order Stock To:
+          </legend>
+
+          <label for="OrderID">Order ID:</label>
+          <input type="text" id="OrderID" value={order.orderId} />
+          <label for="dry-product">Frozen</label>
+          <input
+            type="number"
+            id="product"
             value={order.frozenQuantity}
             onChange={(e) => setFrozenQuantity(e.target.value)}
-            />
-            <label for="normal-product">Dairy</label>
-            <input 
-            type="number" 
-            id="product" 
+          />
+          <label for="normal-product">Dairy</label>
+          <input
+            type="number"
+            id="product"
             value={order.dairyQuantity}
             onChange={(e) => setDairyQuantity(e.target.value)}
-            />
-            <label for="frozen-product">Meat</label>
-            <input 
-            type="number" 
-            id="product" 
+          />
+          <label for="frozen-product">Meat</label>
+          <input
+            type="number"
+            id="product"
             value={order.meatQuantity}
             onChange={(e) => setMeatQuantity(e.target.value)}
-            />
-            <label for="frozen-product">Produce</label>
-            <input 
-            type="number" 
+          />
+          <label for="frozen-product">Produce</label>
+          <input
+            type="number"
             id="product"
             value={order.produceQuantity}
             onChange={(e) => setProduceQuantity(e.target.value)}
-            />
-            <label for="frozen-product">Ambient</label>
-            <input 
-            type="number" 
-            id="product" 
+          />
+          <label for="frozen-product">Ambient</label>
+          <input
+            type="number"
+            id="product"
             value={order.ambientQuantity}
             onChange={(e) => setAmbientQuantity(e.target.value)}
-            />
-          </fieldset>
+          />
 
-          <fieldset>
-            <legend>
-              <span className="number">3</span>Addition Info:
-            </legend>
-            <label for="comment">Comment</label>
-            <textarea id="comment"></textarea>
-          </fieldset>
-
-          <a className="update-btn" onClick={updateOrder}>
-            Submit
+          <a onClick={updateOrder}>
+            <button className="update-btn">Submit</button>
           </a>
         </form>
       </div>

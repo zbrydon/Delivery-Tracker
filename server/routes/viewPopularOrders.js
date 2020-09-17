@@ -1,6 +1,8 @@
+
 const express = require('express');
 const authenticate = require('../middlewares/authenticateTokenWarehouse');
 const viewOrder = require('../services/viewPopularOrders');
+
 const viewPopularOrders = express.Router();
 
 /**
@@ -57,12 +59,17 @@ const viewPopularOrders = express.Router();
  *      }
  **/
 
-viewPopularOrders.get('/viewPopularOrders', authenticate, viewOrder, (req, res) => {
+viewPopularOrders.get(
+  "/viewPopularOrders",
+  authenticate,
+  viewOrder,
+  (req, res) => {
     return res.status(200).send({
-        success: true,
-        message: 'Orders Displayed',
-        totals: res.locals.totals
-    })
-});
+      success: true,
+      message: "Orders Displayed",
+      totals: res.locals.totals,
+    });
+  }
+);
 
-module.exports = viewPopularOrders; 
+module.exports = viewPopularOrders;

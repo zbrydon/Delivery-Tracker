@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../StoreView/StoreView.Modules.css";
 import NavBar from "../Tools/WarehouseNavbar";
-//import NavBar from "../NavBar/NavBar";
 import Axios from "axios";
 
 const StoreView = () => {
@@ -109,10 +108,16 @@ const StoreView = () => {
 
       <div className="card-container">
         <div className="cards">
-          <div className="card" style={{ background: store3.theme }}>
+          <div
+            className="card"
+            style={{
+              background:
+                store3.reqStatus === "Requested" ? store3.theme : "#c9deff",
+            }}
+          >
             <h3>Store 3</h3>
             <span className="status">{store3.reqStatus}</span>
-            <a href={"/warehouseDB"}>
+            <a href={"/warehouseDB?storeId=11113"}>
               <button className="detail-button">Details</button>
             </a>
           </div>
@@ -132,7 +137,7 @@ const StoreView = () => {
                 : store4.reqStatus}
             </span>
 
-            <a href={"/warehouseDB"}>
+            <a href={"/warehouseDB?storeId=11114"}>
               <button className="detail-button">Details</button>
             </a>
           </div>

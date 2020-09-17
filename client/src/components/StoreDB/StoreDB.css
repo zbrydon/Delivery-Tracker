@@ -27,7 +27,6 @@ body {
   outline: none;
   color: #9dbfaf;
   margin-left: 80px;
-  z-index: -1;
 }
 
 .searchID:focus {
@@ -47,7 +46,7 @@ body {
 }
 
 /* Table */
-.deliver-table {
+/* .deliver-table {
   width: 85%;
   border-collapse: collapse;
   margin-top: 20px;
@@ -55,7 +54,7 @@ body {
   height: 200px;
   overflow: auto;
   padding: 10px 10px 10px 30px;
-}
+} */
 
 .deliver-table th,
 .deliver-table td {

@@ -2,17 +2,17 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import NavBar from "../Tools/WarehouseNavbar";
 import "../WarehouseDB/WarehouseDB.Modules.css";
-import { useHistory, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Moment from "react-moment";
 
 const WarehouseDB = () => {
   const [orders, setOrders] = useState([]);
   const [itemOrder, setItemOrder] = useState({
-    frozenQuantity : 0,
-    meatQuantity : 0,
-    dairyQuantity : 0,
-    ambientQuantity : 0,
-    produceQuantity : 0
+    frozenQuantity: 0,
+    meatQuantity: 0,
+    dairyQuantity: 0,
+    ambientQuantity: 0,
+    produceQuantity: 0,
   });
   const [ordersView, setOrdersView] = useState([]);
   const query = useQuery();
@@ -30,6 +30,8 @@ const WarehouseDB = () => {
       })
       .then(function (response) {
         let data = response.data;
+        console.log(data);
+
         setOrders(data.orders);
         setOrdersView(data.orders);
       })
@@ -110,7 +112,12 @@ const WarehouseDB = () => {
             id={itemOrder.frozenQuantity > 0 ? "button" : "button-none"}
           >
             <span className="glyphicon glyphicon-asterisk">
-            <strong>Frozen {itemOrder.frozenQuantity > 0 ? '(' + itemOrder.frozenQuantity + ')' : ''}</strong>
+              <strong>
+                Frozen{" "}
+                {itemOrder.frozenQuantity > 0
+                  ? "(" + itemOrder.frozenQuantity + ")"
+                  : ""}
+              </strong>
             </span>
           </button>
           <button
@@ -118,7 +125,12 @@ const WarehouseDB = () => {
             id={itemOrder.meatQuantity > 0 ? "button" : "button-none"}
           >
             <span className="glyphicon glyphicon-tree-deciduous">
-              <strong>Meat {itemOrder.meatQuantity > 0 ? '(' + itemOrder.meatQuantity + ')' : ''}</strong>
+              <strong>
+                Meat{" "}
+                {itemOrder.meatQuantity > 0
+                  ? "(" + itemOrder.meatQuantity + ")"
+                  : ""}
+              </strong>
             </span>
           </button>
           <button
@@ -126,7 +138,12 @@ const WarehouseDB = () => {
             id={itemOrder.dairyQuantity > 0 ? "button" : "button-none"}
           >
             <span className="glyphicon glyphicon-grain">
-              <strong>Dairy {itemOrder.dairyQuantity > 0 ? '(' + itemOrder.dairyQuantity + ')' : ''}</strong>
+              <strong>
+                Dairy{" "}
+                {itemOrder.dairyQuantity > 0
+                  ? "(" + itemOrder.dairyQuantity + ")"
+                  : ""}
+              </strong>
             </span>
           </button>
           <button
@@ -134,7 +151,12 @@ const WarehouseDB = () => {
             id={itemOrder.ambientQuantity > 0 ? "button" : "button-none"}
           >
             <span className="glyphicon glyphicon-grain">
-              <strong>Ambient {itemOrder.ambientQuantity > 0 ? '(' + itemOrder.ambientQuantity + ')' : ''}</strong>
+              <strong>
+                Ambient{" "}
+                {itemOrder.ambientQuantity > 0
+                  ? "(" + itemOrder.ambientQuantity + ")"
+                  : ""}
+              </strong>
             </span>
           </button>
           <button
@@ -142,7 +164,12 @@ const WarehouseDB = () => {
             id={itemOrder.produceQuantity > 0 ? "button" : "button-none"}
           >
             <span className="glyphicon glyphicon-grain">
-              <strong>Produce {itemOrder.produceQuantity > 0 ? '(' + itemOrder.produceQuantity + ')' : ''}</strong>
+              <strong>
+                Produce{" "}
+                {itemOrder.produceQuantity > 0
+                  ? "(" + itemOrder.produceQuantity + ")"
+                  : ""}
+              </strong>
             </span>
           </button>
         </div>
