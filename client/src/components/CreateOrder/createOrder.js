@@ -32,7 +32,6 @@ const CreateOrder = () => {
             ambientQuantity: ambientQuantity,
             deliveryDateTime: deliveryDateTime
         };
-        localStorage.setItem('date', deliveryDateTime);
 
         axios.post(
             `${API_URL}/submitOrder`, body, { headers }
@@ -43,23 +42,14 @@ const CreateOrder = () => {
         }).catch(error => {
             if (error.response.status === 406) {
                 //display "please refresh your session" here
-                localStorage.setItem('err', JSON.stringify(error.response));
                 //return history.push("/refresh");
             } if (error.response.status === 403) {
-                localStorage.setItem('err', error.response);
+
                 //display "please login" here
                 //this.redirectToLogin();
             }
         });
 
-
-        /*const updateRes = await axios.post(`${API_URL}/submitOrder`, body, { headers });
-        localStorage.setItem('err', updateRes.data);
-
-        if (updateRes.data.success == true) {
-            //history.push("/StoreDB");
-
-        }*/
     };
     useEffect(() => {
         const data = async () => {
