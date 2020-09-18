@@ -6,7 +6,7 @@ import Moment from "react-moment";
 import { useLocation, useHistory } from "react-router-dom";
 
 const DeleteOrders = () => {
-  const query = useQuery();
+  const history = useHistory();
   const [orders, setOrders] = useState([]);
   const API_URL = process.env.REACT_APP_API_URL;
   const token = localStorage.getItem("auth-token");

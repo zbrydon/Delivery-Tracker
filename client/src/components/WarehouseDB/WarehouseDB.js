@@ -177,7 +177,12 @@ const WarehouseDB = () => {
       </div>
       <div className="viewSOH">
         <a href={"/stockWarehouse"}>
-          <button className="btn btn-sm">View SOH</button>
+          <button className="btn btn-sm" id="SoH-button">
+            View SOH
+          </button>
+        </a>
+        <a href={"/storeView"}>
+          <button className="btn btn-sm">Store View</button>
         </a>
       </div>
     </>
