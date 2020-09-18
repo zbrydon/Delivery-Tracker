@@ -8,14 +8,15 @@ import { useLocation, useHistory } from "react-router-dom";
 const DeleteOrders = () => {
   const query = useQuery();
   const [orders, setOrders] = useState([]);
-  const param = { orderId: query.get("orderId") };
   const API_URL = process.env.REACT_APP_API_URL;
   const token = localStorage.getItem("auth-token");
   const headers = { authorization: token };
-  function useQuery() {
-    return new URLSearchParams(useLocation().search);
-  }
+
   useEffect(() => {
+    getOrder();
+  }, []);
+
+  function getOrder() {
     axios
       .get(`${API_URL}/viewStoreOrders`, {
         headers: headers,
@@ -33,23 +34,28 @@ const DeleteOrders = () => {
       })
       .catch(function (error) {
         let response = error.response;
-        // if (response.status == 403) {
-        //   // redirect to login page
-        //   history.push("/");
-        // }
+        if (response.status == 403) {
+          // redirect to login page
+          history.push("/");
+        }
       });
-  }, []);
+  }
 
   //Delete orders button
-  const handleSubmitClick = async (e) => {
+  const handleSubmitClick = async (orderId, e) => {
     e.preventDefault();
+
     await axios
-      .post(`${API_URL}/deleteOrder`, {
-        headers: headers,
-      })
+      .post(
+        `${API_URL}/deleteOrder`,
+        { orderId: orderId },
+        {
+          headers: headers,
+        }
+      )
       .then(function (res) {
         let data = res.data;
-        console.log(data);
+        getOrder();
       })
       .catch(function (err) {
         let errData = err.response;
@@ -126,7 +132,10 @@ const DeleteOrders = () => {
                     </tr>
                   </tbody>
                 </table>
-                <button className="btn btn-danger" onClick={handleSubmitClick}>
+                <button
+                  className="btn btn-danger"
+                  onClick={handleSubmitClick.bind(this, order.orderId)}
+                >
                   Delete
                 </button>
               </div>
