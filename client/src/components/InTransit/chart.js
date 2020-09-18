@@ -98,7 +98,6 @@ class LineChart extends Component {
             `${API_URL}/viewOrder`, { headers , params}
         ).then(response => {
             if (response.data.success) {
-                localStorage.setItem('t', response.data.order.temperature[0].frozen);
                 for (let i = 0; i < response.data.order.temperature.length; i++) {
                     f.push(response.data.order.temperature[i].frozen);
                     d.push(response.data.order.temperature[i].dairy);
@@ -112,11 +111,6 @@ class LineChart extends Component {
                     pc.push('rgba(80, 258, 225, 0.6)');
                     ac.push('rgba(225, 99, 132, 0.6)');
                 }
-                localStorage.setItem('f', f);
-                localStorage.setItem('d', d);
-                localStorage.setItem('m', m);
-                localStorage.setItem('p', p);
-                localStorage.setItem('a', a);
                 this.setState({
                     orderTempData: {
                         labels: count,
