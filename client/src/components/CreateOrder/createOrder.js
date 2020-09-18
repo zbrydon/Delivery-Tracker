@@ -49,7 +49,9 @@ const CreateOrder = () => {
                 //this.redirectToLogin();
             }
         });
-
+        alert("Order has been Sumbitted")
+        window.location.reload()
+        
     };
     useEffect(() => {
         const data = async () => {
