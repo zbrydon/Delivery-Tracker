@@ -61,7 +61,8 @@ viewOrder.get('/viewOrder', authenticate, viewOrderr, (req, res) => {
     return res.status(200).send({
         success: true,
         message: 'Order Displayed',
-        order: res.locals.order
+        order: res.locals.order,
+        location: res.locals.location
     })
 });
 

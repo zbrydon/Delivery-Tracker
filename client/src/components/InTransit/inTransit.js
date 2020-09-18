@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navbar from '../Tools/StoreNavbar'
-import  {GoogleMap, withScriptjs, withGoogleMap, Marker} from "react-google-maps"
+import  {GoogleMap, withScriptjs, withGoogleMap, Marker , DirectionsRenderer} from "react-google-maps"
 import "../DisplayWarehouses/maps.css"
 import mapStyles from '../DisplayWarehouses/mapStyles'
 import Chart from "../InTransit/chart"
@@ -12,54 +12,74 @@ const TrackOrder = () => {
     const [orderLng, setOrderLng] = useState();
     const [storeLat, setStoreLat] = useState();
     const [storeLng, setStoreLng] = useState();
+    const [directions, setDirections] = useState();
+    const [count, setCount] = useState(0);
     
 
     const API_URL = process.env.REACT_APP_API_URL;
     const token = localStorage.getItem("auth-token");
     const headers = { authorization: token };
 
-    useEffect(() => {
+    function GetData() {
         const params = { orderId: 1000 };
         axios.get(
             `${API_URL}/viewOrder`, { headers, params }
         ).then(response => {
             if (response.data.success) {
-
-                console.log(response.data);
-
-                localStorage.setItem('c', response.data.order.location.lat);
-
                 setOrderLat(response.data.order.location.lat);
-                console.log(response.data.order.location.lat);
-                setOrderLng(response.data.order.location.lng);
+                setOrderLng(response.data.order.location.long);
+                
+                setStoreLat(response.data.location.lat);
+                setStoreLng(response.data.location.long);
 
-
-                setStoreLat(-37.84866);
-                setStoreLng(145.11306);
-                localStorage.setItem('a', orderLat);
-                localStorage.setItem('b', orderLng);
+                /*setStoreLat(-37.84866);
+                setStoreLng(145.11306);*/
             }
-            console.log(orderLat);
-            console.log(orderLng);
-            }).catch(error => {
-                localStorage.setItem('err', error);
-                if (error.response === 406) {
-                    //display "please refresh your session" here
-                    //return history.push("/refresh");
-                } if (error.response === 403) {
-                    //display "please login" here
-                    //this.redirectToLogin();
-                }
-            });
+        }).catch(error => {
+            localStorage.setItem('err', error);
+            if (error.response === 406) {
+                //display "please refresh your session" here
+                //return history.push("/refresh");
+            } if (error.response === 403) {
+                //display "please login" here
+                //this.redirectToLogin();
+            }
+        });
+    }
+
+
+    useEffect(() => {
+        GetData();
+
     }, []);
 
+    useEffect(() => {
+        
+    });
+
     function Map() {
+        if (count < 1) {
+            const DirectionsService = new window.google.maps.DirectionsService();
+            DirectionsService.route({
+                origin: new window.google.maps.LatLng(orderLat, orderLng),
+                destination: new window.google.maps.LatLng(storeLat, storeLng),
+                travelMode: window.google.maps.TravelMode.DRIVING,
+            }, (result, status) => {
+                if (status === window.google.maps.DirectionsStatus.OK) {
+                    setDirections(result);
 
-
+                } else {
+                    console.error(`error fetching directions ${result}`);
+                }
+            });
+            setCount(1);
+        } 
+        
+        
         return (
             <div>
                 <GoogleMap
-                    defaultZoom={14}
+                    defaultZoom={12}
                     defaultCenter={{ lat: -37.850130, lng: 145.119060 }}
                     defaultOptions={{ styles: mapStyles }}
                 >
@@ -71,10 +91,12 @@ const TrackOrder = () => {
                         lat: storeLat,
                         lng: storeLng
                     }} />
+                    <DirectionsRenderer directions={directions} />
                 </GoogleMap>
             </div>
         );
     }
+   
 
     const WrappedMap = withScriptjs(withGoogleMap(Map))
 
