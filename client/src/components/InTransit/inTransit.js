@@ -13,7 +13,8 @@ const TrackOrder = () => {
     const [storeLat, setStoreLat] = useState();
     const [storeLng, setStoreLng] = useState();
     const [directions, setDirections] = useState();
-    const [count, setCount] = useState(0);
+
+    const [count, setCount] = useState();
     
 
     const API_URL = process.env.REACT_APP_API_URL;
@@ -31,7 +32,8 @@ const TrackOrder = () => {
                 
                 setStoreLat(response.data.location.lat);
                 setStoreLng(response.data.location.long);
-
+                document.getElementById("eta").innerHTML ="ETA " + response.data.order.ETA;
+                document.getElementById("dist").innerHTML ="Distance " + response.data.order.EDA + " km";
                 /*setStoreLat(-37.84866);
                 setStoreLng(145.11306);*/
             }
@@ -50,7 +52,7 @@ const TrackOrder = () => {
 
     useEffect(() => {
         GetData();
-
+        setCount(0);
     }, []);
 
     useEffect(() => {
@@ -58,6 +60,7 @@ const TrackOrder = () => {
     });
 
     function Map() {
+        //let count = 0;
         if (count < 1) {
             const DirectionsService = new window.google.maps.DirectionsService();
             DirectionsService.route({
@@ -67,12 +70,14 @@ const TrackOrder = () => {
             }, (result, status) => {
                 if (status === window.google.maps.DirectionsStatus.OK) {
                     setDirections(result);
+                    
 
                 } else {
                     console.error(`error fetching directions ${result}`);
                 }
             });
-            setCount(1);
+            setCount(count + 1);
+            //count++;
         } 
         
         
@@ -116,6 +121,10 @@ const TrackOrder = () => {
                         mapElement={<div style={{ height: "100%" }} />}
                     />
                     <Chart />
+                </div>
+                <div className = "ETA">
+                    <h2 id="eta"></h2>
+                    <h2 id ="dist"></h2>
                 </div>
             </div>
 
