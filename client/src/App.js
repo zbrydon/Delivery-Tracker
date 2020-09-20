@@ -16,8 +16,8 @@ import StoreDB from "./components/StoreDB/StoreDB";
 import UpdateOrder from "./components/UpdateOrder/UpdateOrder";
 import WarehouseChart from "./components/WarehouseChart/WarehouseChart";
 import DeleteOrders from "./components/DeleteOrders/DeleteOrders";
-// import DisplayWarehouses from "./components/DisplayWarehouses/displayWarehouse";
-// import InTransit from "./components/InTransit/inTransit";
+import DisplayWarehouses from "./components/DisplayWarehouses/displayWarehouse";
+import InTransit from "./components/InTransit/inTransit";
 
 function App() {
   return (
@@ -40,8 +40,8 @@ function App() {
           <Route path="/warehouseChart" component={WarehouseChart} />
           <Route path="/updateOrder" component={UpdateOrder} />
           <Route path="/deleteOrder" component={DeleteOrders} />
-          {/* <Route path="/displayWarehouses" component={DisplayWarehouses} /> */}
-          {/* <Route path="/inTransit" component={InTransit} /> */}
+          <Route path="/displayWarehouses" component={DisplayWarehouses} />
+          <Route path="/inTransit" component={InTransit} />
         </Switch>
       </BrowserRouter>
     </div>

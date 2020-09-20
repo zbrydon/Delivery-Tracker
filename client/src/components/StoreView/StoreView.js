@@ -22,14 +22,6 @@ const StoreView = () => {
       };
 
       const result = await Axios.get(`${API_URL}/viewStores`, { headers });
-      for (let i = 0; i < result.data.count; i++) {
-        //render components dynamically here
-        store.id = result.data.stores[i].id;
-        store.status = "Requested";
-        stores[i] = store;
-        //localStorage.setItem(`x${i}`, stores[i].id);
-        //localStorage.setItem(`z${i}`, stores[i].status);
-      }
 
       if (result.data.stores[0].id === 11111 && result.data.success === true) {
         setStore1({ reqStatus: "Requested", theme: "#FDC0C3" });
@@ -43,39 +35,21 @@ const StoreView = () => {
         setStore2({ reqStatus: "No Request", theme: "#c9deff" });
       }
 
-      // if (result.data.stores[2].id === 11113 && result.data.success === true) {
-      //   setStore3({ reqStatus: "Requested", theme: "#FDC0C3" });
-      // } else {
-      //   setStore3({ reqStatus: "No Request", theme: "#c9deff" });
-      // }
+      if (result.data.stores[2].id === 11113 && result.data.success === true) {
+        setStore3({ reqStatus: "Requested", theme: "#FDC0C3" });
+      } else {
+        setStore3({ reqStatus: "No Request", theme: "#c9deff" });
+      }
 
-      // if (result.data.stores[3].id === 11114 && result.data.success === true) {
-      //   setStore4({ reqStatus: "Requested", theme: "#FDC0C3" });
-      // } else {
-      //   setStore4({ reqStatus: "No Request", theme: "#c9deff" });
-      // }
+      if (result.data.stores[3].id === 11114 && result.data.success === true) {
+        setStore4({ reqStatus: "Requested", theme: "#FDC0C3" });
+      } else {
+        setStore4({ reqStatus: "No Request", theme: "#c9deff" });
+      }
     };
     data();
   }, []);
   return (
-    /*<div>
-            <NavBar />
-            <br></br>
-            <div className="card-container">
-                <div className="cards">
-                    {stores.map((store) => (
-                        <div className="card" style={{ background: "#FDC0C3" }} >
-                            <h3 key={store}>{store.id}</h3>
-                            <span className="status" key={store}>{store.status}</span>
-                            <a href={"/warehouseDB"}>
-                                <button>Details</button>
-                            </a>
-                        </div >
-                        ))}
-
-                </div>
-            </div>
-        </div>*/
     <div>
       <NavBar />
       <br></br>

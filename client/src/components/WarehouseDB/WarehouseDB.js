@@ -15,6 +15,7 @@ const WarehouseDB = () => {
     produceQuantity: 0,
   });
   const [ordersView, setOrdersView] = useState([]);
+
   const query = useQuery();
 
   useEffect(() => {
