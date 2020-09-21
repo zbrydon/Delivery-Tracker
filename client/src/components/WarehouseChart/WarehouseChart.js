@@ -5,22 +5,22 @@ import axios from "axios";
 
 const WarehouseChart = () => {
   const [chartData, setChartData] = useState({});
-  // const query = useQuery();
+  const query = useQuery();
 
   const chart = () => {
-    let productType = [];
+    // let productType = [];
 
-    let productQuantity = [];
+    // let productQuantity = [];
 
     const API_URL = process.env.REACT_APP_API_URL;
     const token = localStorage.getItem("auth-token");
     const headers = { authorization: token };
-    // const param = { storeId: query.get("storeId"), warehouseId: 1111 };
+    const param = { storeId: query.get("storeId"), warehouseId: 1111 };
 
     axios
       .get(`${API_URL}/viewPopularOrders`, {
         headers: headers,
-        // params: param,
+        params: param,
       })
       .then(function (response) {
         let data = response.data;
@@ -63,9 +63,9 @@ const WarehouseChart = () => {
   useEffect(() => {
     chart();
   }, []);
-  // function useQuery() {
-  //   return new URLSearchParams(useLocation().search);
-  // }
+  function useQuery() {
+    return new URLSearchParams(useLocation().search);
+  }
   return (
     <>
       <Doughnut data={chartData} />

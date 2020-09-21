@@ -1,0 +1,124 @@
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Nunito", sans-serif;
+  color: #373b3f;
+}
+
+.formRe {
+  max-width: 450px;
+  margin: 10px auto;
+  padding: 10px 20px;
+  background: #f4f7f8;
+  border-radius: 8px;
+}
+
+.headRe {
+  margin: 0 0 30px 0;
+  text-align: center;
+  font-weight: bold;
+}
+
+#userID,
+#RePassword,
+#ConPassword {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  font-size: 16px;
+  height: auto;
+  margin: 0;
+  outline: 0;
+  padding: 10px;
+  width: 100%;
+  background-color: #ffffff;
+  color: #8a97a0;
+  box-shadow: 0 1px 0 rgba(0, 0, 0.04, 0.03) inset;
+}
+textarea,
+select {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  font-size: 16px;
+  height: auto;
+  margin: 0;
+  outline: 0;
+  padding: 15px;
+  width: 100%;
+  background-color: #ffffff;
+  color: #8a97a0;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+  margin-bottom: 20px;
+}
+
+/* input[type="radio"],
+  input[type="checkbox"] {
+    margin: 0 4px 8px 0;
+  } */
+
+/* select {
+    padding: 6px;
+    height: 32px;
+    border-radius: 2px;
+  } */
+
+.update-btn {
+  padding: 20px 30px 20px 30px;
+  color: #fff;
+  background-color: #58c6ea;
+  position: relative;
+  font-size: 18px;
+  text-align: center;
+  font-style: normal;
+  border-radius: 5px;
+  width: 100%;
+  border: 1px solid #0fa8db;
+  border-width: 1px 1px 3px;
+  box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
+  margin: 20px 0 20px 0;
+}
+
+fieldset {
+  margin-bottom: 30px;
+  border: none;
+}
+
+legend {
+  font-size: 1.4em;
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+label.light {
+  font-weight: 300;
+  display: inline;
+}
+
+.number {
+  background-color: #3aadd3;
+  color: #fff;
+  height: 30px;
+  width: 30px;
+  display: inline-block;
+  font-size: 0.8em;
+  margin-right: 4px;
+  line-height: 28px;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-radius: 100%;
+}
+
+@media screen and (min-width: 400px) {
+  form {
+    max-width: 450px;
+  }
+}

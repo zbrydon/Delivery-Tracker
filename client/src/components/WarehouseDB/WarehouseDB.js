@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import NavBar from "../Tools/WarehouseNavbar";
 import "../WarehouseDB/WarehouseDB.Modules.css";
+import WarehouseChart from "../WarehouseChart/WarehouseChart";
 import { useLocation } from "react-router-dom";
 import Moment from "react-moment";
 
@@ -174,7 +175,9 @@ const WarehouseDB = () => {
             </span>
           </button>
         </div>
-        <div id="piechart"></div>
+        <div id="piechart">
+          <WarehouseChart />
+        </div>
       </div>
       <div className="viewSOH">
         <a href={"/stockWarehouse"}>

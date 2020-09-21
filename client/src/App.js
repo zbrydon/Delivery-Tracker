@@ -18,6 +18,7 @@ import WarehouseChart from "./components/WarehouseChart/WarehouseChart";
 import DeleteOrders from "./components/DeleteOrders/DeleteOrders";
 import DisplayWarehouses from "./components/DisplayWarehouses/displayWarehouse";
 import InTransit from "./components/InTransit/inTransit";
+import RegisterAdmin from "./components/RegisterAdmin/RegisterAd";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
           <Route path="/deleteOrder" component={DeleteOrders} />
           <Route path="/displayWarehouses" component={DisplayWarehouses} />
           <Route path="/inTransit" component={InTransit} />
+          <Route path="/registerAd" component={RegisterAdmin} />
         </Switch>
       </BrowserRouter>
     </div>

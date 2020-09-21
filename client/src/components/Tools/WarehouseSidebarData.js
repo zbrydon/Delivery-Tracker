@@ -8,11 +8,6 @@ import * as Truck from "react-icons/fa";
 //to add more pase a curly brace and add a title, path, icon and cName.
 export const SidebarData = [
   {
-    title: "Store status",
-    path: "/storeView",
-    cName: "nav-text",
-  },
-  {
     title: "Dashboard",
     path: "/WarehouseDB",
     icon: <IconName.MdDashboard />,

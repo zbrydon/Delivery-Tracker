@@ -5,6 +5,7 @@ import {
   withScriptjs,
   withGoogleMap,
   Marker,
+  DirectionsRenderer,
 } from "react-google-maps";
 import "../DisplayWarehouses/maps.css";
 import mapStyles from "../DisplayWarehouses/mapStyles";
@@ -16,22 +17,13 @@ const TrackOrder = () => {
   const [orderLng, setOrderLng] = useState();
   const [storeLat, setStoreLat] = useState();
   const [storeLng, setStoreLng] = useState();
+  const [directions, setDirections] = useState();
+
+  const [count, setCount] = useState();
 
   const API_URL = process.env.REACT_APP_API_URL;
   const token = localStorage.getItem("auth-token");
   const headers = { authorization: token };
-
-  useEffect(
-    () => {
-      GetData();
-    },
-    []
-  );
-
-  useEffect(() => {
-    localStorage.setItem("a", orderLat);
-    localStorage.setItem("b", orderLng);
-  });
 
   function GetData() {
     const params = { orderId: 1000 };
@@ -39,13 +31,17 @@ const TrackOrder = () => {
       .get(`${API_URL}/viewOrder`, { headers, params })
       .then((response) => {
         if (response.data.success) {
-          localStorage.setItem("c", response.data.order.location.lat);
-
           setOrderLat(response.data.order.location.lat);
-          setOrderLng(response.data.order.location.lng);
+          setOrderLng(response.data.order.location.long);
 
-          setStoreLat(-37.84866);
-          setStoreLng(145.11306);
+          setStoreLat(response.data.location.lat);
+          setStoreLng(response.data.location.long);
+          document.getElementById("eta").innerHTML =
+            "ETA " + response.data.order.ETA;
+          document.getElementById("dist").innerHTML =
+            "Distance " + response.data.order.EDA + " km";
+          /*setStoreLat(-37.84866);
+                setStoreLng(145.11306);*/
         }
       })
       .catch((error) => {
@@ -61,11 +57,39 @@ const TrackOrder = () => {
       });
   }
 
+  useEffect(() => {
+    GetData();
+    setCount(0);
+  }, []);
+
+  useEffect(() => {});
+
   function Map() {
+    //let count = 0;
+    if (count < 1) {
+      const DirectionsService = new window.google.maps.DirectionsService();
+      DirectionsService.route(
+        {
+          origin: new window.google.maps.LatLng(orderLat, orderLng),
+          destination: new window.google.maps.LatLng(storeLat, storeLng),
+          travelMode: window.google.maps.TravelMode.DRIVING,
+        },
+        (result, status) => {
+          if (status === window.google.maps.DirectionsStatus.OK) {
+            setDirections(result);
+          } else {
+            console.error(`error fetching directions ${result}`);
+          }
+        }
+      );
+      setCount(count + 1);
+      //count++;
+    }
+
     return (
       <div>
         <GoogleMap
-          defaultZoom={14}
+          defaultZoom={12}
           defaultCenter={{ lat: -37.85013, lng: 145.11906 }}
           defaultOptions={{ styles: mapStyles }}
         >
@@ -81,6 +105,7 @@ const TrackOrder = () => {
               lng: storeLng,
             }}
           />
+          <DirectionsRenderer directions={directions} />
         </GoogleMap>
       </div>
     );
@@ -105,6 +130,10 @@ const TrackOrder = () => {
           />
           <Chart />
         </div>
+        <div className="ETA">
+          <h2 id="eta"></h2>
+          <h2 id="dist"></h2>
+        </div>
       </div>
     </>
   );
@@ -114,8 +143,6 @@ export default TrackOrder;
 
 /*function Map()
 {
-
-
     return(
         <div>
             <GoogleMap
@@ -129,9 +156,7 @@ export default TrackOrder;
         </div>
     );
 }
-
 const WrappedMap = withScriptjs(withGoogleMap(Map))
-
 export default class displayWarehouses extends React.Component
 {
     constructor(props) {
@@ -145,11 +170,8 @@ export default class displayWarehouses extends React.Component
                 lat: -37.84866,
                 long: 145.11306
             }
-
         }
     }
-
-
     componentDidMount() {
         const API_URL = process.env.REACT_APP_API_URL;
         const token = localStorage.getItem('auth-token');

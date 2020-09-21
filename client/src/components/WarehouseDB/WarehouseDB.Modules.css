@@ -47,7 +47,7 @@ body {
   margin-left: 100px;
   margin-bottom: 40px;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   justify-self: center;
 }
 

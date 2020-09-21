@@ -35,17 +35,17 @@ const StoreView = () => {
         setStore2({ reqStatus: "No Request", theme: "#c9deff" });
       }
 
-      if (result.data.stores[2].id === 11113 && result.data.success === true) {
-        setStore3({ reqStatus: "Requested", theme: "#FDC0C3" });
-      } else {
-        setStore3({ reqStatus: "No Request", theme: "#c9deff" });
-      }
+      // if (result.data.stores[2].id === 11113 && result.data.success === true) {
+      //   setStore3({ reqStatus: "Requested", theme: "#FDC0C3" });
+      // } else {
+      //   setStore3({ reqStatus: "No Request", theme: "#c9deff" });
+      // }
 
-      if (result.data.stores[3].id === 11114 && result.data.success === true) {
-        setStore4({ reqStatus: "Requested", theme: "#FDC0C3" });
-      } else {
-        setStore4({ reqStatus: "No Request", theme: "#c9deff" });
-      }
+      // if (result.data.stores[3].id === 11114 && result.data.success === true) {
+      //   setStore4({ reqStatus: "Requested", theme: "#FDC0C3" });
+      // } else {
+      //   setStore4({ reqStatus: "No Request", theme: "#c9deff" });
+      // }
     };
     data();
   }, []);

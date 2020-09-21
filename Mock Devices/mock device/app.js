@@ -61,7 +61,8 @@ async function position(data) {
     })
     console.log(orderId);
     ///////////////////////Enable below for production limiting API requests
-    for (let i = 0; i < coordinates.coordinates.length; i + 4) {
+    for (let i = 0; i < coordinates.coordinates.length; i++) {
+        console.log(i);
         if (frozen != 0) {
             frozenTemp = randomInt(-25, -15);
         }
@@ -81,6 +82,7 @@ async function position(data) {
         let message = JSON.stringify({ orderId, location, frozenTemp, dairyTemp, meatTemp, produceTemp, ambientTemp});
         client.publish(topic, message);
         console.log(topic + " " + message);
+        i = i + 4;
         await sleep(5000);
     }
     

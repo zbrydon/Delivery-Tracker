@@ -13,3 +13,15 @@
     width: 125px;
     border-radius: 5px;
 }
+.Temp {
+    margin-top: 50px;
+    margin-left: 30px;
+    height: 500px;
+    width: 1000px;
+}
+.ETA {
+    margin-top: 50px;
+    margin-left: auto;
+    height: 500px;
+    width: 100px;
+}
