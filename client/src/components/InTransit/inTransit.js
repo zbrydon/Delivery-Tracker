@@ -35,9 +35,25 @@ const TrackOrder = () => {
           setOrderLng(response.data.order.location.long);
 
           setStoreLat(response.data.location.lat);
-          setStoreLng(response.data.location.long);
+            setStoreLng(response.data.location.long);
+            const today = new Date();
+            let mins = today.getMinutes();
+            let hours = today.getHours();
+            if (mins + Number(response.data.order.ETA) > 60) {
+                hours = hours + 1;
+                mins = (mins + Number(response.data.order.ETA)) - 60;
+            } else if (mins + Number(response.data.order.ETA) == 60) {
+                hours = hours + 1;
+                mins = 0;
+            } else {
+                mins = (mins + Number(response.data.order.ETA));
+            }
+            const ctime = hours + ":" + mins;
+
           document.getElementById("eta").innerHTML =
-            "ETA " + response.data.order.ETA;
+                "ETA " + ctime;
+            document.getElementById("time").innerHTML =
+                "Time " + response.data.order.ETA;
           document.getElementById("dist").innerHTML =
             "Distance " + response.data.order.EDA + " km";
           /*setStoreLat(-37.84866);
@@ -131,7 +147,8 @@ const TrackOrder = () => {
           <Chart />
         </div>
         <div className="ETA">
-          <h2 id="eta"></h2>
+                  <h2 id="eta"></h2>
+                  <h2 id="time"></h2>
           <h2 id="dist"></h2>
         </div>
       </div>
