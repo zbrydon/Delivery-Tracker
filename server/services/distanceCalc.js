@@ -37,6 +37,74 @@ function distanceCalc(message, req,res) {
                     const dlat = Number(store.location.lat);
                     const dlng = Number(store.location.long);
                     //console.log(message);
+                    if (olat == dlat && olng == dlng) {
+                        Order.findOneAndUpdate(
+                            { orderId: message.orderId },
+                            {
+                                $set: {
+                                    orderStatus: "Delivered",
+                                    location: store.location,
+                                    ETA: 0,
+                                    EDA:0
+                                },
+                                $push: { temperature: newTEMP }
+                            },
+                            {
+                                returnOriginal: false
+                                ,
+                                useFindAndModify: false
+                            },
+                            (err) => {
+                                if (err) {
+                                    console.log(err);
+                                    return res.status(400).send({
+                                        success: false,
+                                        message: err
+                                    });
+                                } else {
+                                    return;
+                                }
+                            });
+                        let newSOH = {
+                            frozen: 0,
+                            dairy: 0,
+                            meat: 0,
+                            produce: 0,
+                            ambient: 0
+                        }
+
+                        newSOH = {
+                            frozen: store.SOH.frozen + frozenQuantity,
+                            dairy: store.SOH.dairy + dairyQuantity,
+                            meat: store.SOH.meat + meatQuantity,
+                            produce: store.SOH.produce + produceQuantity,
+                            ambient: store.SOH.ambient + ambientQuantity
+                        }
+
+                        Store.findOneAndUpdate(
+                            { id: order.storeId },
+                            {
+                                $set: {
+                                    SOH: newSOH
+                                }
+                            },
+                            {
+                                returnOriginal: false
+                                ,
+                                useFindAndModify: false
+                            },
+                            (err) => {
+                                if (err) {
+                                    console.log(err);
+                                    return res.status(400).send({
+                                        success: false,
+                                        message: err
+                                    });
+                                } else {
+                                    return;
+                                }
+                            });
+                    }
                     const client = new Client({});
                     client.distancematrix({
                         params: {
@@ -67,7 +135,7 @@ function distanceCalc(message, req,res) {
                                     $set: {
                                         location: orderLocation,
                                         ETA: ETA,
-                                        EDA,EDA
+                                        EDA: EDA
                                     },
                                     $push: { temperature: newTEMP }
                                 },
