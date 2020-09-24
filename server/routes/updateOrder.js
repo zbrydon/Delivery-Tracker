@@ -30,11 +30,21 @@ const updateOrder = express.Router();
  *              "orderId": 1001,
  *              "storeId": 11111,
  *              "warehouseId": 1111,
- *              "productType": "produce",
- *              "quantity": 6,
+ *              "forzenQuantity":2,
+ *               "dairyQuantity":3,
+ *               "meatQuantity":4,
+ *               "produceQuantity":1,
+ *               "ambientQuantity":3,
  *              "deliveryDateTime": 1629418210000,
  *              "orderDateTime": 1599540600000,
  *              "orderStatus": "In Transit",
+ *              "location": {
+ *                  "lat":-37.84832,
+ *                  "long":145.65423
+ *              },
+ *              "ETA": 11,
+ *              "EDA":26.2,
+ *              
  *              "__v": 0
  *          }
  *      }

@@ -24,24 +24,14 @@ const updateWarehouseSOH = express.Router();
  *      {
  *           "success": true,
  *           "message": "SOH Updated",
- *           "warehouse": {
- *               "_id": "5f3d14a15b6d3362e810f462",
- *               "id": 11111,
- *               "password": "$2b$10$.SlJBhXYNPWPaaAZ1JPyXOvQqPBGuEpuTkwmpe.XzPP5JO5c0QYPu",
- *               "location": {
- *                   "lat": -37.650623,
- *                   "long": 145.025698
- *               },
- *               "hasOrdered": false,
- *               "__v": 0,
- *               "SOH": {
- *                   "frozen": "3",
+ *           "warehouseSOH": {
+ *               "frozen": 3,
  *                   "dairy": 0,
  *                   "meat": 0,
  *                   "produce": 0,
  *                   "ambient": 0
- *               }
- *           }
+ *           },
+ *           "warehouseID": 1111
  *       }
  *
  * @apiError BadRequest The quantity is incorrect.
@@ -58,7 +48,8 @@ updateWarehouseSOH.post('/updateWarehouseSOH', authenticateWarehouse, validate, 
     return res.status(200).send({
         success: true,
         message: 'SOH Updated',
-        warehouse: res.locals.warehouse
+        warehouseSOH: res.locals.warehouseSOH,
+        warehouseID: res.locals.warehouseID
     })
     
 });

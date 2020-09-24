@@ -4,7 +4,7 @@ const viewOrder = require('../services/viewWarehouseOrders2');
 const viewWarehouseOrders = express.Router();
 
 /**
- * @api {get} /viewWarehouseOrders View Warehouse Orders
+ * @api {get} /viewWarehouseOrders View Warehouse Orders & Number of orders
  * @apiName View Warehouse Orders
  * @apiGroup Warehouse
  *
@@ -45,6 +45,9 @@ const viewWarehouseOrders = express.Router();
  *                   "orderStatus": "Unfulfilled",
  *                   "__v": 0
  *               }
+ *             ],
+ *               "count": 2
+ *               
  *       }
  *
  * @apiError NotFound The warehouse has no orders.
@@ -57,7 +60,7 @@ const viewWarehouseOrders = express.Router();
  *      }
  **/
 
-viewWarehouseOrders.get('/viewWarehouseOrders2', authenticate, viewOrder, (req, res) => {
+viewWarehouseOrders.get('/viewWarehouseOrdersToFulfill', authenticate, viewOrder, (req, res) => {
     return res.status(200).send({
         success: true,
         message: 'Orders Displayed',

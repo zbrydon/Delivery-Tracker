@@ -28,11 +28,20 @@ const fulfillOrder = express.Router();
  *               "orderId": 1000,
  *               "storeId": 1111,
  *               "warehouseId": 1111,
- *               "productType": "frozen",
- *               "quantity": 12,
+ *               "forzenQuantity":2,
+ *               "dairyQuantity":3,
+ *               "meatQuantity":4,
+ *               "produceQuantity":1,
+ *               "ambientQuantity":3,
  *               "deliveryDateTime": 1597909383000,
  *               "orderDateTime": 1597839772000,
  *               "orderStatus": "Fulfilled",
+ *               "location": {
+ *                  "lat":-37.84832,
+ *                  "long":145.65423
+ *              },
+ *              "ETA": 11,
+ *              "EDA":26.2,
  *               "__v": 0
  *           }
  *      }

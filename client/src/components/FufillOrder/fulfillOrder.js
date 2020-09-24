@@ -21,7 +21,7 @@ const FulfillOrder = () => {
         let arr = [];
         let ids = [];
         axios.get(
-            `${API_URL}/viewWarehouseOrders2`, { headers })
+            `${API_URL}/viewWarehouseOrdersToFulfill`, { headers })
             .then(response => {
                 if (response.data.success) {
                     for (let i = 0; i < response.data.count; i++) {

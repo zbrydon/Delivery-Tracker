@@ -68,7 +68,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n     \"success\": true,\n     \"message\": \"Order Created\",\n     \"order\": {\n         \"temperature\": [],\n         \"_id\": \"5f4e2f699542e13530ca1835\",\n         \"orderId\": 1006,\n         \"storeId\": 11111,\n         \"warehouseId\": 1111,\n         \"productType\": \"frozen\",\n         \"quantity\": 12,\n         \"deliveryDateTime\": 1629418210000,\n         \"orderDateTime\": 1598959464000,\n         \"orderStatus\": \"Unfulfilled\",\n         \"__v\": 0\n     }\n }",
+          "content": "HTTP/1.1 200 OK\n{\n     \"success\": true,\n     \"message\": \"Order Created\",\n     \"order\": {\n         \"temperature\": [],\n         \"_id\": \"5f4e2f699542e13530ca1835\",\n         \"orderId\": 1006,\n         \"storeId\": 11111,\n         \"warehouseId\": 1111,\n         \"forzenQuantity\":2,\n         \"dairyQuantity\":3,\n         \"meatQuantity\":4,\n         \"produceQuantity\":1,\n         \"ambientQuantity\":3,\n         \"deliveryDateTime\": 1629418210000,\n         \"orderDateTime\": 1598959464000,\n         \"orderStatus\": \"Unfulfilled\",\n         \"__v\": 0\n     }\n }",
           "type": "json"
         }
       ]
@@ -331,7 +331,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n    \"success\": true,\n    \"message\": \"Order Updated\",\n    \"order\": {\n        \"temperature\": [],\n        \"_id\": \"5f48ba4ad4ce8c6ee4329928\",\n        \"orderId\": 1001,\n        \"storeId\": 11111,\n        \"warehouseId\": 1111,\n        \"productType\": \"produce\",\n        \"quantity\": 6,\n        \"deliveryDateTime\": 1629418210000,\n        \"orderDateTime\": 1599540600000,\n        \"orderStatus\": \"In Transit\",\n        \"__v\": 0\n    }\n}",
+          "content": "HTTP/1.1 200 OK\n{\n    \"success\": true,\n    \"message\": \"Order Updated\",\n    \"order\": {\n        \"temperature\": [],\n        \"_id\": \"5f48ba4ad4ce8c6ee4329928\",\n        \"orderId\": 1001,\n        \"storeId\": 11111,\n        \"warehouseId\": 1111,\n        \"forzenQuantity\":2,\n         \"dairyQuantity\":3,\n         \"meatQuantity\":4,\n         \"produceQuantity\":1,\n         \"ambientQuantity\":3,\n        \"deliveryDateTime\": 1629418210000,\n        \"orderDateTime\": 1599540600000,\n        \"orderStatus\": \"In Transit\",\n        \"location\": {\n            \"lat\":-37.84832,\n            \"long\":145.65423\n        },\n        \"ETA\": 11,\n        \"EDA\":26.2,\n        \n        \"__v\": 0\n    }\n}",
           "type": "json"
         }
       ]
@@ -370,17 +370,38 @@ define({ "api": [
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "String",
+            "type": "Number",
             "optional": false,
-            "field": "productType",
-            "description": "<p>The type of SOH being updated (frozen || dairy || meat || produce || ambient)</p>"
+            "field": "frozenQuantity",
+            "description": "<p>Number of frozen pallets</p>"
           },
           {
             "group": "Parameter",
             "type": "Number",
             "optional": false,
-            "field": "quantity",
-            "description": "<p>The new quantity</p>"
+            "field": "dairyQuantity",
+            "description": "<p>Number of dairy pallets</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "meatQuantity",
+            "description": "<p>Number of meat pallets</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "produceQuantity",
+            "description": "<p>Number of produce pallets</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "ambientQuantity",
+            "description": "<p>Number of ambient pallets</p>"
           }
         ]
       }
@@ -406,15 +427,22 @@ define({ "api": [
             "group": "Success 200",
             "type": "Object",
             "optional": false,
-            "field": "store",
+            "field": "storeSOH",
             "description": "<p>The store that was updated</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "storeID",
+            "description": "<p>The stores id</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n     \"success\": true,\n     \"message\": \"SOH Updated\",\n     \"store\": {\n         \"_id\": \"5f3d14a15b6d3362e810f462\",\n         \"id\": 11111,\n         \"password\": \"$2b$10$.SlJBhXYNPWPaaAZ1JPyXOvQqPBGuEpuTkwmpe.XzPP5JO5c0QYPu\",\n         \"location\": {\n             \"lat\": -37.650623,\n             \"long\": 145.025698\n         },\n         \"hasOrdered\": false,\n         \"__v\": 0,\n         \"SOH\": {\n             \"frozen\": \"3\",\n             \"dairy\": 0,\n             \"meat\": 0,\n             \"produce\": 0,\n             \"ambient\": 0\n         }\n     }\n }",
+          "content": "HTTP/1.1 200 OK\n{\n     \"success\": true,\n     \"message\": \"SOH Updated\",\n     \"storeSOH\": {\n         \"frozen\": 3,\n             \"dairy\": 0,\n             \"meat\": 0,\n             \"produce\": 0,\n             \"ambient\": 0\n     },\n     \"storeID\": 11111\n }",
           "type": "json"
         }
       ]
@@ -426,20 +454,216 @@ define({ "api": [
             "group": "Error 4xx",
             "optional": false,
             "field": "BadRequest",
-            "description": "<p>The product type is incorrect.</p>"
+            "description": "<p>The quantity is incorrect.</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 406 BadRequest\n{\n     \"success\": false,\n     \"message\": \"Product Type in incorrect format\"\n}",
+          "content": "HTTP/1.1 400 BadRequest\n{\n     \"success\": false,\n     \"message\": \"Quantity inncorrect\"\n}",
           "type": "json"
         }
       ]
     },
     "version": "0.0.0",
     "filename": "routes/updateStoreSOH.js",
+    "groupTitle": "Store"
+  },
+  {
+    "type": "get",
+    "url": "/viewOrder",
+    "title": "View order details",
+    "name": "View_Order",
+    "group": "Store",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Request result</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Request status</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "order",
+            "description": "<p>The orders details</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "location",
+            "description": "<p>The destination of the order</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n     \"success\": true,\n     \"message\": \"Order Details Displayed\",\n     \"orders\": \n         {\n             \"temperature\": [],\n             \"_id\": \"5f48ba4ad4ce8c6ee4329928\",\n             \"orderId\": 1004,\n             \"storeId\": 11111,\n             \"warehouseId\": 1111,\n             \"forzenQuantity\":2,\n             \"dairyQuantity\":3,\n             \"meatQuantity\":4,\n             \"produceQuantity\":1,\n             \"ambientQuantity\":3,\n             \"deliveryDateTime\": 1600560610000,\n             \"orderDateTime\": 1598601802000,\n             \"orderStatus\": \"Unfulfilled\",\n             \"location\": {\n                \"lat\":-37.84832,\n                \"long\":145.65423\n                },\n             \"ETA\": 11,\n             \"EDA\":26.2,\n             \"__v\": 0\n         }\n }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NotFound",
+            "description": "<p>The store has no orders.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n     \"success\": false,\n     \"message\": \"This store has no orders\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "routes/viewOrder.js",
+    "groupTitle": "Store"
+  },
+  {
+    "type": "get",
+    "url": "/viewPopularOrders",
+    "title": "View Popular Orders",
+    "name": "View_Popular_Orders",
+    "group": "Store",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Request result</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Request status</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Array",
+            "optional": false,
+            "field": "orders",
+            "description": "<p>The orders from that store</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n     \"success\": true,\n     \"message\": \"Popular Orders Displayed\",\n     \"totals\": {\n        \"frozen\": 32,\n           \"dairy\": 15,\n           \"meat\": 12,\n           \"produce\": 23,\n           \"ambient\": 27\n     },\n     \"storeId\":11111\n }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NotFound",
+            "description": "<p>The store has no orders.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n     \"success\": false,\n     \"message\": \"This store has no orders\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "routes/viewPopularOrders.js",
+    "groupTitle": "Store"
+  },
+  {
+    "type": "get",
+    "url": "/viewOrdersByOrderId",
+    "title": "View Store Order by ID",
+    "name": "View_Store_Orders",
+    "group": "Store",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Request result</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Request status</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Array",
+            "optional": false,
+            "field": "orders",
+            "description": "<p>The orders from that store</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n     \"success\": true,\n     \"message\": \"Order Displayed\",\n     \"orders\": \n         {\n             \"temperature\": [],\n             \"_id\": \"5f48ba4ad4ce8c6ee4329928\",\n             \"orderId\": 1004,\n             \"storeId\": 11111,\n             \"warehouseId\": 1111,\n             \"forzenQuantity\":2,\n             \"dairyQuantity\":3,\n             \"meatQuantity\":4,\n             \"produceQuantity\":1,\n             \"ambientQuantity\":3,\n             \"deliveryDateTime\": 1600560610000,\n             \"orderDateTime\": 1598601802000,\n             \"orderStatus\": \"Unfulfilled\",\n             \"location\": {\n                \"lat\":-37.84832,\n                \"long\":145.65423\n                },\n             \"ETA\": 11,\n             \"EDA\":26.2,\n             \"__v\": 0\n         }\n }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NotFound",
+            "description": "<p>The store has no orders.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n     \"success\": false,\n     \"message\": \"This store has no orders\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "routes/viewOrdersByOrderId.js",
     "groupTitle": "Store"
   },
   {
@@ -632,6 +856,76 @@ define({ "api": [
     "groupTitle": "Store"
   },
   {
+    "type": "get",
+    "url": "/viewWarehouse",
+    "title": "View Warehouse that have outstanding orders",
+    "name": "View_Warehouse",
+    "group": "Store",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Request result</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Request status</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "stores",
+            "description": "<p>List of warehouse ids</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "count",
+            "description": "<p>number of warehouse ids returned</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"success\": true,\n    \"message\": \"Warehouse Displayed\",\n    \"stores\": [\n        {\n            \"id\": 11111\n        },\n        {\n            \"id\": 11112\n        },\n        {\n            \"id\": 11113\n        }\n    ],\n    \"count\": 3\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NotFound",
+            "description": "<p>No Warehouse have Ordered.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n     \"success\": false,\n     \"message\": \"No Stores have ordered\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "routes/viewWarehouses.js",
+    "groupTitle": "Store"
+  },
+  {
     "type": "post",
     "url": "/login",
     "title": "Login",
@@ -723,6 +1017,75 @@ define({ "api": [
   },
   {
     "type": "post",
+    "url": "/deleteOrder",
+    "title": "delete Order",
+    "name": "delete_Order",
+    "group": "Store",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "orderId",
+            "description": "<p>The ID of the order being deleted</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "success",
+            "description": "<p>delete result</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>delete status</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"success\": true,\n    \"message\": \"Order Deleted\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "BadRequest",
+            "description": "<p>The order does not belong to that store.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 406 BadRequest\n{\n    \"success\": false,\n    \"message\": \"Order does not belong to this store\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "routes/deleteOrder.js",
+    "groupTitle": "Store"
+  },
+  {
+    "type": "post",
     "url": "/fulfillOrder",
     "title": "Fulfill Order",
     "name": "Fulfill_Order",
@@ -776,7 +1139,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n    \"success\": true,\n     \"message\": \"Updated Order\",\n     \"order\": {\n         \"temperature\": [],\n         \"_id\": \"5f3d199cb6189681741a8365\",\n         \"orderId\": 1000,\n         \"storeId\": 1111,\n         \"warehouseId\": 1111,\n         \"productType\": \"frozen\",\n         \"quantity\": 12,\n         \"deliveryDateTime\": 1597909383000,\n         \"orderDateTime\": 1597839772000,\n         \"orderStatus\": \"Fulfilled\",\n         \"__v\": 0\n     }\n}",
+          "content": "HTTP/1.1 200 OK\n{\n    \"success\": true,\n     \"message\": \"Updated Order\",\n     \"order\": {\n         \"temperature\": [],\n         \"_id\": \"5f3d199cb6189681741a8365\",\n         \"orderId\": 1000,\n         \"storeId\": 1111,\n         \"warehouseId\": 1111,\n         \"forzenQuantity\":2,\n         \"dairyQuantity\":3,\n         \"meatQuantity\":4,\n         \"produceQuantity\":1,\n         \"ambientQuantity\":3,\n         \"deliveryDateTime\": 1597909383000,\n         \"orderDateTime\": 1597839772000,\n         \"orderStatus\": \"Fulfilled\",\n         \"location\": {\n            \"lat\":-37.84832,\n            \"long\":145.65423\n        },\n        \"ETA\": 11,\n        \"EDA\":26.2,\n         \"__v\": 0\n     }\n}",
           "type": "json"
         }
       ]
@@ -963,7 +1326,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n     \"success\": true,\n     \"message\": \"SOH Updated\",\n     \"warehouse\": {\n         \"_id\": \"5f3d14a15b6d3362e810f462\",\n         \"id\": 11111,\n         \"password\": \"$2b$10$.SlJBhXYNPWPaaAZ1JPyXOvQqPBGuEpuTkwmpe.XzPP5JO5c0QYPu\",\n         \"location\": {\n             \"lat\": -37.650623,\n             \"long\": 145.025698\n         },\n         \"hasOrdered\": false,\n         \"__v\": 0,\n         \"SOH\": {\n             \"frozen\": \"3\",\n             \"dairy\": 0,\n             \"meat\": 0,\n             \"produce\": 0,\n             \"ambient\": 0\n         }\n     }\n }",
+          "content": "HTTP/1.1 200 OK\n{\n     \"success\": true,\n     \"message\": \"SOH Updated\",\n     \"warehouseSOH\": {\n         \"frozen\": 3,\n             \"dairy\": 0,\n             \"meat\": 0,\n             \"produce\": 0,\n             \"ambient\": 0\n     },\n     \"warehouseID\": 1111\n }",
           "type": "json"
         }
       ]
@@ -1064,7 +1427,7 @@ define({ "api": [
   {
     "type": "get",
     "url": "/viewWarehouseOrders",
-    "title": "View Warehouse Orders",
+    "title": "View Warehouse Orders & Sort by Store ID",
     "name": "View_Warehouse_Orders",
     "group": "Warehouse",
     "success": {
@@ -1096,7 +1459,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n     \"success\": true,\n     \"message\": \"Orders Displayed\",\n     \"orders\": [\n         {\n             \"temperature\": [],\n             \"_id\": \"5f48ba4ad4ce8c6ee4329928\",\n             \"orderId\": 1004,\n             \"storeId\": 11111,\n             \"warehouseId\": 1111,\n             \"productType\": \"frozen\",\n             \"quantity\": 12,\n             \"deliveryDateTime\": 1600560610000,\n             \"orderDateTime\": 1598601802000,\n             \"orderStatus\": \"Unfulfilled\",\n             \"__v\": 0\n         },\n         {\n             \"temperature\": [],\n             \"_id\": \"5f48ba8e3059bc1fd4579124\",\n             \"orderId\": 1005,\n             \"storeId\": 11111,\n             \"warehouseId\": 1111,\n             \"productType\": \"frozen\",\n             \"quantity\": 12,\n             \"deliveryDateTime\": 1600560610000,\n             \"orderDateTime\": 1598601870000,\n             \"orderStatus\": \"Unfulfilled\",\n             \"__v\": 0\n         }\n }",
+          "content": "HTTP/1.1 200 OK\n{\n     \"success\": true,\n     \"message\": \"Orders Displayed\",\n     \"orders\": [\n         {\n             \"temperature\": [],\n             \"_id\": \"5f48ba4ad4ce8c6ee4329928\",\n             \"orderId\": 1004,\n             \"storeId\": 11111,\n             \"warehouseId\": 1111,\n             \"productType\": \"frozen\",\n             \"quantity\": 12,\n             \"deliveryDateTime\": 1600560610000,\n             \"orderDateTime\": 1598601802000,\n             \"orderStatus\": \"Unfulfilled\",\n             \"__v\": 0\n         },\n         {\n             \"temperature\": [],\n             \"_id\": \"5f48ba8e3059bc1fd4579124\",\n             \"orderId\": 1005,\n             \"storeId\": 11111,\n             \"warehouseId\": 1111,\n             \"productType\": \"frozen\",\n             \"quantity\": 12,\n             \"deliveryDateTime\": 1600560610000,\n             \"orderDateTime\": 1598601870000,\n             \"orderStatus\": \"Unfulfilled\",\n             \"__v\": 0\n         }\n       ],\n         \"count\": 2\n }",
           "type": "json"
         }
       ]
@@ -1122,6 +1485,69 @@ define({ "api": [
     },
     "version": "0.0.0",
     "filename": "routes/viewWarehouseOrders.js",
+    "groupTitle": "Warehouse"
+  },
+  {
+    "type": "get",
+    "url": "/viewWarehouseOrders",
+    "title": "View Warehouse Orders & Number of orders",
+    "name": "View_Warehouse_Orders",
+    "group": "Warehouse",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Request result</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Request status</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Array",
+            "optional": false,
+            "field": "orders",
+            "description": "<p>The orders from that Warehouse</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n     \"success\": true,\n     \"message\": \"Orders Displayed\",\n     \"orders\": [\n         {\n             \"temperature\": [],\n             \"_id\": \"5f48ba4ad4ce8c6ee4329928\",\n             \"orderId\": 1004,\n             \"storeId\": 11111,\n             \"warehouseId\": 1111,\n             \"productType\": \"frozen\",\n             \"quantity\": 12,\n             \"deliveryDateTime\": 1600560610000,\n             \"orderDateTime\": 1598601802000,\n             \"orderStatus\": \"Unfulfilled\",\n             \"__v\": 0\n         },\n         {\n             \"temperature\": [],\n             \"_id\": \"5f48ba8e3059bc1fd4579124\",\n             \"orderId\": 1005,\n             \"storeId\": 11111,\n             \"warehouseId\": 1111,\n             \"productType\": \"frozen\",\n             \"quantity\": 12,\n             \"deliveryDateTime\": 1600560610000,\n             \"orderDateTime\": 1598601870000,\n             \"orderStatus\": \"Unfulfilled\",\n             \"__v\": 0\n         }\n       ],\n         \"count\": 2\n         \n }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NotFound",
+            "description": "<p>The warehouse has no orders.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n     \"success\": false,\n     \"message\": \"This warehouse has no orders\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "routes/viewWarehouseOrders2.js",
     "groupTitle": "Warehouse"
   },
   {

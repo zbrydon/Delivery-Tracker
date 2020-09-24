@@ -32,7 +32,7 @@ const viewWarehouses = require('./routes/viewWarehouses');
 const deleteorder = require('./routes/deleteOrder');
 const viewPopularOrders = require('./routes/viewPopularOrders');
 const viewOrder = require('./routes/viewOrder');
-const viewWarehouseOrders2 = require('./routes/viewWarehouseOrders2');
+const viewWarehouseOrdersToFulfill = require('./routes/viewWarehouseOrdersToFulfill');
 
 
 /*
@@ -80,7 +80,7 @@ app.use(deleteorder);
 app.use(viewPopularOrders);
 app.use(viewOrdersByOrderId);
 app.use(viewOrder);
-app.use(viewWarehouseOrders2);
+app.use(viewWarehouseOrdersToFulfill);
 
 /*
  * Connecting to the HIVEMC MQTT broker and subscribing to the topic '/219203655/location/'

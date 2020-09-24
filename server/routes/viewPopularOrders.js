@@ -8,7 +8,7 @@ const viewPopularOrders = express.Router();
 /**
  * @api {get} /viewPopularOrders View Popular Orders
  * @apiName View Popular Orders
- * @apiGroup Popular
+ * @apiGroup Store
  *
  *
  * @apiSuccess {Boolean} success Request result
@@ -19,34 +19,15 @@ const viewPopularOrders = express.Router();
  *      HTTP/1.1 200 OK
  *      {
  *           "success": true,
- *           "message": "Orders Displayed",
- *           "orders": [
- *               {
- *                   "temperature": [],
- *                   "_id": "5f48ba4ad4ce8c6ee4329928",
- *                   "orderId": 1004,
- *                   "storeId": 11111,
- *                   "warehouseId": 1111,
- *                   "productType": "frozen",
- *                   "quantity": 12,
- *                   "deliveryDateTime": 1600560610000,
- *                   "orderDateTime": 1598601802000,
- *                   "orderStatus": "Unfulfilled",
- *                   "__v": 0
- *               },
- *               {
- *                   "temperature": [],
- *                   "_id": "5f48ba8e3059bc1fd4579124",
- *                   "orderId": 1005,
- *                   "storeId": 11111,
- *                   "warehouseId": 1111,
- *                   "productType": "frozen",
- *                   "quantity": 12,
- *                   "deliveryDateTime": 1600560610000,
- *                   "orderDateTime": 1598601870000,
- *                   "orderStatus": "Unfulfilled",
- *                   "__v": 0
- *               }
+ *           "message": "Popular Orders Displayed",
+ *           "totals": {
+ *              "frozen": 32,
+                "dairy": 15,
+                "meat": 12,
+                "produce": 23,
+                "ambient": 27
+ *           },
+ *           "storeId":11111
  *       }
  *
  * @apiError NotFound The store has no orders.
@@ -66,8 +47,9 @@ viewPopularOrders.get(
   (req, res) => {
     return res.status(200).send({
       success: true,
-      message: "Orders Displayed",
-      totals: res.locals.totals,
+      message: "Popular Orders Displayed",
+        totals: res.locals.totals,
+      storeId:res.locals.storeId
     });
   }
 );

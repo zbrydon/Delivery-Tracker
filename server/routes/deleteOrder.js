@@ -13,7 +13,6 @@ const deleteOrder = express.Router();
  *
  * @apiSuccess {Boolean} success delete result
  * @apiSuccess {String} message delete status
- * @apiSuccess {Object} store The store that was deleted
  *
  * @apiSuccessExample Success-Response:
  *      HTTP/1.1 200 OK

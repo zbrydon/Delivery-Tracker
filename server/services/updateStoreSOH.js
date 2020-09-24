@@ -29,7 +29,8 @@ function addSOH(req, res, next) {
                     message: err
                 })
             } else {
-                res.locals.store = store;
+                res.locals.storeSOH = store.SOH;
+                res.locals.storeID = store.id;
                 next();
             }
         });
