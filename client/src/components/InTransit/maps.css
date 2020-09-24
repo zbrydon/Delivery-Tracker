@@ -2,8 +2,8 @@
 {
     display: block;
     margin-left: auto;
-    margin-top: 10px;
     margin-right: auto;
+    margin-top: 10px;
     z-index: 1;
 }
 .bbutton
@@ -12,4 +12,19 @@
     margin-right: auto;
     width: 125px;
     border-radius: 5px;
+}
+.Temp
+{
+    margin-left: auto;
+    margin-right: auto;
+}
+.Stats
+{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(63, 168, 230);
+    width: 10%;
+   
 }

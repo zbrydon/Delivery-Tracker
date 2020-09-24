@@ -7,10 +7,10 @@ import {
   Marker,
   DirectionsRenderer,
 } from "react-google-maps";
-import "../DisplayWarehouses/maps.css";
 import mapStyles from "../DisplayWarehouses/mapStyles";
 import Chart from "../InTransit/chart";
 import axios from "axios";
+import "./maps.css"
 
 const TrackOrder = () => {
   const [orderLat, setOrderLat] = useState();
@@ -114,12 +114,22 @@ const TrackOrder = () => {
               lat: orderLat,
               lng: orderLng,
             }}
+            icon= {{
+              url: '/store.png',
+              scaledSize: new window.google.maps.Size(25, 25)
+          }}
           />
           <Marker
             position={{
               lat: storeLat,
               lng: storeLng,
             }}
+            icon= {{
+              url: '/warehouse.png',
+              scaledSize: new window.google.maps.Size(25, 25)
+          }}
+            
+          
           />
           <DirectionsRenderer directions={directions} />
         </GoogleMap>
@@ -144,13 +154,18 @@ const TrackOrder = () => {
             containerElement={<div style={{ height: "100%" }} />}
             mapElement={<div style={{ height: "100%" }} />}
           />
+          <br/>
+      
+        </div>
+        <div className="chart">
           <Chart />
-        </div>
-        <div className="ETA">
-                  <h2 id="eta"></h2>
-                  <h2 id="time"></h2>
-          <h2 id="dist"></h2>
-        </div>
+          </div>
+          <br/>
+            <div className="Stats">
+              <h2 id="eta"></h2>
+              <h2 id="time"></h2>
+              <h2 id="dist"></h2>
+            </div>
       </div>
     </>
   );

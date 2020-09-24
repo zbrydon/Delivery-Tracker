@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Line } from "react-chartjs-2";
-import "../DisplayWarehouses/maps.css";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
+import "./maps.css"
 
 class LineChart extends Component {
   redirectToLogin = () => {
@@ -190,50 +190,3 @@ class LineChart extends Component {
   }
 }
 export default withRouter(LineChart);
-
-/*import React, { Component } from "react";
-import {Line} from "react-chartjs-2";
-
-class LineChart extends Component
-{
-    
-    const state = 
-    {
-        labels: [1, 2, 3, 4, 5],
-        datasets: [
-            {
-                data:[-2, 5, 10, 20, 33],
-                label: 'Temperature',
-                fill: false,
-                lineTension: 0.5,
-                backgroundColor: 'rgba(75,192,192,1)',
-                borderColor: 'rgba(0,0,0,1)',
-                borderWidth: 2,
-            }
-        ]
-        }
-    render{
-    return (
-        <div>
-            <Line
-                data={state}
-                options={{
-                    title:
-                    {
-                        display: true,
-                        text: 'Stock Temp',
-                        fontSize: 20
-                    },
-                    legend:
-                    {
-                        display: true,
-                        position: 'right'
-                    }
-                }}
-            />
-        </div>
-    )
-};
-}
-
-export default LineChart*/
