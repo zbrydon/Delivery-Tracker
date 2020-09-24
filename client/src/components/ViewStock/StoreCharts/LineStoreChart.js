@@ -87,7 +87,7 @@ class LineCharts extends Component
     {
         return(
             <div>
-                <div className="Temp">
+                <div className="Temperature">
                     <Line 
                         data={this.state.storeTempData}
                         options={{ maintainAspectRatio: true,

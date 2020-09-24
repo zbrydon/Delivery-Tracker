@@ -113,12 +113,18 @@ const StoreDB = () => {
               <button className="choosing-btn">Delete Order</button>
             </a>
           </div>
+          <div id="option">
+            <a href={"/inTransit"}>
+              <button className="choosing-btn">In Transit</button>
+            </a>
+          </div>
           {orderId ? (
             <div id="option">
               <a href={"/updateOrder?orderId=" + orderId}>
                 <button className="choosing-btn">Update Order</button>
               </a>
             </div>
+            
           ) : (
             ""
           )}

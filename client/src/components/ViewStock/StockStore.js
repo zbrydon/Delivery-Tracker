@@ -20,7 +20,7 @@ class StockStore extends Component
                     <div className="Stock">
                         <BarChart />
                     </div>
-                    <div className='Temp'>    
+                    <div className='Temperature'>    
                         <LineChart />
                     </div>
                 <br/>

@@ -114,12 +114,22 @@ const TrackOrder = () => {
               lat: orderLat,
               lng: orderLng,
             }}
+            icon= {{
+              url: '/store.png',
+              scaledSize: new window.google.maps.Size(25, 25)
+          }}
           />
           <Marker
             position={{
               lat: storeLat,
               lng: storeLng,
             }}
+            icon= {{
+              url: '/warehouse.png',
+              scaledSize: new window.google.maps.Size(25, 25)
+          }}
+            
+          
           />
           <DirectionsRenderer directions={directions} />
         </GoogleMap>
