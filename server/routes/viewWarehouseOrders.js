@@ -60,7 +60,6 @@ const viewWarehouseOrders = express.Router();
  **/
 
 viewWarehouseOrders.get('/viewWarehouseOrders', authenticate, viewOrder, (req, res) => {
-    console.log(res.locals.orders[0]);
     return res.status(200).send({
         success: true,
         message: 'Orders Displayed',

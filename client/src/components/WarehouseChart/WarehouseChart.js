@@ -15,7 +15,7 @@ const WarehouseChart = () => {
     const API_URL = process.env.REACT_APP_API_URL;
     const token = localStorage.getItem("auth-token");
     const headers = { authorization: token };
-    const param = { storeId: query.get("storeId"), warehouseId: 1111 };
+    const param = { storeId: 11111, warehouseId: 1111 };
 
     axios
       .get(`${API_URL}/viewPopularOrders`, {

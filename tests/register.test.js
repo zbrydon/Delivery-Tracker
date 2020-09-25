@@ -123,7 +123,11 @@ test('Register Warehouse Test Success', async () => {
     const body = {
         id: 1234,
         password: "password",
-        confirm_password: "password"
+        confirm_password: "password",
+        location: {
+            lat: "-30",
+            long: "140"
+        }
     }
     const response = await registerWarehouse(body);
     expect(response.data).toMatchObject(successResponseRegisterWarehouse);
@@ -133,7 +137,11 @@ test('Register Warehouse Test Fail 1', async () => {
     const body = {
         id: 1234,
         password: "password",
-        confirm_password: "password"
+        confirm_password: "password",
+        location: {
+            lat: "-30",
+            long: "140"
+        }
     }
 
     return registerWarehouse(body).catch(e => {
@@ -145,7 +153,11 @@ test('Register Warehouse Test Fail 2', async () => {
     const body = {
         id: "abcd",
         password: "password",
-        confirm_password: "password"
+        confirm_password: "password",
+        location: {
+            lat: "-30",
+            long: "140"
+        }
     }
     return registerWarehouse(body).catch(e => {
         expect(e.response.data.message).toMatch('ID or Password in incorrect format');
@@ -155,7 +167,11 @@ test('Register Warehouse Test Fail 3', async () => {
     const body = {
         id: 123,
         password: "password",
-        confirm_password: "password"
+        confirm_password: "password",
+        location: {
+            lat: "-30",
+            long: "140"
+        }
     }
     return registerWarehouse(body).catch(e => {
         expect(e.response.data.message).toMatch('ID or Password in incorrect format');
@@ -166,7 +182,11 @@ test('Register Warehouse Test Fail 4', async () => {
     const body = {
         id: 12345,
         password: "password",
-        confirm_password: "password"
+        confirm_password: "password",
+        location: {
+            lat: "-30",
+            long: "140"
+        }
     }
     return registerWarehouse(body).catch(e => {
         expect(e.response.data.message).toMatch('ID or Password in incorrect format');
@@ -176,7 +196,11 @@ test('Register Warehouse Test Fail 5', async () => {
     const body = {
         id: 1234,
         password: "passwor",
-        confirm_password: "passwor"
+        confirm_password: "passwor",
+        location: {
+            lat: "-30",
+            long: "140"
+        }
     }
     return registerWarehouse(body).catch(e => {
         expect(e.response.data.message).toMatch('ID or Password in incorrect format');
@@ -187,11 +211,28 @@ test('Register Warehouse Test Fail 6', async () => {
     const body = {
         id: 1234,
         password: "password",
-        confirm_password: "password1"
+        confirm_password: "password1",
+        location: {
+            lat: "-30",
+            long: "140"
+        }
     }
     return registerWarehouse(body).catch(e => {
         expect(e.response.data.message).toMatch('Passwords do not match');
     });
 })
 
-
+test('Register Warehouse Test Fail 7', async () => {
+    const body = {
+        id: 1234,
+        password: "password",
+        confirm_password: "password",
+        location: {
+            lat: "location",
+            long: "location"
+        }
+    }
+    return registerWarehouse(body).catch(e => {
+        expect(e.response.data.message).toMatch('Location in Incorrect format');
+    });
+})

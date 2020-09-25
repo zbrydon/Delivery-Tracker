@@ -5,6 +5,7 @@ async function updateOrder(req, res, next) {
     const updated = res.orderId;
     const newOrderStatus = res.orderStatus;
     Order.findOne({ orderId: updated }, (err, order) => {
+        
         if (err) {
             return res.status(400).send({
                 success: false,
@@ -15,25 +16,25 @@ async function updateOrder(req, res, next) {
                 success: false,
                 message: 'Order not found'
             });
-        }
+        } 
         if (newOrderStatus == "In Transit" && order.orderStatus != "Fulfilled") {
             return res.status(406).send({
                 success: false,
                 message: 'Order not ready to be dispacted'
             });
-        }
+        } 
         if (newOrderStatus == "Delivered" && order.orderStatus != "In Transit") {
             return res.status(406).send({
                 success: false,
                 message: 'Order not ready to be Delivered'
             });
-        }
+        } 
         if (newOrderStatus == "Fulfilled" && order.orderStatus != "Unfulfilled") {
             return res.status(406).send({
                 success: false,
                 message: 'Order cannot be fulfilled'
             });
-        }
+        } 
         if (newOrderStatus == "In Transit") {
             let currentDate = new Date();
             currentDate = Date.parse(currentDate);
@@ -131,6 +132,7 @@ async function updateOrder(req, res, next) {
                         });
                 }
             });
+        
         Order.findOneAndUpdate(
             { orderId: updated },
             { $set: { orderStatus: newOrderStatus } },

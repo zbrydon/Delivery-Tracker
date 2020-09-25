@@ -23,7 +23,7 @@ const WarehouseDB = () => {
     const API_URL = process.env.REACT_APP_API_URL;
     const token = localStorage.getItem("auth-token");
     const headers = { authorization: token };
-    const param = { storeId: query.get("storeId"), warehouseId: 1111 };
+    const param = { storeId: 11111, warehouseId: 1111 };
 
     axios
       .get(`${API_URL}/viewWarehouseOrders`, {
@@ -185,12 +185,16 @@ const WarehouseDB = () => {
             View SOH
           </button>
         </a>
-        <a href={"/storeView"}>
-          <button className="btn btn-sm">Store View</button>
-        </a>
+        
       </div>
     </>
   );
 };
 
 export default WarehouseDB;
+/*
+<a href={"/storeView"}>
+          <button className="btn btn-sm">Store View</button>
+        </a>
+
+*/
