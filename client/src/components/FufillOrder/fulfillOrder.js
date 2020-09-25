@@ -93,9 +93,9 @@ const FulfillOrder = () => {
                 //this.redirectToLogin();
             }
         });
-
+        alert("Order has been fulfilled");
     };
-
+    
     const handleSubmitClickInTrans = async (e) => {
         e.preventDefault();
         if (!orderId)
@@ -122,7 +122,6 @@ const FulfillOrder = () => {
                 //this.redirectToLogin();
             }
         });
-
     };
 
     return (
