@@ -9,6 +9,7 @@ import axios from 'axios'
 
 const DisplayWarehouses = () =>
 {
+    //declaring the consts latitude and logitude for the markers
     const [selectedWarehouse, setSelectedWarehouse] = useState(null);
     const WrappedMap = withScriptjs(withGoogleMap(Map));
     const [warehouseLat, setWarehouseLat] = useState();
@@ -28,6 +29,7 @@ const DisplayWarehouses = () =>
             .then(response => {   
                 if(response.data.success) 
                 {  
+                    //retriving the data from rhe get request and setting the latitudes and logitudes to the consts
                     setWarehouseLat(response.data.warehouses[0].location.lat)
                     setWarehouseLng(response.data.warehouses[0].location.long)
                     setWarehouseLat1(response.data.warehouses[1].location.lat)

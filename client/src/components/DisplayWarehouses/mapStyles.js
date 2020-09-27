@@ -1,3 +1,4 @@
+// map styling sheet for google-maps-react
 export default [
     {
         "featureType": "administrative",
