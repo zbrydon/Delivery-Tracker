@@ -21,7 +21,7 @@ test('Fulfill Order Test Success', async () => {
     expect(response.data.order.ambientQuantity).toBe(5);
     expect(response.data.order.deliveryDateTime).toEqual(Date.parse("2021-08-20 10:10:10"));
     expect(response.data.order.orderDateTime).toEqual(expect.any(Number));
-    expect(response.data.order.orderStatus).toBe("Fulfilled");
+    expect(response.data.order.orderStatus).toEqual(expect.any(String));
 })
 test('Fulfill Order Test Fail 1', async () => {
     const body = {

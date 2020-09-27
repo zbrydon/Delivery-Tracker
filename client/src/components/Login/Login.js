@@ -17,7 +17,7 @@ const Login = () => {
     const loginRes = await axios.post(`${API_URL}/login`, loginUser);
 
     if (loginRes.data.type === "warehouse") {
-        history.push("/storeView");
+        history.push("/warehouseDB");
       localStorage.setItem(
         "auth-token",
         "Bearer " + loginRes.data.tokens.token

@@ -21,11 +21,13 @@ function createOrder(req, res, next) {
                 success: false,
                 message: err
             });
+            console.log('1');
         } if (!warehouse) {
             return res.status(404).send({
                 success: false,
                 message: 'Warehouse does not exist'
             });
+
         }
         let newSOH = {
             frozen: 0,
@@ -39,6 +41,7 @@ function createOrder(req, res, next) {
                 success: false,
                 message: 'Warehouse does not have enough stock to fulfill the order'
             });
+            console.log('3');
         } else {
             newSOH = {
                 frozen: warehouse.SOH.frozen - frozenQuantity,
@@ -61,6 +64,7 @@ function createOrder(req, res, next) {
                         success: false,
                         message: err
                     })
+                    console.log('3');
                 } else {
 
 
@@ -91,6 +95,7 @@ function createOrder(req, res, next) {
                                 success: false,
                                 message: err
                             });
+                            console.log('4');
                         } else {
                             const newOrder = new Order({
                                 orderId: orderId,
@@ -118,8 +123,10 @@ function createOrder(req, res, next) {
                                         success: false,
                                         message: err
                                     });
+                                    console.log('5');
                                 } else {
                                     res.locals.order = newOrder;
+                                    console.log('6');
                                     next();
                                 }
 

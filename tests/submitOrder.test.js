@@ -97,18 +97,3 @@ test('Submit Order Test Fail 5', async () => {
         expect(e.response.data.message).toMatch('Date in incorrect format (2020-08-20 10:10:10) or has already passed');
     });
 })
-
-test('Submit Order Test Fail 7', async () => {
-    const body = {
-        warehouseId: 1000,
-        frozenQuantity: 1,
-        dairyQuantity: 2,
-        meatQuantity: 3,
-        produceQuantity: 4,
-        ambientQuantity: 5,
-        deliveryDateTime: "2021-08-20 10:10:10"
-    }
-    return submitOrder(body).catch(e => {
-        expect(e.response.data.message).toMatch('Warehouse does not exist');
-    });
-})
