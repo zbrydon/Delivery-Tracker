@@ -17,4 +17,6 @@ npm i
 This will install all the packeges needed for the current build of the project
 
 There will also need to be two .env files that need to be created for the front end and backend. These will require the following:
-1.  
+1. .env.development file that will contain API URL and Google API JavaScript Key (root of client)
+2. .env file that will have token for store and warehouse
+3. A MongoDB with the same database structure (these samples can be given to those interested)
