@@ -1,4 +1,7 @@
-// map styling sheet for google-maps-react
+/*
+    map styling sheet for google-maps-react uses JSON file created 
+    to get the exact styling and appearnce of the map and which data it shows 
+*/
 export default [
     {
         "featureType": "administrative",

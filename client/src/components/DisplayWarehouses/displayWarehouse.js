@@ -29,7 +29,7 @@ const DisplayWarehouses = () =>
             .then(response => {   
                 if(response.data.success) 
                 {  
-                    //retriving the data from rhe get request and setting the latitudes and logitudes to the consts
+                    //retriving the data from rhe get request and setting the latitudes and longitudes to the consts
                     setWarehouseLat(response.data.warehouses[0].location.lat)
                     setWarehouseLng(response.data.warehouses[0].location.long)
                     setWarehouseLat1(response.data.warehouses[1].location.lat)
@@ -37,6 +37,7 @@ const DisplayWarehouses = () =>
                 } 
                 
             }
+            //catch error if there is no response
             ).catch(error => {
                 let response = error.response;
                 if (response == 403) {
@@ -45,20 +46,21 @@ const DisplayWarehouses = () =>
             }
         );
     }
+    // useEffect hook is used so that it renders the data on the mmap each time page is refreshed
     useEffect(() => {
         GetData();
       }, []);
     
-    function Map()
+    function Map() //this is the map function
     { 
         return(
             <div>
                 <GoogleMap
                     defaultZoom={13}
-                    defaultCenter={{lat: -37.889130, lng: 145.151060}}
-                    defaultOptions={{styles: mapStyles}}
+                    defaultCenter={{lat: -37.889130, lng: 145.151060}} //original position on load and refresh
+                    defaultOptions={{styles: mapStyles}} 
                 >
-                <Marker 
+                <Marker //one warehouse marker
                     position={{lat: warehouseLat, lng: warehouseLng}}
                     icon={{
                         url: '/warehouse.png',
@@ -68,8 +70,8 @@ const DisplayWarehouses = () =>
                         setSelectedWarehouse(warehouseLng)
                     }}
                 />
-                <Marker
-                    position={{lat: warehouseLat1, lng: warehouseLng1}}
+                <Marker // another warehouse marker
+                    position={{lat: warehouseLat1, lng: warehouseLng1}} //position data from get request
                     icon={{
                         url: '/warehouse.png',
                         scaledSize: new window.google.maps.Size(25, 25)
@@ -110,8 +112,8 @@ const DisplayWarehouses = () =>
             <br/>
             <div style={{width: '750px', height: '420px'}} className="Maps">
                 <h1>Choose a Warehouse</h1>
-                <WrappedMap
-                    googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}
+                <WrappedMap //this function renders the google map on the page
+                    googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`} //GoogleMaps API key in env.development file
                     loadingElement={<div style={{height: "100%"}}  />}
                     containerElement={<div style={{height: "100%"}}  />}
                     mapElement={<div style={{height: "100%"}}  />}             

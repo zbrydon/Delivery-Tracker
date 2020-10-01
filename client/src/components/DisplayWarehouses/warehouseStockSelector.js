@@ -4,12 +4,15 @@ import "../ViewStock/styling.css";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
 
+// the chart that displays on the Display warehouse page
+
+//page still work in progress doesnt update on click of marker
 class Charts extends Component {
     redirectToLogin = () => {
         const { history } = this.props;
         if (history) history.push('/');
     }
-    constructor(props) {
+    constructor(props) { //constructir crates the props of the pallet types
         super(props);
         this.state = {
             warehouseSOHData: {
@@ -38,7 +41,7 @@ class Charts extends Component {
             'authorization': token
         };
         const ID = {warehouseId : 1111}
-        axios.post(
+        axios.post( //posts the requests and retrieves the data for only warehouse 1111
             `${API_URL}/storeViewWarehouseSOH`, ID ,{ headers }
         ).then(response => {
             if (response.data.success) {
@@ -71,7 +74,7 @@ class Charts extends Component {
             }
         });
     }
-    static defaultProps = {
+    static defaultProps = { //default properties are set to display components in correct position
         displayTitle: true,
         displayLegend: true,
         legendPosition: 'right'
@@ -81,7 +84,7 @@ class Charts extends Component {
         return (
             <div>
                 <div className="chart">
-                    <Bar
+                    <Bar //dispplays the chart on page with the properties set below
                         data={this.state.warehouseSOHData}
                         options={{
                             maintainAspectRatio: true,

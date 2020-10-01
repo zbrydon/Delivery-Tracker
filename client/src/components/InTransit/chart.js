@@ -81,6 +81,7 @@ class LineChart extends Component {
       authorization: token,
     };
     const params = { orderId: 1000 };
+    //variables for the pallet type and theri corresponding background colour
     let f = [];
     let d = [];
     let m = [];
@@ -93,7 +94,7 @@ class LineChart extends Component {
     let pc = [];
     let ac = [];
     axios
-      .get(`${API_URL}/viewOrder`, { headers, params })
+      .get(`${API_URL}/viewOrder`, { headers, params }) //get request for the temperature for each pallet type
       .then((response) => {
         if (response.data.success) {
           for (let i = 0; i < response.data.order.temperature.length; i++) {
@@ -110,6 +111,7 @@ class LineChart extends Component {
             ac.push("rgba(225, 99, 132, 0.6)");
           }
           this.setState({
+            //setting the state of the graph to the variables
             orderTempData: {
               labels: count,
               datasets: [
@@ -169,7 +171,7 @@ class LineChart extends Component {
     return (
       <div>
         <div className="Temp">
-          <Line
+          <Line //creating the line chart
             data={this.state.orderTempData}
             options={{
               maintainAspectRatio: true,

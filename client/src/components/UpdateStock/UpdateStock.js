@@ -3,7 +3,7 @@ import Navbar from "../Tools/WarehouseNavbar";
 import "../UpdateStock/UpdateStock.css";
 import axios from "axios";
 
-// the add stock for the warehouse page
+// the update stock for the warehouse page
 const AddStock = () => {
   const API_URL = process.env.REACT_APP_API_URL;
   const [frozenQuantity, setFrozenQuantity] = useState();
@@ -17,6 +17,7 @@ const AddStock = () => {
     authorization: token,
   };
 
+  //this handler will update the stock on hand at the warehouse when submitted
   const handleSubmitClick = async (e) => {
     e.preventDefault();
     alert("Stock Updated")
